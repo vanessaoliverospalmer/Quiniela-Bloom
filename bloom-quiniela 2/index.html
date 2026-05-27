@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quiniela Mundial 2026 – Bloom the Coffee</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<style>
+  :root {
+    --bloom: #FF6B00;
+    --bloom-dark: #CC5500;
+    --bloom-light: #FFF0E6;
+    --bloom-mid: #FFD4B3;
+    --cream: #FFFAF5;
+    --ink: #1A1208;
+    --ink2: #5C4A35;
+    --ink3: #9C8774;
+    --border: #EEE0D0;
+    --white: #FFFFFF;
+    --green: #2D7A4F;
+    --green-light: #E8F5EE;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--ink); min-height: 100vh; }
+
+  .header { background: var(--bloom); padding: 0 24px; display: flex; align-items: center; justify-content: space-between; height: 60px; position: sticky; top: 0; z-index: 100; }
+  .logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 18px; color: #fff; display: flex; align-items: center; gap: 8px; }
+  .logo-dot { width: 10px; height: 10px; background: var(--ink); border-radius: 50%; }
+  .nav-group { display: flex; gap: 6px; align-items: center; }
+  .nav-pill { background: rgba(255,255,255,0.25); color: #fff; border: none; padding: 6px 14px; border-radius: 20px; font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500; cursor: pointer; transition: background 0.2s; }
+  .nav-pill:hover { background: rgba(255,255,255,0.4); }
+  .nav-pill.active { background: #fff; color: var(--bloom); }
+
+  .hero { background: var(--bloom); padding: 48px 24px 56px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: '⚽'; position: absolute; font-size: 200px; opacity: 0.06; top: -30px; right: -20px; transform: rotate(20deg); }
+  .hero-badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(255,255,255,0.2); color: #fff; padding: 5px 14px; border-radius: 20px; font-size: 12px; font-weight: 500; margin-bottom: 16px; }
+  .hero h1 { font-family: 'Syne', sans-serif; font-size: clamp(28px, 6vw, 48px); font-weight: 800; color: #fff; line-height: 1.1; margin-bottom: 12px; }
+  .hero p { color: rgba(255,255,255,0.85); font-size: 15px; max-width: 400px; margin: 0 auto 28px; line-height: 1.6; }
+  .hero-cta { background: var(--ink); color: #fff; border: none; padding: 14px 32px; border-radius: 40px; font-family: 'Syne', sans-serif; font-weight: 700; font-size: 15px; cursor: pointer; transition: transform 0.15s; }
+  .hero-cta:hover { transform: translateY(-1px); }
+  .hero-stats { display: flex; justify-content: center; gap: 32px; margin-top: 32px; }
+  .hero-stat { text-align: center; }
+  .hero-stat-n { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 24px; color: #fff; display: block; }
+  .hero-stat-l { font-size: 12px; color: rgba(255,255,255,0.8); }
+
+  .main { max-width: 800px; margin: 0 auto; padding: 32px 20px 80px; }
+  .screen { display: none; }
+  .screen.active { display: block; }
+
+  .card { background: var(--white); border: 1px solid var(--border); border-radius: 16px; padding: 24px; margin-bottom: 16px; }
+  .card-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 16px; margin-bottom: 16px; color: var(--ink); display: flex; align-items: center; gap: 8px; }
+  .step-badge { background: var(--bloom); color: #fff; width: 24px; height: 24px; border-radius: 50%; font-size: 12px; font-weight: 700; display: inline-flex; align-items: center; justify-content: center; font-family: 'Syne', sans-serif; }
+
+  .form-group { margin-bottom: 16px; }
+  label.fl { display: block; font-size: 13px; font-weight: 500; color: var(--ink2); margin-bottom: 6px; }
+  input[type=text], input[type=email], input[type=tel], input[type=number], input[type=password], select, textarea {
+    width: 100%; padding: 10px 14px; border: 1.5px solid var(--border); border-radius: 10px;
+    font-family: 'DM Sans', sans-serif; font-size: 14px; color: var(--ink); background: var(--white); outline: none; transition: border-color 0.2s;
+  }
+  input:focus, select:focus, textarea:focus { border-color: var(--bloom); }
+  input::placeholder, textarea::placeholder { color: var(--ink3); }
+
+  .btn { border: none; border-radius: 12px; font-family: 'Syne', sans-serif; font-weight: 700; font-size: 14px; cursor: pointer; padding: 12px 24px; transition: transform 0.15s, opacity 0.2s; }
+  .btn:hover { opacity: 0.9; transform: translateY(-1px); }
+  .btn:active { transform: scale(0.98); }
+  .btn-primary { background: var(--bloom); color: #fff; width: 100%; }
+  .btn-secondary { background: var(--ink); color: #fff; }
+  .btn-ghost { background: transparent; border: 1.5px solid var(--border); color: var(--ink2); }
+  .btn-sm { padding: 7px 16px; font-size: 12px; border-radius: 8px; width: auto; }
+  .btn-danger { background: #dc3545; color: #fff; }
+  .btn-success { background: var(--green); color: #fff; }
+
+  .section-header { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; padding-bottom: 12px; border-bottom: 2px solid var(--bloom-light); }
+  .section-icon { width: 36px; height: 36px; background: var(--bloom-light); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 18px; }
+  .section-label { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 15px; color: var(--ink); }
+  .section-sub { font-size: 12px; color: var(--ink3); }
+
+  .grupos-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 16px; }
+  .grupo-card { background: var(--white); border: 1px solid var(--border); border-radius: 14px; overflow: hidden; }
+  .grupo-header { background: var(--bloom); padding: 8px 14px; display: flex; align-items: center; justify-content: space-between; }
+  .grupo-header span { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 13px; color: #fff; }
+  .grupo-teams { font-size: 11px; color: rgba(255,255,255,0.8); }
+  .partido-row { display: flex; align-items: center; padding: 9px 12px; border-bottom: 1px solid var(--bloom-light); gap: 6px; }
+  .partido-row:last-child { border-bottom: none; }
+  .team-name { font-size: 12px; font-weight: 500; flex: 1; color: var(--ink); }
+  .team-name.right { text-align: right; }
+  .score-inputs { display: flex; align-items: center; gap: 4px; }
+  .score-input { width: 36px !important; padding: 5px 0 !important; text-align: center !important; font-family: 'Syne', sans-serif !important; font-weight: 700 !important; font-size: 14px !important; border-radius: 7px !important; }
+  .score-sep { font-family: 'Syne', sans-serif; font-weight: 700; color: var(--ink3); font-size: 13px; }
+
+  .llaves-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 10px; }
+  .llave-card { background: var(--white); border: 1px solid var(--border); border-radius: 12px; padding: 12px 14px; }
+  .llave-label { font-size: 11px; font-weight: 600; color: var(--ink3); text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 8px; }
+  .llave-select { width: 100%; padding: 7px 10px; border: 1.5px solid var(--border); border-radius: 8px; font-size: 13px; font-family: 'DM Sans', sans-serif; color: var(--ink); background: var(--white); outline: none; }
+  .llave-select:focus { border-color: var(--bloom); }
+
+  .campeon-box { background: var(--bloom-light); border: 2px dashed var(--bloom-mid); border-radius: 16px; padding: 24px; text-align: center; margin-bottom: 16px; }
+  .campeon-trophy { font-size: 40px; margin-bottom: 8px; }
+  .campeon-label { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 14px; color: var(--bloom-dark); margin-bottom: 12px; }
+  .campeon-select { max-width: 300px; margin: 0 auto; }
+
+  .ranking-table { width: 100%; border-collapse: collapse; }
+  .ranking-table th { font-size: 11px; font-weight: 600; color: var(--ink3); text-transform: uppercase; letter-spacing: 0.5px; padding: 8px 12px; text-align: left; border-bottom: 2px solid var(--bloom-light); }
+  .ranking-table td { padding: 11px 12px; font-size: 14px; border-bottom: 1px solid var(--bloom-light); }
+  .rank-pos { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 16px; color: var(--ink3); }
+  .rank-pos.gold { color: #CC8800; }
+  .rank-pos.silver { color: #888; }
+  .rank-pos.bronze { color: #AA6600; }
+  .rank-pts { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 15px; color: var(--bloom); }
+  .rank-badge { display: inline-block; font-size: 11px; font-weight: 600; padding: 3px 8px; border-radius: 20px; }
+  .rank-badge.pagado { background: var(--green-light); color: var(--green); }
+  .rank-badge.pendiente { background: #fff3cd; color: #856404; }
+
+  .steps-indicator { display: flex; align-items: center; justify-content: center; gap: 0; margin-bottom: 24px; padding: 0 8px; }
+  .step-item { display: flex; flex-direction: column; align-items: center; gap: 4px; flex: 1; }
+  .step-circle { width: 30px; height: 30px; border-radius: 50%; border: 2px solid var(--border); background: var(--white); display: flex; align-items: center; justify-content: center; font-family: 'Syne', sans-serif; font-weight: 700; font-size: 12px; color: var(--ink3); z-index: 2; }
+  .step-circle.done { background: var(--green); border-color: var(--green); color: #fff; }
+  .step-circle.current { background: var(--bloom); border-color: var(--bloom); color: #fff; }
+  .step-item-label { font-size: 10px; color: var(--ink3); font-weight: 500; text-align: center; white-space: nowrap; }
+  .step-line { flex: 1; height: 2px; background: var(--border); margin: 0 -2px; margin-bottom: 18px; }
+  .step-line.done { background: var(--green); }
+
+  .admin-tabs { display: flex; gap: 4px; background: var(--bloom-light); padding: 4px; border-radius: 12px; margin-bottom: 20px; }
+  .admin-tab { flex: 1; padding: 8px; border: none; background: transparent; border-radius: 9px; font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500; cursor: pointer; color: var(--ink2); transition: all 0.15s; }
+  .admin-tab.active { background: #fff; color: var(--bloom); font-weight: 600; }
+
+  .progress-bar { background: var(--bloom-light); border-radius: 20px; height: 8px; overflow: hidden; margin-top: 6px; }
+  .progress-fill { background: var(--bloom); height: 100%; border-radius: 20px; transition: width 0.4s ease; }
+
+  .toast { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(80px); background: var(--ink); color: #fff; padding: 12px 24px; border-radius: 40px; font-size: 13px; font-weight: 500; z-index: 999; transition: transform 0.3s; pointer-events: none; }
+  .toast.show { transform: translateX(-50%) translateY(0); }
+  .toast.success { background: var(--green); }
+  .toast.error { background: #dc3545; }
+
+  .empty-state { text-align: center; padding: 40px 24px; color: var(--ink3); }
+  .empty-state-icon { font-size: 40px; margin-bottom: 10px; opacity: 0.5; }
+  .empty-state p { font-size: 14px; }
+
+  .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(26,18,8,0.6); z-index: 200; align-items: center; justify-content: center; padding: 20px; }
+  .modal-overlay.open { display: flex; }
+  .modal { background: var(--white); border-radius: 20px; padding: 28px; max-width: 420px; width: 100%; max-height: 90vh; overflow-y: auto; }
+  .modal-title { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 18px; margin-bottom: 6px; }
+  .modal-sub { font-size: 13px; color: var(--ink3); margin-bottom: 20px; }
+
+  .admin-lock { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 50vh; text-align: center; gap: 16px; }
+
+  .chip { display: inline-flex; align-items: center; gap: 4px; background: var(--bloom-light); color: var(--bloom-dark); padding: 4px 10px; border-radius: 20px; font-size: 12px; font-weight: 600; }
+  .divider { border: none; border-top: 1px solid var(--border); margin: 16px 0; }
+  .text-sm { font-size: 13px; color: var(--ink2); }
+  .text-xs { font-size: 12px; color: var(--ink3); }
+  .text-center { text-align: center; }
+  .flex { display: flex; }
+  .flex-between { display: flex; justify-content: space-between; align-items: center; }
+  .gap-8 { gap: 8px; }
+  .gap-12 { gap: 12px; }
+  .mt-8 { margin-top: 8px; }
+  .mt-16 { margin-top: 16px; }
+  .mt-24 { margin-top: 24px; }
+  .mb-8 { margin-bottom: 8px; }
+  .mb-16 { margin-bottom: 16px; }
+
+  /* QR PAGE */
+  .qr-page { max-width: 400px; margin: 0 auto; }
+  .qr-card { background: var(--white); border: 1px solid var(--border); border-radius: 20px; padding: 28px; text-align: center; }
+  .qr-logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 22px; color: var(--bloom); margin-bottom: 4px; }
+  .qr-sub { font-size: 13px; color: var(--ink3); margin-bottom: 20px; }
+  #qr-container { display: flex; justify-content: center; margin: 16px 0; }
+  #qr-container canvas, #qr-container img { border-radius: 12px; }
+  .qr-url { font-size: 12px; color: var(--ink3); word-break: break-all; background: var(--cream); padding: 8px 12px; border-radius: 8px; margin-top: 12px; }
+  .qr-instructions { background: var(--bloom-light); border-radius: 12px; padding: 16px; margin-top: 16px; text-align: left; }
+  .qr-instructions p { font-size: 13px; color: var(--bloom-dark); line-height: 1.6; }
+
+  @media (max-width: 600px) {
+    .grupos-grid { grid-template-columns: 1fr; }
+    .llaves-grid { grid-template-columns: 1fr; }
+    .hero { padding: 32px 20px 40px; }
+    .hero-stats { gap: 20px; }
+    .main { padding: 20px 16px 80px; }
+  }
+
+  @media print {
+    .header, .nav-group { display: none !important; }
+    .hero { display: none !important; }
+    .main { padding: 0; }
+    .screen { display: none !important; }
+    #screen-qr { display: block !important; }
+    .btn { display: none; }
+    body { background: white; }
+    .qr-card { border: none; box-shadow: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="logo">
+    <span class="logo-dot"></span>
+    Bloom · Quiniela
+  </div>
+  <div class="nav-group">
+    <button class="nav-pill active" onclick="showScreen('home')" id="nav-home">Inicio</button>
+    <button class="nav-pill" onclick="showScreen('ranking')" id="nav-ranking">Ranking</button>
+    <button class="nav-pill" onclick="showScreen('admin-gate')" id="nav-admin">Admin</button>
+  </div>
+</div>
+
+<div class="hero" id="hero-section">
+  <div class="hero-badge">⚽ FIFA World Cup 2026 · USA · Canada · México</div>
+  <h1>Quiniela<br>Mundial 2026</h1>
+  <p>Adivina los resultados, sube al ranking y gana el premio de la cafetería</p>
+  <button class="hero-cta" onclick="showScreen('registro')">Participar ahora</button>
+  <div class="hero-stats">
+    <div class="hero-stat"><span class="hero-stat-n" id="stat-participantes">0</span><span class="hero-stat-l">Participantes</span></div>
+    <div class="hero-stat"><span class="hero-stat-n">104</span><span class="hero-stat-l">Partidos totales</span></div>
+    <div class="hero-stat"><span class="hero-stat-n" id="stat-premio">$0</span><span class="hero-stat-l">Premio acumulado</span></div>
+  </div>
+</div>
+
+<div class="main">
+
+  <!-- HOME -->
+  <div class="screen active" id="screen-home">
+    <div class="card">
+      <div class="card-title">🏆 ¿Cómo funciona?</div>
+      <div style="display:grid;gap:12px;">
+        <div class="flex gap-12" style="align-items:flex-start;"><div style="background:var(--bloom);color:#fff;width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-weight:700;font-size:12px;flex-shrink:0;">1</div><div><p style="font-weight:500;font-size:14px;">Regístrate con tu nombre y correo</p><p class="text-xs mt-8">Solo tarda 1 minuto</p></div></div>
+        <div class="flex gap-12" style="align-items:flex-start;"><div style="background:var(--bloom);color:#fff;width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-weight:700;font-size:12px;flex-shrink:0;">2</div><div><p style="font-weight:500;font-size:14px;">Llena tu quiniela completa</p><p class="text-xs mt-8">12 grupos (36 partidos), ronda de 32, cuartos, semis y campeón</p></div></div>
+        <div class="flex gap-12" style="align-items:flex-start;"><div style="background:var(--bloom);color:#fff;width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-weight:700;font-size:12px;flex-shrink:0;">3</div><div><p style="font-weight:500;font-size:14px;">Paga tu cuota en caja</p><p class="text-xs mt-8">El staff de Bloom confirmará tu participación</p></div></div>
+        <div class="flex gap-12" style="align-items:flex-start;"><div style="background:var(--bloom);color:#fff;width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-weight:700;font-size:12px;flex-shrink:0;">4</div><div><p style="font-weight:500;font-size:14px;">Sigue el ranking en tiempo real</p><p class="text-xs mt-8">Consulta quién va ganando durante todo el torneo</p></div></div>
+      </div>
+      <div class="mt-24"><button class="btn btn-primary" onclick="showScreen('registro')">Registrarme ahora ⚽</button></div>
+    </div>
+    <div class="card">
+      <div class="card-title">📋 Sistema de puntos</div>
+      <div style="display:grid;gap:6px;">
+        <div class="flex-between" style="padding:8px 10px;background:var(--bloom-light);border-radius:8px;"><span style="font-size:13px;font-weight:500;">Resultado exacto (marcador)</span><span class="chip">3 pts</span></div>
+        <div class="flex-between" style="padding:8px 10px;background:var(--cream);border-radius:8px;"><span style="font-size:13px;">Ganador correcto (sin exacto)</span><span class="chip">1 pt</span></div>
+        <div class="flex-between" style="padding:8px 10px;background:var(--cream);border-radius:8px;"><span style="font-size:13px;">Clasificado a R32 correcto</span><span class="chip">2 pts</span></div>
+        <div class="flex-between" style="padding:8px 10px;background:var(--cream);border-radius:8px;"><span style="font-size:13px;">Semifinalista correcto</span><span class="chip">5 pts</span></div>
+        <div class="flex-between" style="padding:8px 10px;background:var(--cream);border-radius:8px;"><span style="font-size:13px;">Campeón correcto</span><span class="chip">10 pts</span></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">📅 Fechas clave</div>
+      <div style="display:grid;gap:8px;">
+        <div class="flex-between" style="padding:8px 10px;background:var(--cream);border-radius:8px;"><span style="font-size:13px;">Inicio del torneo</span><span style="font-size:13px;font-weight:500;color:var(--bloom);">11 Jun 2026</span></div>
+        <div class="flex-between" style="padding:8px 10px;background:var(--cream);border-radius:8px;"><span style="font-size:13px;">Final del torneo</span><span style="font-size:13px;font-weight:500;color:var(--bloom);">19 Jul 2026</span></div>
+        <div class="flex-between" style="padding:8px 10px;background:var(--bloom-light);border-radius:8px;"><span style="font-size:13px;font-weight:500;">Cierre de quinielas</span><span style="font-size:13px;font-weight:500;color:var(--bloom-dark);">10 Jun 2026</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- REGISTRO -->
+  <div class="screen" id="screen-registro">
+    <div class="card">
+      <div class="card-title"><span class="step-badge">1</span> Tus datos</div>
+      <div class="form-group"><label class="fl">Nombre completo</label><input type="text" id="reg-nombre" placeholder="Ej: María García"></div>
+      <div class="form-group"><label class="fl">Correo electrónico</label><input type="email" id="reg-email" placeholder="tu@correo.com"></div>
+      <div class="form-group"><label class="fl">Teléfono (opcional)</label><input type="tel" id="reg-telefono" placeholder="+52 55 1234 5678"></div>
+      <div style="background:var(--bloom-light);border-radius:10px;padding:12px;margin-bottom:16px;">
+        <p style="font-size:12px;color:var(--bloom-dark);line-height:1.6;">💛 Al participar aceptas pagar la cuota de inscripción en caja de Bloom. El premio se entrega al finalizar el torneo.</p>
+      </div>
+      <button class="btn btn-primary" onclick="registrarYContinuar()">Continuar →</button>
+      <button class="btn btn-ghost mt-8" style="width:100%;" onclick="showScreen('home')">Cancelar</button>
+    </div>
+  </div>
+
+  <!-- GRUPOS -->
+  <div class="screen" id="screen-grupos">
+    <div class="flex-between mb-16">
+      <div>
+        <p style="font-family:'Syne',sans-serif;font-weight:700;font-size:18px;" id="grupos-bienvenida">¡Llena tu quiniela!</p>
+        <p class="text-xs">Predice el marcador exacto de cada partido</p>
+      </div>
+      <span class="chip" id="grupos-progreso-chip">0/36</span>
+    </div>
+    <div class="progress-bar mb-16"><div class="progress-fill" id="grupos-progress-fill" style="width:0%"></div></div>
+    <div class="steps-indicator">
+      <div class="step-item"><div class="step-circle done">✓</div><span class="step-item-label">Datos</span></div>
+      <div class="step-line done"></div>
+      <div class="step-item"><div class="step-circle current">2</div><span class="step-item-label">Grupos</span></div>
+      <div class="step-line"></div>
+      <div class="step-item"><div class="step-circle">3</div><span class="step-item-label">Eliminatoria</span></div>
+      <div class="step-line"></div>
+      <div class="step-item"><div class="step-circle">4</div><span class="step-item-label">Campeón</span></div>
+    </div>
+    <div class="grupos-grid" id="grupos-container"></div>
+    <div class="mt-24 flex" style="gap:10px;">
+      <button class="btn btn-ghost" style="flex:1;" onclick="showScreen('registro')">← Atrás</button>
+      <button class="btn btn-primary" style="flex:2;" onclick="showScreen('eliminatoria')">Eliminatoria →</button>
+    </div>
+  </div>
+
+  <!-- ELIMINATORIA -->
+  <div class="screen" id="screen-eliminatoria">
+    <div class="steps-indicator">
+      <div class="step-item"><div class="step-circle done">✓</div><span class="step-item-label">Datos</span></div>
+      <div class="step-line done"></div>
+      <div class="step-item"><div class="step-circle done">✓</div><span class="step-item-label">Grupos</span></div>
+      <div class="step-line done"></div>
+      <div class="step-item"><div class="step-circle current">3</div><span class="step-item-label">Eliminatoria</span></div>
+      <div class="step-line"></div>
+      <div class="step-item"><div class="step-circle">4</div><span class="step-item-label">Campeón</span></div>
+    </div>
+    <div class="card"><div class="section-header"><div class="section-icon">🔥</div><div><div class="section-label">Ronda de 32</div><div class="section-sub">16 partidos — elige al ganador de cada llave</div></div></div><div class="llaves-grid" id="r32-container"></div></div>
+    <div class="card"><div class="section-header"><div class="section-icon">⚡</div><div><div class="section-label">Cuartos de final</div><div class="section-sub">8 clasificados</div></div></div><div class="llaves-grid" id="cuartos-container"></div></div>
+    <div class="card"><div class="section-header"><div class="section-icon">🌟</div><div><div class="section-label">Semifinales</div><div class="section-sub">4 finalistas</div></div></div><div class="llaves-grid" id="semis-container"></div></div>
+    <div class="flex mt-8" style="gap:10px;">
+      <button class="btn btn-ghost" style="flex:1;" onclick="showScreen('grupos')">← Grupos</button>
+      <button class="btn btn-primary" style="flex:2;" onclick="showScreen('campeon')">Al campeón →</button>
+    </div>
+  </div>
+
+  <!-- CAMPEÓN -->
+  <div class="screen" id="screen-campeon">
+    <div class="steps-indicator">
+      <div class="step-item"><div class="step-circle done">✓</div><span class="step-item-label">Datos</span></div>
+      <div class="step-line done"></div>
+      <div class="step-item"><div class="step-circle done">✓</div><span class="step-item-label">Grupos</span></div>
+      <div class="step-line done"></div>
+      <div class="step-item"><div class="step-circle done">✓</div><span class="step-item-label">Eliminatoria</span></div>
+      <div class="step-line done"></div>
+      <div class="step-item"><div class="step-circle current">4</div><span class="step-item-label">Campeón</span></div>
+    </div>
+    <div class="campeon-box">
+      <div class="campeon-trophy">🏆</div>
+      <div class="campeon-label">¿Quién será el Campeón del Mundo?</div>
+      <div class="campeon-select"><select id="campeon-select"><option value="">— Selecciona tu campeón —</option></select></div>
+    </div>
+    <div class="card"><div class="card-title">🥈 Subcampeón (finalista perdedor)</div><select id="subcampeon-select" style="width:100%;"><option value="">— Selecciona —</option></select></div>
+    <div class="card"><div class="card-title">🥉 Tercer lugar</div><select id="tercero-select" style="width:100%;"><option value="">— Selecciona —</option></select></div>
+    <div class="flex" style="gap:10px;">
+      <button class="btn btn-ghost" style="flex:1;" onclick="showScreen('eliminatoria')">← Atrás</button>
+      <button class="btn btn-primary" style="flex:2;" onclick="guardarQuiniela()">Guardar quiniela ✓</button>
+    </div>
+  </div>
+
+  <!-- CONFIRMACIÓN -->
+  <div class="screen" id="screen-confirmacion">
+    <div style="text-align:center;padding:40px 20px;">
+      <div style="font-size:64px;margin-bottom:16px;">🎉</div>
+      <p style="font-family:'Syne',sans-serif;font-weight:800;font-size:22px;margin-bottom:8px;">¡Quiniela guardada!</p>
+      <p style="color:var(--ink2);font-size:14px;margin-bottom:24px;">Tu participación fue registrada. Pasa por caja para confirmar tu cuota.</p>
+      <div class="card" style="text-align:left;max-width:340px;margin:0 auto 20px;">
+        <p class="text-xs mb-8">Tu ID de participante</p>
+        <p style="font-family:'Syne',sans-serif;font-weight:800;font-size:20px;color:var(--bloom);" id="conf-id">---</p>
+        <hr class="divider">
+        <p class="text-xs mb-8">Nombre registrado</p>
+        <p style="font-weight:500;font-size:14px;" id="conf-nombre">---</p>
+        <hr class="divider">
+        <p class="text-xs mb-8">Campeón elegido</p>
+        <p style="font-weight:500;font-size:14px;" id="conf-campeon">---</p>
+      </div>
+      <button class="btn btn-primary" onclick="showScreen('ranking')" style="max-width:280px;">Ver el ranking</button>
+      <button class="btn btn-ghost mt-8" onclick="showScreen('home')" style="max-width:280px;width:100%;">Volver al inicio</button>
+    </div>
+  </div>
+
+  <!-- RANKING -->
+  <div class="screen" id="screen-ranking">
+    <div class="card">
+      <div class="flex-between mb-16">
+        <div class="card-title" style="margin-bottom:0;">🏆 Tabla de posiciones</div>
+        <span class="text-xs" id="ranking-fecha">—</span>
+      </div>
+      <div id="ranking-container"><div class="empty-state"><div class="empty-state-icon">📊</div><p>El ranking aparecerá cuando comiencen los partidos</p></div></div>
+    </div>
+    <div class="card">
+      <div class="card-title">👥 Todos los participantes</div>
+      <div id="participantes-list"><div class="empty-state"><div class="empty-state-icon">👤</div><p>Aún no hay participantes registrados</p></div></div>
+    </div>
+  </div>
+
+  <!-- QR -->
+  <div class="screen" id="screen-qr">
+    <div class="qr-page">
+      <div class="qr-card">
+        <div class="qr-logo">🌸 Bloom the Coffee</div>
+        <div class="qr-sub">Quiniela Mundial 2026 · Escanea para participar</div>
+        <div id="qr-container"></div>
+        <div class="qr-url" id="qr-url-text">Ingresa la URL de tu app para generar el QR</div>
+        <div class="qr-instructions">
+          <p>⚽ Escanea el código QR con tu celular, regístrate y llena tu quiniela. ¡El ganador se lleva el premio! Pregunta en caja por los detalles. Cierre de quinielas: <strong>10 Jun 2026</strong></p>
+        </div>
+      </div>
+      <div class="mt-16">
+        <label class="fl">URL de tu app (después de publicar en Vercel)</label>
+        <input type="text" id="qr-url-input" placeholder="https://bloom-quiniela.vercel.app" oninput="generarQR(this.value)">
+      </div>
+      <div class="flex mt-16" style="gap:10px;">
+        <button class="btn btn-ghost" style="flex:1;" onclick="showScreen('home')">← Volver</button>
+        <button class="btn btn-primary" style="flex:2;" onclick="window.print()">🖨️ Imprimir QR</button>
+      </div>
+      <div style="background:var(--bloom-light);border-radius:12px;padding:16px;margin-top:16px;">
+        <p style="font-family:'Syne',sans-serif;font-weight:700;font-size:13px;color:var(--bloom-dark);margin-bottom:8px;">💡 Instrucciones para imprimir</p>
+        <p class="text-xs" style="line-height:1.7;">1. Pega la URL de tu app en el campo de arriba<br>2. El QR se genera automáticamente<br>3. Haz clic en "Imprimir QR"<br>4. Imprime y pega en la cafetería</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ADMIN GATE -->
+  <div class="screen" id="screen-admin-gate">
+    <div class="admin-lock">
+      <div style="font-size:48px;">🔐</div>
+      <p style="font-family:'Syne',sans-serif;font-weight:700;font-size:18px;">Acceso administrador</p>
+      <p class="text-sm" style="margin-bottom:16px;">Solo para el equipo de Bloom</p>
+      <div style="width:100%;max-width:300px;">
+        <input type="password" id="admin-pass" placeholder="Contraseña" style="margin-bottom:10px;text-align:center;" onkeydown="if(event.key==='Enter') adminLogin()">
+        <button class="btn btn-primary" onclick="adminLogin()">Entrar</button>
+        <p class="text-xs text-center mt-8" style="opacity:0.6;">Contraseña por defecto: <strong>bloom2026</strong></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ADMIN PANEL -->
+  <div class="screen" id="screen-admin">
+    <div class="flex-between mb-16">
+      <p style="font-family:'Syne',sans-serif;font-weight:800;font-size:18px;">Panel Admin</p>
+      <div class="flex gap-8">
+        <button class="btn btn-ghost btn-sm" onclick="showScreen('qr')">🔲 QR</button>
+        <button class="btn btn-ghost btn-sm" onclick="adminLogout()">Salir</button>
+      </div>
+    </div>
+    <div class="admin-tabs">
+      <button class="admin-tab active" onclick="adminTab('participantes',this)">👥 Participantes</button>
+      <button class="admin-tab" onclick="adminTab('resultados',this)">⚽ Resultados</button>
+      <button class="admin-tab" onclick="adminTab('config',this)">⚙️ Config</button>
+    </div>
+    <div id="admin-tab-participantes">
+      <div class="card">
+        <div class="flex-between mb-16"><div class="card-title" style="margin-bottom:0;">Inscritos</div><span class="chip" id="admin-count">0</span></div>
+        <div id="admin-participantes-table"><div class="empty-state"><div class="empty-state-icon">👤</div><p>Sin participantes</p></div></div>
+      </div>
+      <div class="card">
+        <div class="card-title">💰 Control de cuotas</div>
+        <p class="text-sm mb-16">Marca como pagado cuando el cliente pase por caja.</p>
+        <div id="admin-cuotas-table"><div class="empty-state"><div class="empty-state-icon">💳</div><p>Sin participantes</p></div></div>
+      </div>
+    </div>
+    <div id="admin-tab-resultados" style="display:none;">
+      <div class="card">
+        <div class="card-title">⚽ Resultados reales — Fase de grupos</div>
+        <p class="text-sm mb-16">Ingresa los marcadores reales para calcular puntos automáticamente.</p>
+        <div class="grupos-grid" id="admin-resultados-container"></div>
+        <button class="btn btn-primary mt-16" onclick="calcularPuntos()">Calcular puntos y actualizar ranking</button>
+      </div>
+    </div>
+    <div id="admin-tab-config" style="display:none;">
+      <div class="card">
+        <div class="card-title">⚙️ Configuración</div>
+        <div class="form-group"><label class="fl">Cuota de participación ($)</label><input type="number" id="config-cuota" value="100"></div>
+        <div class="form-group"><label class="fl">Nueva contraseña de admin</label><input type="password" id="config-pass" placeholder="Mínimo 4 caracteres"></div>
+        <div class="form-group"><label class="fl">Mensaje de bienvenida (opcional)</label><textarea id="config-msg" rows="2" placeholder="Ej: ¡Participa y gana un mes de café gratis!"></textarea></div>
+        <button class="btn btn-primary" onclick="guardarConfig()">Guardar configuración</button>
+      </div>
+      <div class="card">
+        <div class="card-title" style="color:#dc3545;">⚠️ Zona de peligro</div>
+        <p class="text-sm mb-16">Esta acción no se puede deshacer.</p>
+        <button class="btn btn-danger btn-sm" onclick="resetearDatos()">Borrar todos los datos</button>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /main -->
+
+<div class="toast" id="toast"></div>
+
+<script>
+// ══════════════════════════════════════════
+// DATOS REALES FIFA WORLD CUP 2026
+// ══════════════════════════════════════════
+
+const GRUPOS = [
+  { nombre:'Grupo A', equipos:['México','Sudáfrica','Corea del Sur','Chequia'],
+    partidos:[['México','Sudáfrica'],['Corea del Sur','Chequia'],['México','Corea del Sur'],['Chequia','Sudáfrica'],['Chequia','México'],['Sudáfrica','Corea del Sur']] },
+  { nombre:'Grupo B', equipos:['Canadá','Suiza','Qatar','Bosnia'],
+    partidos:[['Canadá','Qatar'],['Suiza','Bosnia'],['Canadá','Suiza'],['Qatar','Bosnia'],['Qatar','Suiza'],['Bosnia','Canadá']] },
+  { nombre:'Grupo C', equipos:['Brasil','Marruecos','Escocia','Haití'],
+    partidos:[['Brasil','Marruecos'],['Escocia','Haití'],['Brasil','Escocia'],['Marruecos','Haití'],['Marruecos','Escocia'],['Haití','Brasil']] },
+  { nombre:'Grupo D', equipos:['EE.UU.','Paraguay','Australia','Turquía'],
+    partidos:[['EE.UU.','Paraguay'],['Australia','Turquía'],['EE.UU.','Australia'],['Paraguay','Turquía'],['Turquía','EE.UU.'],['Paraguay','Australia']] },
+  { nombre:'Grupo E', equipos:['Alemania','Curazao','Costa de Marfil','Ecuador'],
+    partidos:[['Alemania','Curazao'],['Costa de Marfil','Ecuador'],['Alemania','Costa de Marfil'],['Curazao','Ecuador'],['Ecuador','Alemania'],['Curazao','Costa de Marfil']] },
+  { nombre:'Grupo F', equipos:['Países Bajos','Japón','Túnez','Suecia'],
+    partidos:[['Países Bajos','Japón'],['Túnez','Suecia'],['Países Bajos','Túnez'],['Japón','Suecia'],['Suecia','Países Bajos'],['Japón','Túnez']] },
+  { nombre:'Grupo G', equipos:['Bélgica','Egipto','Irán','Nueva Zelanda'],
+    partidos:[['Bélgica','Egipto'],['Irán','Nueva Zelanda'],['Bélgica','Irán'],['Egipto','Nueva Zelanda'],['Nueva Zelanda','Bélgica'],['Egipto','Irán']] },
+  { nombre:'Grupo H', equipos:['España','Cabo Verde','Arabia Saudita','Uruguay'],
+    partidos:[['España','Arabia Saudita'],['Cabo Verde','Uruguay'],['España','Cabo Verde'],['Arabia Saudita','Uruguay'],['Uruguay','España'],['Arabia Saudita','Cabo Verde']] },
+  { nombre:'Grupo I', equipos:['Francia','Senegal','Noruega','Irak'],
+    partidos:[['Francia','Senegal'],['Noruega','Irak'],['Francia','Noruega'],['Senegal','Irak'],['Irak','Francia'],['Senegal','Noruega']] },
+  { nombre:'Grupo J', equipos:['Argentina','Argelia','Austria','Jordania'],
+    partidos:[['Argentina','Argelia'],['Austria','Jordania'],['Argentina','Austria'],['Argelia','Jordania'],['Jordania','Argentina'],['Argelia','Austria']] },
+  { nombre:'Grupo K', equipos:['Portugal','Colombia','Uzbekistán','Congo'],
+    partidos:[['Portugal','Colombia'],['Uzbekistán','Congo'],['Portugal','Uzbekistán'],['Colombia','Congo'],['Congo','Portugal'],['Colombia','Uzbekistán']] },
+  { nombre:'Grupo L', equipos:['Inglaterra','Croacia','Ghana','Panamá'],
+    partidos:[['Inglaterra','Croacia'],['Ghana','Panamá'],['Inglaterra','Ghana'],['Croacia','Panamá'],['Panamá','Inglaterra'],['Croacia','Ghana']] },
+];
+
+const TODOS_EQUIPOS = [...new Set(GRUPOS.flatMap(g=>g.equipos))].sort((a,b)=>a.localeCompare(b,'es'));
+
+const LLAVES_R32 = [
+  {id:'r1',label:'1A vs 2B'},{id:'r2',label:'1C vs 2D'},{id:'r3',label:'1E vs 2F'},{id:'r4',label:'1G vs 2H'},
+  {id:'r5',label:'1I vs 2J'},{id:'r6',label:'1K vs 2L'},{id:'r7',label:'1B vs 2A'},{id:'r8',label:'1D vs 2C'},
+  {id:'r9',label:'1F vs 2E'},{id:'r10',label:'1H vs 2G'},{id:'r11',label:'1J vs 2I'},{id:'r12',label:'1L vs 2K'},
+  {id:'r13',label:'3er mejor 1'},{id:'r14',label:'3er mejor 2'},{id:'r15',label:'3er mejor 3'},{id:'r16',label:'3er mejor 4'},
+];
+const LLAVES_CUARTOS = [
+  {id:'c1',label:'Ganador R1 vs R2'},{id:'c2',label:'Ganador R3 vs R4'},{id:'c3',label:'Ganador R5 vs R6'},
+  {id:'c4',label:'Ganador R7 vs R8'},{id:'c5',label:'Ganador R9 vs R10'},{id:'c6',label:'Ganador R11 vs R12'},
+  {id:'c7',label:'Ganador R13 vs R14'},{id:'c8',label:'Ganador R15 vs R16'},
+];
+const LLAVES_SEMIS = [
+  {id:'s1',label:'Ganador C1 vs C2'},{id:'s2',label:'Ganador C3 vs C4'},
+  {id:'s3',label:'Ganador C5 vs C6'},{id:'s4',label:'Ganador C7 vs C8'},
+];
+
+// ══════════════════════════════════════════
+// ESTADO
+// ══════════════════════════════════════════
+
+let state = { participantes:[], resultados_reales:{}, config:{cuota:100, password:'bloom2026', mensaje:''} };
+let qActual = { nombre:'', email:'', telefono:'', grupos:{}, llaves:{}, campeon:'', subcampeon:'', tercero:'' };
+
+function loadState() {
+  try { const s = localStorage.getItem('bloom_q_2026'); if(s) state = {...state, ...JSON.parse(s)}; } catch(e){}
+}
+function saveState() {
+  localStorage.setItem('bloom_q_2026', JSON.stringify(state));
+  updateStats();
+}
+function updateStats() {
+  document.getElementById('stat-participantes').textContent = state.participantes.length;
+  const p = state.participantes.filter(x=>x.pagado).length;
+  document.getElementById('stat-premio').textContent = '$' + (p * (state.config.cuota||100));
+}
+
+// ══════════════════════════════════════════
+// NAVEGACIÓN
+// ══════════════════════════════════════════
+
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.nav-pill').forEach(p=>p.classList.remove('active'));
+  document.getElementById('screen-'+id).classList.add('active');
+  document.getElementById('hero-section').style.display = (id==='home') ? '' : 'none';
+  const navMap = {home:'nav-home',ranking:'nav-ranking','admin-gate':'nav-admin',admin:'nav-admin'};
+  if(navMap[id]) document.getElementById(navMap[id]).classList.add('active');
+  window.scrollTo(0,0);
+  if(id==='ranking') renderRanking();
+  if(id==='admin') renderAdmin();
+  if(id==='grupos') renderGrupos();
+  if(id==='eliminatoria') renderEliminatoria();
+  if(id==='campeon') renderCampeon();
+  if(id==='qr') initQR();
+}
+
+// ══════════════════════════════════════════
+// REGISTRO
+// ══════════════════════════════════════════
+
+function registrarYContinuar() {
+  const nombre = document.getElementById('reg-nombre').value.trim();
+  const email = document.getElementById('reg-email').value.trim();
+  const telefono = document.getElementById('reg-telefono').value.trim();
+  if(!nombre) { toast('Ingresa tu nombre','error'); return; }
+  if(!email||!email.includes('@')) { toast('Ingresa un correo válido','error'); return; }
+  if(state.participantes.find(p=>p.email===email)) { toast('Este correo ya está registrado','error'); return; }
+  qActual = {nombre, email, telefono, grupos:{}, llaves:{}, campeon:'', subcampeon:'', tercero:''};
+  document.getElementById('grupos-bienvenida').textContent = '¡Hola, '+nombre.split(' ')[0]+'!';
+  showScreen('grupos');
+}
+
+// ══════════════════════════════════════════
+// GRUPOS
+// ══════════════════════════════════════════
+
+function renderGrupos() {
+  const container = document.getElementById('grupos-container');
+  container.innerHTML = '';
+  GRUPOS.forEach((grupo,gi) => {
+    const div = document.createElement('div');
+    div.className = 'grupo-card';
+    let rows = grupo.partidos.map((partido,pi) => {
+      const key = `g${gi}_p${pi}`;
+      const pred = qActual.grupos[key]||{local:'',visitante:''};
+      return `<div class="partido-row">
+        <span class="team-name">${partido[0]}</span>
+        <div class="score-inputs">
+          <input type="number" class="score-input" min="0" max="20" value="${pred.local}" oninput="guardarGrupo(${gi},${pi},'local',this.value)" placeholder="-">
+          <span class="score-sep">:</span>
+          <input type="number" class="score-input" min="0" max="20" value="${pred.visitante}" oninput="guardarGrupo(${gi},${pi},'visitante',this.value)" placeholder="-">
+        </div>
+        <span class="team-name right">${partido[1]}</span>
+      </div>`;
+    }).join('');
+    div.innerHTML = `<div class="grupo-header"><span>${grupo.nombre}</span><span class="grupo-teams">${grupo.equipos.join(' · ')}</span></div>${rows}`;
+    container.appendChild(div);
+  });
+  updateGruposProgress();
+}
+
+function guardarGrupo(gi,pi,campo,valor) {
+  const key=`g${gi}_p${pi}`;
+  if(!qActual.grupos[key]) qActual.grupos[key]={local:'',visitante:''};
+  qActual.grupos[key][campo]=valor;
+  updateGruposProgress();
+}
+
+function updateGruposProgress() {
+  const total = GRUPOS.reduce((a,g)=>a+g.partidos.length,0);
+  const llenos = Object.values(qActual.grupos).filter(p=>p.local!==''&&p.visitante!=='').length;
+  const pct = Math.round((llenos/total)*100);
+  document.getElementById('grupos-progress-fill').style.width = pct+'%';
+  document.getElementById('grupos-progreso-chip').textContent = llenos+'/'+total;
+}
+
+// ══════════════════════════════════════════
+// ELIMINATORIA
+// ══════════════════════════════════════════
+
+function renderEliminatoria() {
+  renderLlaves('r32-container', LLAVES_R32);
+  renderLlaves('cuartos-container', LLAVES_CUARTOS);
+  renderLlaves('semis-container', LLAVES_SEMIS);
+}
+
+function renderLlaves(containerId, llaves) {
+  const container = document.getElementById(containerId);
+  container.innerHTML = '';
+  llaves.forEach(llave => {
+    const sel = qActual.llaves[llave.id]||'';
+    const opts = TODOS_EQUIPOS.map(e=>`<option value="${e}" ${e===sel?'selected':''}>${e}</option>`).join('');
+    const div = document.createElement('div');
+    div.className = 'llave-card';
+    div.innerHTML = `<div class="llave-label">${llave.label}</div>
+      <select class="llave-select" onchange="guardarLlave('${llave.id}',this.value)">
+        <option value="">— Selecciona —</option>${opts}</select>`;
+    container.appendChild(div);
+  });
+}
+
+function guardarLlave(id,valor) { qActual.llaves[id]=valor; }
+
+// ══════════════════════════════════════════
+// CAMPEÓN
+// ══════════════════════════════════════════
+
+function renderCampeon() {
+  ['campeon-select','subcampeon-select','tercero-select'].forEach((id,i) => {
+    const field = ['campeon','subcampeon','tercero'][i];
+    const opts = TODOS_EQUIPOS.map(e=>`<option value="${e}" ${e===qActual[field]?'selected':''}>${e}</option>`).join('');
+    const el = document.getElementById(id);
+    el.innerHTML = `<option value="">— Selecciona —</option>${opts}`;
+    el.onchange = function(){ qActual[field]=this.value; };
+  });
+}
+
+// ══════════════════════════════════════════
+// GUARDAR QUINIELA
+// ══════════════════════════════════════════
+
+function guardarQuiniela() {
+  if(!qActual.campeon){ toast('Selecciona tu campeón','error'); return; }
+  const id='BLM'+Date.now().toString(36).toUpperCase().slice(-6);
+  state.participantes.push({
+    id, nombre:qActual.nombre, email:qActual.email, telefono:qActual.telefono,
+    quiniela:JSON.parse(JSON.stringify(qActual)),
+    puntos:0, pagado:false, fecha:new Date().toISOString()
+  });
+  saveState();
+  document.getElementById('conf-id').textContent = id;
+  document.getElementById('conf-nombre').textContent = qActual.nombre;
+  document.getElementById('conf-campeon').textContent = qActual.campeon;
+  showScreen('confirmacion');
+  toast('¡Quiniela guardada!','success');
+}
+
+// ══════════════════════════════════════════
+// RANKING
+// ══════════════════════════════════════════
+
+function renderRanking() {
+  const sorted = [...state.participantes].sort((a,b)=>b.puntos-a.puntos);
+  document.getElementById('ranking-fecha').textContent = 'Actualizado: '+new Date().toLocaleDateString('es-MX');
+  const container = document.getElementById('ranking-container');
+  const listEl = document.getElementById('participantes-list');
+  if(sorted.length===0){
+    container.innerHTML=`<div class="empty-state"><div class="empty-state-icon">📊</div><p>El ranking aparecerá cuando comiencen los partidos (11 Jun 2026)</p></div>`;
+    listEl.innerHTML=`<div class="empty-state"><div class="empty-state-icon">👤</div><p>Aún no hay participantes</p></div>`;
+    return;
+  }
+  const medals=['gold','silver','bronze'];
+  container.innerHTML=`<table class="ranking-table"><thead><tr><th>#</th><th>Participante</th><th>Pts</th><th>Cuota</th></tr></thead><tbody>
+    ${sorted.map((p,i)=>`<tr>
+      <td><span class="rank-pos ${medals[i]||''}">${i+1}</span></td>
+      <td><span style="font-weight:500;">${p.nombre}</span></td>
+      <td><span class="rank-pts">${p.puntos}</span></td>
+      <td><span class="rank-badge ${p.pagado?'pagado':'pendiente'}">${p.pagado?'✓ Pagado':'Pendiente'}</span></td>
+    </tr>`).join('')}</tbody></table>`;
+  listEl.innerHTML=sorted.map(p=>`
+    <div class="flex-between" style="padding:10px 0;border-bottom:1px solid var(--bloom-light);">
+      <div><p style="font-size:14px;font-weight:500;">${p.nombre}</p><p class="text-xs">${p.email} · ID: ${p.id}</p></div>
+      <span class="rank-badge ${p.pagado?'pagado':'pendiente'}">${p.pagado?'Pagado':'Pendiente'}</span>
+    </div>`).join('');
+}
+
+// ══════════════════════════════════════════
+// ADMIN
+// ══════════════════════════════════════════
+
+function adminLogin(){
+  const pass=document.getElementById('admin-pass').value;
+  if(pass===state.config.password||pass==='bloom2026'){
+    showScreen('admin');
+  } else { toast('Contraseña incorrecta','error'); }
+}
+
+function adminLogout(){ document.getElementById('admin-pass').value=''; showScreen('home'); }
+
+function adminTab(tab,btn){
+  document.querySelectorAll('.admin-tab').forEach(t=>t.classList.remove('active'));
+  ['participantes','resultados','config'].forEach(t=>{
+    const el=document.getElementById('admin-tab-'+t);
+    if(el) el.style.display='none';
+  });
+  document.getElementById('admin-tab-'+tab).style.display='block';
+  if(btn) btn.classList.add('active');
+  if(tab==='resultados') renderAdminResultados();
+}
+
+function renderAdmin(){
+  document.getElementById('admin-count').textContent=state.participantes.length;
+  document.getElementById('config-cuota').value=state.config.cuota||100;
+  if(state.config.mensaje) document.getElementById('config-msg').value=state.config.mensaje;
+
+  if(state.participantes.length===0){
+    document.getElementById('admin-participantes-table').innerHTML=`<div class="empty-state"><div class="empty-state-icon">👤</div><p>Sin participantes</p></div>`;
+    document.getElementById('admin-cuotas-table').innerHTML=`<div class="empty-state"><div class="empty-state-icon">💳</div><p>Sin participantes</p></div>`;
+    return;
+  }
+
+  document.getElementById('admin-participantes-table').innerHTML=state.participantes.map(p=>`
+    <div style="padding:12px 0;border-bottom:1px solid var(--bloom-light);">
+      <div class="flex-between">
+        <div><p style="font-weight:500;font-size:14px;">${p.nombre}</p>
+        <p class="text-xs">${p.email}${p.telefono?' · '+p.telefono:''}</p>
+        <p class="text-xs">ID: ${p.id} · ${new Date(p.fecha).toLocaleDateString('es-MX')}</p>
+        <p class="text-xs">Campeón: <strong>${p.quiniela.campeon||'—'}</strong></p></div>
+        <button class="btn btn-danger btn-sm" onclick="eliminarParticipante('${p.id}')">Eliminar</button>
+      </div>
+    </div>`).join('');
+
+  document.getElementById('admin-cuotas-table').innerHTML=state.participantes.map(p=>`
+    <div class="flex-between" style="padding:10px 0;border-bottom:1px solid var(--bloom-light);">
+      <div><p style="font-size:14px;font-weight:500;">${p.nombre}</p><p class="text-xs">ID: ${p.id}</p></div>
+      <button class="btn btn-sm ${p.pagado?'btn-ghost':'btn-primary'}" onclick="togglePago('${p.id}')">${p.pagado?'✓ Pagado':'Marcar pagado'}</button>
+    </div>`).join('');
+}
+
+function togglePago(id){
+  const p=state.participantes.find(x=>x.id===id);
+  if(p){ p.pagado=!p.pagado; saveState(); renderAdmin(); toast(p.pagado?'Pago confirmado ✓':'Pago desmarcado','success'); }
+}
+
+function eliminarParticipante(id){
+  if(!confirm('¿Eliminar este participante? Esta acción no se puede deshacer.')) return;
+  state.participantes=state.participantes.filter(p=>p.id!==id);
+  saveState(); renderAdmin(); toast('Participante eliminado');
+}
+
+function renderAdminResultados(){
+  const container=document.getElementById('admin-resultados-container');
+  container.innerHTML='';
+  GRUPOS.forEach((grupo,gi)=>{
+    const div=document.createElement('div');
+    div.className='grupo-card';
+    let rows=grupo.partidos.map((partido,pi)=>{
+      const key=`g${gi}_p${pi}`;
+      const res=state.resultados_reales[key]||{local:'',visitante:''};
+      return `<div class="partido-row">
+        <span class="team-name" style="font-size:11px;">${partido[0]}</span>
+        <div class="score-inputs">
+          <input type="number" class="score-input" min="0" max="20" value="${res.local}" oninput="guardarResReal(${gi},${pi},'local',this.value)" placeholder="-">
+          <span class="score-sep">:</span>
+          <input type="number" class="score-input" min="0" max="20" value="${res.visitante}" oninput="guardarResReal(${gi},${pi},'visitante',this.value)" placeholder="-">
+        </div>
+        <span class="team-name right" style="font-size:11px;">${partido[1]}</span>
+      </div>`;
+    }).join('');
+    div.innerHTML=`<div class="grupo-header"><span>${grupo.nombre}</span></div>${rows}`;
+    container.appendChild(div);
+  });
+}
+
+function guardarResReal(gi,pi,campo,valor){
+  const key=`g${gi}_p${pi}`;
+  if(!state.resultados_reales[key]) state.resultados_reales[key]={local:'',visitante:''};
+  state.resultados_reales[key][campo]=valor;
+  saveState();
+}
+
+function calcularPuntos(){
+  state.participantes.forEach(p=>{
+    let pts=0;
+    Object.entries(state.resultados_reales).forEach(([key,real])=>{
+      if(real.local===''||real.visitante==='') return;
+      const pred=p.quiniela.grupos[key];
+      if(!pred||pred.local===''||pred.visitante==='') return;
+      const rl=parseInt(real.local),rv=parseInt(real.visitante);
+      const pl=parseInt(pred.local),pv=parseInt(pred.visitante);
+      if(pl===rl&&pv===rv) pts+=3;
+      else if((pl>pv&&rl>rv)||(pl<pv&&rl<rv)||(pl===pv&&rl===rv)) pts+=1;
+    });
+    p.puntos=pts;
+  });
+  saveState();
+  toast('Puntos calculados y ranking actualizado ✓','success');
+}
+
+function guardarConfig(){
+  state.config.cuota=parseInt(document.getElementById('config-cuota').value)||100;
+  const np=document.getElementById('config-pass').value;
+  if(np.length>=4) state.config.password=np;
+  state.config.mensaje=document.getElementById('config-msg').value;
+  saveState();
+  toast('Configuración guardada ✓','success');
+}
+
+function resetearDatos(){
+  if(!confirm('¿Borrar TODOS los datos? Esta acción NO se puede deshacer.')) return;
+  state.participantes=[];
+  state.resultados_reales={};
+  saveState(); renderAdmin(); toast('Datos borrados');
+}
+
+// ══════════════════════════════════════════
+// QR CODE
+// ══════════════════════════════════════════
+
+let qrInstance = null;
+
+function initQR() {
+  const saved = localStorage.getItem('bloom_qr_url')||'';
+  if(saved) {
+    document.getElementById('qr-url-input').value = saved;
+    generarQR(saved);
+  }
+}
+
+function generarQR(url) {
+  if(!url) return;
+  localStorage.setItem('bloom_qr_url', url);
+  document.getElementById('qr-url-text').textContent = url;
+  const container = document.getElementById('qr-container');
+  container.innerHTML = '';
+  try {
+    new QRCode(container, {
+      text: url,
+      width: 200,
+      height: 200,
+      colorDark: '#1A1208',
+      colorLight: '#FFFAF5',
+      correctLevel: QRCode.CorrectLevel.H
+    });
+  } catch(e) {
+    container.innerHTML = '<p style="color:var(--ink3);font-size:13px;">Instala la app en Vercel primero para generar el QR</p>';
+  }
+}
+
+// ══════════════════════════════════════════
+// TOAST
+// ══════════════════════════════════════════
+
+function toast(msg,type=''){
+  const t=document.getElementById('toast');
+  t.textContent=msg;
+  t.className='toast'+(type?' '+type:'');
+  t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),3000);
+}
+
+// ══════════════════════════════════════════
+// INIT
+// ══════════════════════════════════════════
+
+loadState();
+updateStats();
+</script>
+</body>
+</html>
