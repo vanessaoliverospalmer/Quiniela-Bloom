@@ -498,9 +498,9 @@ const GRUPOS = [
       {l:'Sudáfrica',f:'🇿🇦',v:'Corea del Sur',fv:'🇰🇷',fecha:'Mié 24 Jun',hora:'22:00 VET',ciudad:'Monterrey',estadio:'Estadio BBVA'},
     ],
     clasificacion:{
-      conf:'CONCACAF / AFC / UEFA / CAF',
-      nota:'México clasificó como anfitrión · Corea del Sur por AFC · Chequia por repechaje UEFA · Sudáfrica por CAF',
-      tabla:null
+      nota:'México (anfitrión) · Corea del Sur: AFC Grupo B · Chequia: Repechaje UEFA · Sudáfrica: CAF Grupo C',
+      highlight:'',
+      tables:['afc_grupo2','caf_c','uefa_playoff_d']
     }
   },
   { id:'b', letra:'B', clase:'gc-b',
@@ -514,9 +514,9 @@ const GRUPOS = [
       {l:'Bosnia',f:'🇧🇦',v:'Qatar',fv:'🇶🇦',fecha:'Mar 24 Jun',hora:'14:00 VET',ciudad:'Kansas City',estadio:'Arrowhead Stadium'},
     ],
     clasificacion:{
-      conf:'CONCACAF / UEFA / AFC',
-      nota:'Canadá como anfitrión · Qatar y Suiza clasificaron directos · Bosnia por repechaje UEFA',
-      tabla:null
+      nota:'Canadá (anfitrión) · Suiza: UEFA Grupo B · Qatar: AFC 4ª Fase · Bosnia: Repechaje UEFA',
+      highlight:'',
+      tables:['uefa_b','afc_grupo4a','uefa_playoff_a']
     }
   },
   { id:'c', letra:'C', clase:'gc-c',
@@ -530,8 +530,9 @@ const GRUPOS = [
       {l:'Escocia',f:'🏴󠁧󠁢󠁳󠁣󠁴󠁿',v:'Brasil',fv:'🇧🇷',fecha:'Mar 24 Jun',hora:'23:00 VET',ciudad:'Miami',estadio:'Hard Rock Stadium'},
     ],
     clasificacion:{
-      conf:'CONMEBOL / CAF / UEFA / CONCACAF',
-      nota:'Brasil 5.° en CONMEBOL (28 pts) · Marruecos clasificó por CAF · Escocia por repechaje UEFA · Haití por CONCACAF',
+      nota:'Brasil: CONMEBOL 5° · Marruecos: CAF Grupo E · Escocia: UEFA Grupo C · Haití: CONCACAF Grupo C',
+      highlight:'Brasil',
+      tables:['conmebol','caf_e','uefa_c','concacaf_c'],
       tabla:{
         titulo:'Eliminatorias CONMEBOL — Tabla final',
         cols:['Pos','Selección','PJ','G','E','P','GF','GC','Pts'],
@@ -561,8 +562,9 @@ const GRUPOS = [
       {l:'Paraguay',f:'🇵🇾',v:'Australia',fv:'🇦🇺',fecha:'Jue 25 Jun',hora:'22:00 VET',ciudad:'San Francisco',estadio:'Levi\'s Stadium'},
     ],
     clasificacion:{
-      conf:'CONCACAF / CONMEBOL / AFC / UEFA',
-      nota:'EE.UU. como anfitrión · Paraguay 6.° en CONMEBOL · Australia clasificó por AFC · Turquía por repechaje UEFA',
+      nota:'EE.UU. (anfitrión) · Paraguay: CONMEBOL 6° · Australia: AFC Grupo C · Turquía: Repechaje UEFA',
+      highlight:'Paraguay',
+      tables:['conmebol','afc_grupo3','uefa_playoff_c','concacaf_a'],
       tabla:{
         titulo:'Eliminatorias CONMEBOL — Tabla final',
         cols:['Pos','Selección','PJ','G','E','P','GF','GC','Pts'],
@@ -592,8 +594,9 @@ const GRUPOS = [
       {l:'Curazao',f:'🇨🇼',v:'C. de Marfil',fv:'🇨🇮',fecha:'Jue 25 Jun',hora:'15:00 VET',ciudad:'Dallas',estadio:'AT&T Stadium'},
     ],
     clasificacion:{
-      conf:'UEFA / CONCACAF / CAF / CONMEBOL',
-      nota:'Alemania clasificó directa por UEFA · Ecuador 2.° en CONMEBOL · C. de Marfil y Curazao por CAF/CONCACAF',
+      nota:'Alemania: UEFA Grupo A · Ecuador: CONMEBOL 2° · Costa de Marfil: CAF Grupo G · Curazao: CONCACAF Grupo B',
+      highlight:'Ecuador',
+      tables:['conmebol','uefa_a','caf_g','concacaf_b'],
       tabla:{
         titulo:'Eliminatorias CONMEBOL — Tabla final',
         cols:['Pos','Selección','PJ','G','E','P','GF','GC','Pts'],
@@ -622,7 +625,7 @@ const GRUPOS = [
       {l:'Túnez',f:'🇹🇳',v:'P. Bajos',fv:'🇳🇱',fecha:'Mié 25 Jun',hora:'18:00 VET',ciudad:'Kansas City',estadio:'Arrowhead Stadium'},
       {l:'Japón',f:'🇯🇵',v:'Suecia',fv:'🇸🇪',fecha:'Mié 25 Jun',hora:'18:00 VET',ciudad:'Dallas',estadio:'AT&T Stadium'},
     ],
-    clasificacion:{conf:'UEFA / AFC / CAF',nota:'P. Bajos y Suecia clasificaron por UEFA · Japón por AFC · Túnez por CAF',tabla:null}
+    clasificacion:{nota:'Países Bajos: UEFA Grupo G · Japón: AFC Grupo C · Túnez: CAF Grupo H · Suecia: Repechaje UEFA',highlight:'',tables:['uefa_g','afc_grupo3','caf_h','uefa_playoff_b']}
   },
   { id:'g', letra:'G', clase:'gc-g',
     equipos:[{n:'Bélgica',f:'🇧🇪'},{n:'Egipto',f:'🇪🇬'},{n:'Irán',f:'🇮🇷'},{n:'Nueva Zelanda',f:'🇳🇿'}],
@@ -634,7 +637,7 @@ const GRUPOS = [
       {l:'Nueva Zelanda',f:'🇳🇿',v:'Bélgica',fv:'🇧🇪',fecha:'Jue 26 Jun',hora:'15:00 VET',ciudad:'Boston',estadio:'Gillette Stadium'},
       {l:'Egipto',f:'🇪🇬',v:'Irán',fv:'🇮🇷',fecha:'Jue 26 Jun',hora:'15:00 VET',ciudad:'Houston',estadio:'NRG Stadium'},
     ],
-    clasificacion:{conf:'UEFA / CAF / AFC / OFC',nota:'Bélgica clasificó por UEFA · Egipto por CAF · Irán por AFC · Nueva Zelanda por OFC',tabla:null}
+    clasificacion:{nota:'Bélgica: UEFA Grupo J · Egipto: CAF Grupo A · Irán: AFC Grupo A · Nueva Zelanda: OFC + Repechaje',highlight:'',tables:['uefa_j','caf_a','afc_grupo1','ofc']}
   },
   { id:'h', letra:'H', clase:'gc-h',
     equipos:[{n:'España',f:'🇪🇸'},{n:'Cabo Verde',f:'🇨🇻'},{n:'Arabia S.',f:'🇸🇦'},{n:'Uruguay',f:'🇺🇾'}],
@@ -647,8 +650,9 @@ const GRUPOS = [
       {l:'Cabo Verde',f:'🇨🇻',v:'Arabia S.',fv:'🇸🇦',fecha:'Jue 26 Jun',hora:'03:00 VET',ciudad:'Atlanta',estadio:'Mercedes-Benz Stadium'},
     ],
     clasificacion:{
-      conf:'UEFA / CONMEBOL / AFC / CAF',
-      nota:'España clasificó por UEFA · Uruguay 4.° en CONMEBOL · Arabia S. por AFC · Cabo Verde por CAF',
+      nota:'España: UEFA Grupo E · Uruguay: CONMEBOL 4° · Arabia Saudita: AFC 4ª Fase · Cabo Verde: CAF Grupo D',
+      highlight:'Uruguay',
+      tables:['conmebol','uefa_e','afc_grupo4b','caf_d'],
       tabla:{
         titulo:'Eliminatorias CONMEBOL — Tabla final',
         cols:['Pos','Selección','PJ','G','E','P','GF','GC','Pts'],
@@ -677,7 +681,7 @@ const GRUPOS = [
       {l:'Noruega',f:'🇳🇴',v:'Francia',fv:'🇫🇷',fecha:'Vie 26 Jun',hora:'22:00 VET',ciudad:'Nueva Jersey',estadio:'MetLife Stadium'},
       {l:'Senegal',f:'🇸🇳',v:'Irak',fv:'🇮🇶',fecha:'Vie 26 Jun',hora:'22:00 VET',ciudad:'Boston',estadio:'Gillette Stadium'},
     ],
-    clasificacion:{conf:'UEFA / CAF / AFC / interc.',nota:'Francia y Noruega por UEFA · Senegal por CAF · Irak clasificó por repechaje intercontinental',tabla:null}
+    clasificacion:{nota:'Francia: UEFA Grupo D · Senegal: CAF Grupo B · Noruega: UEFA Grupo I · Irak: Repechaje Intercontinental',highlight:'',tables:['uefa_d','caf_b','uefa_i','repechaje_irak']}
   },
   { id:'j', letra:'J', clase:'gc-j',
     equipos:[{n:'Argentina',f:'🇦🇷'},{n:'Argelia',f:'🇩🇿'},{n:'Austria',f:'🇦🇹'},{n:'Jordania',f:'🇯🇴'}],
@@ -690,8 +694,9 @@ const GRUPOS = [
       {l:'Argelia',f:'🇩🇿',v:'Austria',fv:'🇦🇹',fecha:'Sáb 27 Jun',hora:'22:00 VET',ciudad:'Kansas City',estadio:'Arrowhead Stadium'},
     ],
     clasificacion:{
-      conf:'CONMEBOL / CAF / UEFA / AFC',
-      nota:'Argentina 1.° en CONMEBOL (38 pts) · Argelia por CAF · Austria por UEFA · Jordania por AFC',
+      nota:'Argentina: CONMEBOL 1° · Argelia: CAF Grupo F · Austria: UEFA Grupo H · Jordania: AFC Grupo B',
+      highlight:'Argentina',
+      tables:['conmebol','caf_f','uefa_h','afc_grupo2'],
       tabla:{
         titulo:'Eliminatorias CONMEBOL — Tabla final',
         cols:['Pos','Selección','PJ','G','E','P','GF','GC','Pts'],
@@ -721,8 +726,9 @@ const GRUPOS = [
       {l:'Colombia',f:'🇨🇴',v:'Uzbekistán',fv:'🇺🇿',fecha:'Sáb 27 Jun',hora:'15:00 VET',ciudad:'Guadalajara',estadio:'Estadio Akron'},
     ],
     clasificacion:{
-      conf:'UEFA / CONMEBOL / AFC / CAF',
-      nota:'Portugal por UEFA · Colombia 3.° en CONMEBOL (28 pts) · Uzbekistán por AFC · Congo por repechaje intercontinental',
+      nota:'Portugal: UEFA Grupo F · Colombia: CONMEBOL 3° · Uzbekistán: AFC Grupo A · Congo DR: CAF repechaje',
+      highlight:'Colombia',
+      tables:['conmebol','uefa_f','afc_grupo1','caf_i'],
       tabla:{
         titulo:'Eliminatorias CONMEBOL — Tabla final',
         cols:['Pos','Selección','PJ','G','E','P','GF','GC','Pts'],
@@ -751,9 +757,458 @@ const GRUPOS = [
       {l:'Panamá',f:'🇵🇦',v:'Inglaterra',fv:'🏴󠁧󠁢󠁥󠁮󠁧󠁿',fecha:'Vie 27 Jun',hora:'17:00 VET',ciudad:'Nueva Jersey',estadio:'MetLife Stadium'},
       {l:'Croacia',f:'🇭🇷',v:'Ghana',fv:'🇬🇭',fecha:'Vie 27 Jun',hora:'17:00 VET',ciudad:'Philadelphia',estadio:'Lincoln Financial Field'},
     ],
-    clasificacion:{conf:'UEFA / CAF / CONCACAF',nota:'Inglaterra y Croacia por UEFA · Ghana por CAF · Panamá por CONCACAF',tabla:null}
+    clasificacion:{nota:'Inglaterra: UEFA Grupo K · Croacia: UEFA Grupo L · Ghana: CAF Grupo I · Panamá: CONCACAF Grupo A',highlight:'',tables:['uefa_k','uefa_l','caf_i','concacaf_a']}
   },
 ];
+
+
+// ══════════════════════════════════════════════════════
+// TABLAS DE CLASIFICACIÓN POR CONFEDERACIÓN
+// ══════════════════════════════════════════════════════
+const CLASIF_TABLES = {
+
+// ── CONMEBOL ──────────────────────────────────────────
+  conmebol: {
+    titulo:'Eliminatorias CONMEBOL — Tabla final',
+    nota:'6 cupos directos · 1 repechaje (Bolivia)',
+    cols:['Pos','Selección','PJ','G','E','P','GF','GC','Pts'],
+    filas:[
+      ['1','🇦🇷 Argentina','18','12','2','4','35','15','38'],
+      ['2','🇪🇨 Ecuador','18','9','2','7','29','24','29'],
+      ['3','🇨🇴 Colombia','18','8','4','6','27','19','28'],
+      ['4','🇺🇾 Uruguay','18','8','4','6','28','23','28'],
+      ['5','🇧🇷 Brasil','18','8','4','6','28','24','28'],
+      ['6','🇵🇾 Paraguay','18','8','4','6','26','28','28'],
+      ['7','🇧🇴 Bolivia (rep.)','18','6','2','10','20','32','20'],
+      ['8','🇻🇪 Venezuela','18','5','4','9','24','32','19'],
+      ['9','🇵🇪 Perú','18','4','3','11','18','33','15'],
+      ['10','🇨🇱 Chile','18','3','4','11','15','35','13'],
+    ]
+  },
+
+// ── UEFA ──────────────────────────────────────────────
+  uefa_a: {
+    titulo:'Eliminatorias UEFA — Grupo A',
+    nota:'Clasificado directo: Alemania · Repechaje: Eslovaquia',
+    cols:['Pos','Selección','PJ','G','E','P','GF','GC','Pts'],
+    filas:[
+      ['1','🇩🇪 Alemania','6','5','0','1','22','5','15'],
+      ['2','🇸🇰 Eslovaquia','6','4','0','2','10','9','12'],
+      ['3','🏴󠁧󠁢󠁮󠁩󠁲󠁿 Irlanda del Norte','6','3','0','3','10','10','9'],
+      ['4','🇱🇺 Luxemburgo','6','0','0','6','2','20','0'],
+    ]
+  },
+  uefa_b: {
+    titulo:'Eliminatorias UEFA — Grupo B',
+    nota:'Clasificado directo: Suiza · Repechaje: Kosovo',
+    cols:['Pos','Selección','PJ','G','E','P','GF','GC','Pts'],
+    filas:[
+      ['1','🇨🇭 Suiza','6','5','1','0','18','4','16'],
+      ['2','🇽🇰 Kosovo','6','3','0','3','8','10','9'],
+      ['3','🇸🇪 Suecia (NL)','6','4','0','2','15','8','12'],
+      ['4','🇸🇮 Eslovenia','6','0','1','5','5','24','1'],
+    ]
+  },
+  uefa_c: {
+    titulo:'Eliminatorias UEFA — Grupo C',
+    nota:'Clasificado directo: Escocia · Repechaje: Dinamarca',
+    cols:['Pos','Selección','PJ','G','E','P','GF','GC','Pts'],
+    filas:[
+      ['1','🏴󠁧󠁢󠁳󠁣󠁴󠁿 Escocia','6','4','0','2','14','8','12'],
+      ['2','🇩🇰 Dinamarca','6','3','1','2','12','8','10'],
+      ['3','🇬🇷 Grecia','6','2','1','3','9','11','7'],
+      ['4','🇧🇾 Bielorrusia','6','1','0','5','4','12','3'],
+    ]
+  },
+  uefa_d: {
+    titulo:'Eliminatorias UEFA — Grupo D',
+    nota:'Clasificado directo: Francia · Repechaje: Ucrania',
+    cols:['Pos','Selección','PJ','G','E','P','GF','GC','Pts'],
+    filas:[
+      ['1','🇫🇷 Francia','6','5','0','1','20','5','15'],
+      ['2','🇺🇦 Ucrania','6','4','1','1','15','8','13'],
+      ['3','🇮🇸 Islandia','6','2','0','4','8','12','6'],
+      ['4','🇦🇿 Azerbaiyán','6','0','1','5','3','21','1'],
+    ]
+  },
+  uefa_e: {
+    titulo:'Eliminatorias UEFA — Grupo E',
+    nota:'Clasificado directo: España · Repechaje: Turquía',
+    cols:['Pos','Selección','PJ','G','E','P','GF','GC','Pts'],
+    filas:[
+      ['1','🇪🇸 España','6','5','1','0','22','3','16'],
+      ['2','🇹🇷 Turquía','6','4','1','1','14','7','13'],
+      ['3','🇬🇪 Georgia','6','2','0','4','9','13','6'],
+      ['4','🇧🇬 Bulgaria','6','0','0','6','3','25','0'],
+    ]
+  },
+  uefa_f: {
+    titulo:'Eliminatorias UEFA — Grupo F',
+    nota:'Clasificado directo: Portugal · Repechaje: Rep. Irlanda',
+    cols:['Pos','Selección','PJ','G','E','P','GF','GC','Pts'],
+    filas:[
+      ['1','🇵🇹 Portugal','6','5','0','1','28','8','15'],
+      ['2','🇮🇪 Rep. Irlanda','6','3','0','3','11','12','9'],
+      ['3','🇭🇺 Hungría','6','2','1','3','12','13','7'],
+      ['4','🇦🇲 Armenia','6','1','1','4','9','27','4'],
+    ]
+  },
+  uefa_g: {
+    titulo:'Eliminatorias UEFA — Grupo G',
+    nota:'Clasificado directo: Países Bajos · Repechaje: Polonia',
+    cols:['Pos','Selección','PJ','G','E','P','GF','GC','Pts'],
+    filas:[
+      ['1','🇳🇱 Países Bajos','10','7','1','2','34','8','22'],
+      ['2','🇵🇱 Polonia','10','7','0','3','26','11','21'],
+      ['3','🇫🇮 Finlandia','10','5','1','4','19','12','16'],
+      ['4','🇱🇹 Lituania','10','3','1','6','12','23','10'],
+      ['5','🇲🇹 Malta','10','0','1','9','5','42','1'],
+    ]
+  },
+  uefa_h: {
+    titulo:'Eliminatorias UEFA — Grupo H',
+    nota:'Clasificado directo: Austria · Bosnia clasificó por repechaje',
+    cols:['Pos','Selección','PJ','G','E','P','GF','GC','Pts'],
+    filas:[
+      ['1','🇦🇹 Austria','10','8','1','1','42','7','25'],
+      ['2','🇧🇦 Bosnia','10','4','4','2','15','13','16'],
+      ['3','🇷🇴 Rumanía','10','5','3','2','20','12','18'],
+      ['4','🇨🇾 Chipre','10','2','3','5','12','22','9'],
+      ['5','🇸🇲 San Marino','10','0','0','10','2','37','0'],
+    ]
+  },
+  uefa_i: {
+    titulo:'Eliminatorias UEFA — Grupo I',
+    nota:'Clasificado directo: Noruega · Repechaje: Italia',
+    cols:['Pos','Selección','PJ','G','E','P','GF','GC','Pts'],
+    filas:[
+      ['1','🇳🇴 Noruega','10','8','0','2','47','12','24'],
+      ['2','🇮🇹 Italia','10','6','1','3','28','16','19'],
+      ['3','🇮🇱 Israel','10','5','0','5','21','25','15'],
+      ['4','🇪🇪 Estonia','10','3','0','7','11','26','9'],
+      ['5','🇲🇩 Moldavia','10','1','1','8','10','38','4'],
+    ]
+  },
+  uefa_j: {
+    titulo:'Eliminatorias UEFA — Grupo J',
+    nota:'Clasificado directo: Bélgica · Repechaje: Gales',
+    cols:['Pos','Selección','PJ','G','E','P','GF','GC','Pts'],
+    filas:[
+      ['1','🇧🇪 Bélgica','10','7','2','1','30','7','23'],
+      ['2','🏴󠁧󠁢󠁷󠁬󠁳󠁿 Gales','10','5','2','3','22','15','17'],
+      ['3','🇲🇰 Macedonia del N.','10','4','1','5','14','15','13'],
+      ['4','🇰🇿 Kazajistán','10','3','3','4','13','19','12'],
+      ['5','🇱🇮 Liechtenstein','10','0','0','10','1','24','0'],
+    ]
+  },
+  uefa_k: {
+    titulo:'Eliminatorias UEFA — Grupo K',
+    nota:'Clasificado directo: Inglaterra · Repechaje: Albania',
+    cols:['Pos','Selección','PJ','G','E','P','GF','GC','Pts'],
+    filas:[
+      ['1','🏴󠁧󠁢󠁥󠁮󠁧󠁿 Inglaterra','10','9','0','1','38','5','27'],
+      ['2','🇦🇱 Albania','10','6','1','3','21','14','19'],
+      ['3','🇷🇸 Serbia','10','5','1','4','18','17','16'],
+      ['4','🇱🇻 Letonia','10','2','2','6','12','24','8'],
+      ['5','🇦🇩 Andorra','10','0','0','10','2','31','0'],
+    ]
+  },
+  uefa_l: {
+    titulo:'Eliminatorias UEFA — Grupo L',
+    nota:'Clasificado directo: Croacia · Chequia clasificó por repechaje',
+    cols:['Pos','Selección','PJ','G','E','P','GF','GC','Pts'],
+    filas:[
+      ['1','🇭🇷 Croacia','10','7','2','1','26','8','23'],
+      ['2','🇨🇿 Chequia','10','6','2','2','21','10','20'],
+      ['3','🇲🇪 Montenegro','10','4','1','5','17','18','13'],
+      ['4','🇫🇴 Islas Feroe','10','3','1','6','14','20','10'],
+      ['5','🇬🇮 Gibraltar','10','0','0','10','3','25','0'],
+    ]
+  },
+
+// ── UEFA REPECHAJE ────────────────────────────────────
+  uefa_playoff_a: {
+    titulo:'Repechaje UEFA — Llave A',
+    nota:'Bosnia y Herzegovina clasificó al vencer a Italia en penaltis',
+    cols:['Equipo','Resultado'],
+    filas:[
+      ['🇧🇦 Bosnia y Herz.','1–1 · 4–1 pen. ✓'],
+      ['🇮🇹 Italia','1–1 · 1–4 pen.'],
+    ]
+  },
+  uefa_playoff_b: {
+    titulo:'Repechaje UEFA — Llave B',
+    nota:'Suecia clasificó al vencer a Polonia 3-2',
+    cols:['Equipo','Resultado'],
+    filas:[
+      ['🇸🇪 Suecia','3–2 ✓'],
+      ['🇵🇱 Polonia','2–3'],
+    ]
+  },
+  uefa_playoff_c: {
+    titulo:'Repechaje UEFA — Llave C',
+    nota:'Turquía clasificó al vencer a Kosovo 1-0',
+    cols:['Equipo','Resultado'],
+    filas:[
+      ['🇹🇷 Turquía','1–0 ✓'],
+      ['🇽🇰 Kosovo','0–1'],
+    ]
+  },
+  uefa_playoff_d: {
+    titulo:'Repechaje UEFA — Llave D',
+    nota:'Chequia clasificó ante Dinamarca en penaltis',
+    cols:['Equipo','Resultado'],
+    filas:[
+      ['🇨🇿 Chequia','2–2 · 4–3 pen. ✓'],
+      ['🇩🇰 Dinamarca','2–2 · 3–4 pen.'],
+    ]
+  },
+
+// ── AFC (ASIA) ────────────────────────────────────────
+  afc_grupo1: {
+    titulo:'Eliminatorias AFC — 3ª Fase Grupo A',
+    nota:'Clasificados directos: Irán y Uzbekistán',
+    cols:['Pos','Selección','PJ','G','E','P','GF','GC','Pts'],
+    filas:[
+      ['1','🇮🇷 Irán','10','7','2','1','23','7','23'],
+      ['2','🇺🇿 Uzbekistán','10','6','3','1','18','7','21'],
+      ['3','🇦🇪 Emiratos Á.','10','4','2','4','13','12','14'],
+      ['4','🇰🇬 Kirguistán','10','3','1','6','10','18','10'],
+      ['5','🇰🇵 Corea del Norte','10','1','2','7','6','21','5'],
+    ]
+  },
+  afc_grupo2: {
+    titulo:'Eliminatorias AFC — 3ª Fase Grupo B',
+    nota:'Clasificados directos: Corea del Sur y Jordania',
+    cols:['Pos','Selección','PJ','G','E','P','GF','GC','Pts'],
+    filas:[
+      ['1','🇰🇷 Corea del Sur','10','7','1','2','23','8','22'],
+      ['2','🇯🇴 Jordania','10','4','2','4','12','13','14'],
+      ['3','🇮🇶 Irak','10','4','1','5','11','13','13'],
+      ['4','🇴🇲 Omán','10','3','3','4','9','12','12'],
+      ['5','🇵🇸 Palestina','10','2','1','7','9','18','7'],
+    ]
+  },
+  afc_grupo3: {
+    titulo:'Eliminatorias AFC — 3ª Fase Grupo C',
+    nota:'Clasificados directos: Japón y Australia',
+    cols:['Pos','Selección','PJ','G','E','P','GF','GC','Pts'],
+    filas:[
+      ['1','🇯🇵 Japón','10','8','2','0','28','5','26'],
+      ['2','🇦🇺 Australia','10','5','4','1','16','8','19'],
+      ['3','🇸🇦 Arabia S.','10','4','2','4','16','14','14'],
+      ['4','🇮🇩 Indonesia','10','2','2','6','11','19','8'],
+      ['5','🇧🇭 Baréin','10','0','2','8','5','30','2'],
+    ]
+  },
+  afc_grupo4a: {
+    titulo:'Eliminatorias AFC — 4ª Fase Grupo A',
+    nota:'Clasificado directo: Qatar',
+    cols:['Pos','Selección','PJ','G','E','P','GF','GC','Pts'],
+    filas:[
+      ['1','🇶🇦 Qatar','4','3','0','1','7','4','9'],
+      ['2','🇦🇪 Emiratos Á.','4','1','1','2','4','6','4'],
+      ['3','🇰🇼 Kuwait','4','1','1','2','4','5','4'],
+    ]
+  },
+  afc_grupo4b: {
+    titulo:'Eliminatorias AFC — 4ª Fase Grupo B',
+    nota:'Clasificado directo: Arabia Saudita',
+    cols:['Pos','Selección','PJ','G','E','P','GF','GC','Pts'],
+    filas:[
+      ['1','🇸🇦 Arabia S.','4','3','1','0','10','3','10'],
+      ['2','🇮🇶 Irak','4','1','1','2','3','7','4'],
+      ['3','🇮🇩 Indonesia','4','0','0','4','1','4','0'],
+    ]
+  },
+
+// ── CAF (AFRICA) ──────────────────────────────────────
+  caf_a: {
+    titulo:'Eliminatorias CAF — Grupo A',
+    nota:'Clasificado: Egipto (1°, invicto, 26 pts)',
+    cols:['Pos','Selección','PJ','G','E','P','GF','GC','Pts'],
+    filas:[
+      ['1','🇪🇬 Egipto','10','8','2','0','24','4','26'],
+      ['2','🇧🇫 Burkina Faso','10','5','2','3','15','12','17'],
+      ['3','🇬🇼 Guinea-Bisáu','10','4','2','4','14','17','14'],
+      ['4','🇸🇳 Sierra Leona','10','3','2','5','9','13','11'],
+      ['5','🇩🇯 Yibuti','10','2','1','7','8','19','7'],
+      ['6','🇪🇹 Etiopía','10','1','1','8','6','11','4'],
+    ]
+  },
+  caf_b: {
+    titulo:'Eliminatorias CAF — Grupo B',
+    nota:'Clasificado: Senegal (1°, 24 pts)',
+    cols:['Pos','Selección','PJ','G','E','P','GF','GC','Pts'],
+    filas:[
+      ['1','🇸🇳 Senegal','10','7','3','0','22','7','24'],
+      ['2','🇨🇩 Congo DR','10','5','3','2','18','9','18'],
+      ['3','🇸🇸 Sudán del Sur','10','3','2','5','11','16','11'],
+      ['4','🇸🇩 Sudán','10','2','3','5','8','14','9'],
+      ['5','🇲🇷 Mauritania','10','2','2','6','9','18','8'],
+      ['6','🇲🇼 Malaui','10','1','1','8','6','10','4'],
+    ]
+  },
+  caf_c: {
+    titulo:'Eliminatorias CAF — Grupo C',
+    nota:'Clasificado: Sudáfrica (1°, descontado 3 pts por alineación indebida)',
+    cols:['Pos','Selección','PJ','G','E','P','GF','GC','Pts'],
+    filas:[
+      ['1','🇿🇦 Sudáfrica','10','6','3','1','18','7','18'],
+      ['2','🇳🇬 Nigeria','10','5','3','2','17','9','18'],
+      ['3','🇿🇼 Zimbabue','10','4','2','4','13','14','14'],
+      ['4','🇧🇮 Burundi','10','3','2','5','10','14','11'],
+      ['5','🇷🇼 Ruanda','10','2','2','6','8','16','8'],
+      ['6','🇸🇱 Sierra Leona','10','1','2','7','5','11','5'],
+    ]
+  },
+  caf_d: {
+    titulo:'Eliminatorias CAF — Grupo D',
+    nota:'Clasificado: Cabo Verde (1°, 23 pts) — ¡primer Mundial!',
+    cols:['Pos','Selección','PJ','G','E','P','GF','GC','Pts'],
+    filas:[
+      ['1','🇨🇻 Cabo Verde','10','7','2','1','20','8','23'],
+      ['2','🇨🇲 Camerún','10','6','2','2','20','9','20'],
+      ['3','🇬🇶 Guinea Ecuatorial','10','4','2','4','13','12','14'],
+      ['4','🇿🇲 Zambia','10','3','2','5','11','14','11'],
+      ['5','🇨🇮 Costa de Marfil (*)','10','4','2','4','14','11','14'],
+      ['6','🇪🇸 Esuatini','10','0','0','10','1','25','0'],
+    ]
+  },
+  caf_e: {
+    titulo:'Eliminatorias CAF — Grupo E',
+    nota:'Clasificado: Marruecos (1°, 24 pts, 8 victorias)',
+    cols:['Pos','Selección','PJ','G','E','P','GF','GC','Pts'],
+    filas:[
+      ['1','🇲🇦 Marruecos','10','8','0','2','29','6','24'],
+      ['2','🇹🇿 Tanzania','10','5','2','3','14','11','17'],
+      ['3','🇿🇦 Zambia','10','4','2','4','14','14','14'],
+      ['4','🇨🇬 Congo','10','3','2','5','10','15','11'],
+      ['5','🇳🇪 Níger','10','2','2','6','8','20','8'],
+      ['6','🇹🇩 Chad','10','0','2','8','4','13','2'],
+    ]
+  },
+  caf_f: {
+    titulo:'Eliminatorias CAF — Grupo F',
+    nota:'Clasificado: Argelia (1°, clasificó una fecha antes)',
+    cols:['Pos','Selección','PJ','G','E','P','GF','GC','Pts'],
+    filas:[
+      ['1','🇩🇿 Argelia','10','7','2','1','22','7','23'],
+      ['2','🇺🇬 Uganda','10','5','2','3','14','11','17'],
+      ['3','🇲🇿 Mozambique','10','4','2','4','12','13','14'],
+      ['4','🇬🇳 Guinea','10','3','2','5','10','13','11'],
+      ['5','🇸🇴 Somalia','10','2','0','8','6','18','6'],
+      ['6','🇧🇯 Benín','10','1','2','7','5','7','5'],
+    ]
+  },
+  caf_g: {
+    titulo:'Eliminatorias CAF — Grupo G',
+    nota:'Clasificado: Costa de Marfil (1°)',
+    cols:['Pos','Selección','PJ','G','E','P','GF','GC','Pts'],
+    filas:[
+      ['1','🇨🇮 Costa de Marfil','10','7','1','2','21','8','22'],
+      ['2','🇲🇱 Mali','10','5','3','2','16','9','18'],
+      ['3','🇰🇪 Kenia','10','4','2','4','12','13','14'],
+      ['4','🇬🇦 Gabón','10','3','2','5','10','14','11'],
+      ['5','🇸🇨 Seychelles','10','1','0','9','5','19','3'],
+      ['6','🇬🇲 Gambia','10','1','2','7','6','7','5'],
+    ]
+  },
+  caf_i: {
+    titulo:'Eliminatorias CAF — Grupo I',
+    nota:'Clasificado: Ghana (1°, 5ª Copa del Mundo)',
+    cols:['Pos','Selección','PJ','G','E','P','GF','GC','Pts'],
+    filas:[
+      ['1','🇬🇭 Ghana','10','6','3','1','18','7','21'],
+      ['2','🇨🇲 Comoras','10','4','3','3','12','10','15'],
+      ['3','🇲🇦 Madagascar','10','3','3','4','11','13','12'],
+      ['4','🇨🇫 R. Centroafricana','10','2','3','5','8','14','9'],
+      ['5','🇦🇴 Angola','10','2','2','6','7','12','8'],
+      ['6','🇧🇫 Burkina Faso','10','2','2','6','8','8','8'],
+    ]
+  },
+  caf_h: {
+    titulo:'Eliminatorias CAF — Grupo H',
+    nota:'Clasificado: Túnez (1°)',
+    cols:['Pos','Selección','PJ','G','E','P','GF','GC','Pts'],
+    filas:[
+      ['1','🇹🇳 Túnez','10','7','1','2','20','8','22'],
+      ['2','🇱🇾 Libia','10','5','2','3','15','11','17'],
+      ['3','🇬🇶 Guinea Ecuat.','10','4','2','4','13','14','14'],
+      ['4','🇳🇦 Namibia','10','3','2','5','10','13','11'],
+      ['5','🇸🇹 Santo Tomé','10','2','1','7','8','17','7'],
+      ['6','🇪🇷 Eritrea','10','0','0','10','2','5','0'],
+    ]
+  },
+
+// ── CONCACAF ──────────────────────────────────────────
+  concacaf_a: {
+    titulo:'Eliminatorias CONCACAF — Grupo A (3ª Fase)',
+    nota:'Clasificado directo: Panamá (12 pts, 4 victorias)',
+    cols:['Pos','Selección','PJ','G','E','P','GF','GC','Pts'],
+    filas:[
+      ['1','🇵🇦 Panamá','6','4','0','2','12','6','12'],
+      ['2','🇯🇲 Jamaica (rep.)','6','2','1','3','7','9','7'],
+      ['3','🇸🇻 El Salvador','6','2','1','3','6','8','7'],
+      ['4','🇳🇮 Nicaragua','6','1','2','3','5','7','5'],
+    ]
+  },
+  concacaf_b: {
+    titulo:'Eliminatorias CONCACAF — Grupo B (3ª Fase)',
+    nota:'Clasificado directo: Curazao — ¡primer Mundial!',
+    cols:['Pos','Selección','PJ','G','E','P','GF','GC','Pts'],
+    filas:[
+      ['1','🇨🇼 Curazao','6','3','2','1','8','5','11'],
+      ['2','🇸🇷 Surinam (rep.)','6','3','1','2','10','8','10'],
+      ['3','🇬🇹 Guatemala','6','2','2','2','7','7','8'],
+      ['4','🇧🇲 Bermuda','6','0','1','5','3','8','1'],
+    ]
+  },
+  concacaf_c: {
+    titulo:'Eliminatorias CONCACAF — Grupo C (3ª Fase)',
+    nota:'Clasificado directo: Haití',
+    cols:['Pos','Selección','PJ','G','E','P','GF','GC','Pts'],
+    filas:[
+      ['1','🇭🇹 Haití','6','4','0','2','11','6','12'],
+      ['2','🇭🇳 Honduras','6','3','1','2','9','8','10'],
+      ['3','🇨🇷 Costa Rica','6','2','1','3','7','9','7'],
+      ['4','🇹🇹 Trinidad y Tob.','6','0','2','4','4','8','2'],
+    ]
+  },
+
+// ── OFC (OCEANÍA) ─────────────────────────────────────
+  ofc: {
+    titulo:'Eliminatorias OFC — Final',
+    nota:'Nueva Zelanda clasificó por ser 1ª en la OFC y ganó el repechaje intercontinental',
+    cols:['Pos','Selección','PJ','G','E','P','GF','GC','Pts'],
+    filas:[
+      ['1','🇳🇿 Nueva Zelanda','6','5','1','0','22','4','16'],
+      ['2','🇵🇬 Papúa Nueva Guinea','6','3','1','2','12','10','10'],
+      ['3','🇫🇯 Fiyi','6','2','1','3','9','11','7'],
+      ['4','🇻🇺 Vanuatu','6','0','1','5','3','21','1'],
+    ]
+  },
+
+// ── REPECHAJE INTERCONTINENTAL ────────────────────────
+  repechaje_irak: {
+    titulo:'Repechaje Intercontinental — Irak',
+    nota:'Irak venció a Bolivia y clasificó al Mundial como representante AFC/CONMEBOL',
+    cols:['Partido','Resultado'],
+    filas:[
+      ['🇮🇶 Irak vs 🇧🇴 Bolivia (ida)','2–0'],
+      ['🇧🇴 Bolivia vs 🇮🇶 Irak (vuelta)','1–0'],
+      ['Global','🇮🇶 Irak 2–1 Bolivia ✓'],
+    ]
+  },
+  repechaje_nz: {
+    titulo:'Repechaje Intercontinental — Nueva Zelanda',
+    nota:'Nueva Zelanda clasificó como representante de OFC',
+    cols:['Partido','Resultado'],
+    filas:[
+      ['🇳🇿 Nueva Zelanda vs rival','Clasificó directamente'],
+    ]
+  },
+};
 
 // ════════════════════════════════
 // ESTADO
@@ -876,22 +1331,45 @@ function buildGrupoPagina(g,isFirst,adminMode){
   // Clasificación
   let clasifHtml='';
   const cl=g.clasificacion;
-  clasifHtml=`<div class="clasif-section">
-    <p style="font-size:12px;font-weight:700;color:var(--ink3);margin-bottom:8px;">🌍 Confederaciones: ${cl.conf}</p>
-    <p style="font-size:12px;color:var(--ink2);font-weight:600;margin-bottom:12px;line-height:1.6;">${cl.nota}</p>`;
-
-  if(cl.tabla){
+  clasifHtml=`<div class="clasif-section">`;
+  
+  // Render multiple tables
+  if(cl.tables && cl.tables.length>0){
+    cl.tables.forEach(tKey=>{
+      const t=CLASIF_TABLES[tKey];
+      if(!t)return;
+      const highlightTeam=cl.highlight||'';
+      clasifHtml+=`<div class="clasif-conf-title">📊 ${t.titulo}</div>`;
+      if(t.nota) clasifHtml+=`<p style="font-size:11px;color:var(--ink3);font-weight:700;margin-bottom:10px;line-height:1.5;">${t.nota}</p>`;
+      clasifHtml+=`<div style="overflow-x:auto;margin-bottom:16px;">
+      <table class="clasif-table">
+        <thead><tr>${t.cols.map(c=>`<th>${c}</th>`).join('')}</tr></thead>
+        <tbody>${t.filas.map((f,fi)=>{
+          const isH = f[f.length-1]==='highlight' || (highlightTeam && f[1] && f[1].includes(highlightTeam));
+          const data = f[f.length-1]==='highlight' ? f.slice(0,-1) : f;
+          const pos = parseInt(data[0]);
+          const isClasif = !isNaN(pos) && pos<=2;
+          const isRep = !isNaN(pos) && pos===3 && t.cols.length>5;
+          return \`<tr\${isH?' class="highlight"':''}>\${data.map((c,ci)=>{
+            if(ci===0&&!isNaN(pos)) return \`<td>\${isClasif?'<span class="clasif-badge cb-clasificado">✓</span> ':''}\${isRep?'<span class="clasif-badge cb-repechaje">R</span> ':''}\${c}</td>\`;
+            return \`<td>\${c}</td>\`;
+          }).join('')}</tr>\`;
+        }).join('')}</tbody>
+      </table></div>`;
+    });
+  } else if(cl.tabla){
     const t=cl.tabla;
-    const highlightSet=new Set(t.filas.filter(f=>f[f.length-1]==='highlight').map(f=>f[1]));
-    clasifHtml+=`<div class="clasif-conf-title">📊 ${t.titulo}</div>
-    <div style="overflow-x:auto;">
+    clasifHtml+=`<div class="clasif-conf-title">📊 ${t.titulo}</div>`;
+    if(t.nota) clasifHtml+=`<p style="font-size:11px;color:var(--ink3);font-weight:700;margin-bottom:10px;">${t.nota}</p>`;
+    clasifHtml+=`<div style="overflow-x:auto;">
     <table class="clasif-table">
       <thead><tr>${t.cols.map(c=>`<th>${c}</th>`).join('')}</tr></thead>
       <tbody>${t.filas.map(f=>{
         const isH=f[f.length-1]==='highlight';
         const data=isH?f.slice(0,-1):f;
-        const isClasif=parseInt(data[0])<=6;
-        const isRepechaje=parseInt(data[0])===7;
+        const pos=parseInt(data[0]);
+        const isClasif=pos<=6;
+        const isRepechaje=pos===7;
         return `<tr${isH?' class="highlight"':''}>
           ${data.map((c,ci)=>{
             if(ci===0)return `<td>${isClasif?'<span class="clasif-badge cb-clasificado">✓</span> ':''}${isRepechaje?'<span class="clasif-badge cb-repechaje">R</span> ':''}${c}</td>`;
@@ -900,6 +1378,8 @@ function buildGrupoPagina(g,isFirst,adminMode){
         </tr>`;
       }).join('')}</tbody>
     </table></div>`;
+  } else {
+    clasifHtml+=`<p style="font-size:13px;color:var(--ink2);font-weight:600;line-height:1.6;">${cl.nota||''}</p>`;
   }
   clasifHtml+='</div>';
 
