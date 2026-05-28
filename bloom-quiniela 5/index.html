@@ -1,0 +1,1575 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quiniela Mundial 2026 – Bloom the Coffee</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<style>
+:root{
+  --orange:#FF6B00;--orange2:#E85A00;--dark:#2A0F04;
+  --cream:#FFF8EE;--beige:#F5DEB3;--beige2:#FFE8C0;
+  --white:#FFFDF9;--border:#E0C090;--ink:#1E0D02;
+  --ink2:#7A3F15;--ink3:#C4905A;
+  --green:#1A6B2F;--green-l:#E3F5E8;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Nunito',sans-serif;background:var(--cream);color:var(--ink);min-height:100vh;overflow-x:hidden;}
+
+/* HEADER */
+.header{background:var(--dark);padding:0 20px;display:flex;align-items:center;justify-content:space-between;height:56px;position:sticky;top:0;z-index:100;border-bottom:3px solid var(--orange);}
+.logo{font-family:'Bebas Neue',sans-serif;font-size:24px;color:var(--orange);display:flex;align-items:center;gap:8px;letter-spacing:1px;}
+.logo-w{color:#fff;}
+.nav-group{display:flex;gap:5px;}
+.nav-pill{background:transparent;color:rgba(255,255,255,0.65);border:2px solid rgba(255,255,255,0.18);padding:5px 12px;border-radius:30px;font-family:'Nunito',sans-serif;font-size:12px;font-weight:800;cursor:pointer;transition:all .2s;}
+.nav-pill:hover{border-color:var(--orange);color:var(--orange);}
+.nav-pill.active{background:var(--orange);border-color:var(--orange);color:#fff;}
+
+/* HERO */
+.hero{background:var(--dark);padding:28px 20px 0;text-align:center;position:relative;overflow:hidden;}
+.hero::after{content:'';position:absolute;bottom:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--orange),#FF9A00,var(--orange));}
+.hero-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(255,107,0,.18);color:var(--orange);padding:4px 16px;border-radius:30px;font-size:11px;font-weight:800;margin-bottom:12px;border:1.5px solid rgba(255,107,0,.3);text-transform:uppercase;letter-spacing:1.5px;}
+.hero h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(44px,10vw,76px);color:#fff;line-height:.95;margin-bottom:4px;letter-spacing:2px;}
+.hero h1 span{color:var(--orange);}
+.hero-sub{color:rgba(255,255,255,.55);font-size:13px;margin-bottom:20px;font-weight:700;letter-spacing:.5px;}
+.hero-cta{background:var(--orange);color:#fff;border:none;padding:13px 36px;border-radius:50px;font-family:'Bebas Neue',sans-serif;font-size:22px;cursor:pointer;transition:transform .15s,box-shadow .15s;box-shadow:0 4px 0 #8B3000,0 6px 16px rgba(255,107,0,.35);letter-spacing:1px;}
+.hero-cta:hover{transform:translateY(-2px);box-shadow:0 6px 0 #8B3000,0 10px 20px rgba(255,107,0,.4);}
+.hero-cta:active{transform:translateY(1px);box-shadow:0 2px 0 #8B3000;}
+.hero-stats{display:flex;justify-content:center;margin-top:24px;}
+.hero-stat{flex:1;padding:14px 6px;border-right:2px dashed rgba(255,255,255,.1);}
+.hero-stat:last-child{border-right:none;}
+.hero-stat-n{font-family:'Bebas Neue',sans-serif;font-size:30px;color:var(--orange);display:block;line-height:1;}
+.hero-stat-l{font-size:10px;color:rgba(255,255,255,.45);font-weight:800;text-transform:uppercase;letter-spacing:.5px;}
+
+/* BLOOMIE SVG HERO */
+.bloomie-hero{display:flex;justify-content:center;margin-top:14px;}
+
+/* MAIN */
+.main{max-width:820px;margin:0 auto;padding:24px 16px 80px;position:relative;z-index:1;}
+.screen{display:none;}
+.screen.active{display:block;}
+
+/* CARDS */
+.card{background:var(--white);border:2px solid var(--border);border-radius:18px;padding:20px;margin-bottom:14px;box-shadow:3px 3px 0 var(--beige2);}
+.card-title{font-family:'Bebas Neue',sans-serif;font-size:22px;margin-bottom:14px;color:var(--ink);display:flex;align-items:center;gap:8px;letter-spacing:.5px;}
+
+/* FORM */
+.form-group{margin-bottom:13px;}
+label.fl{display:block;font-size:12px;font-weight:800;color:var(--ink2);margin-bottom:5px;text-transform:uppercase;letter-spacing:.5px;}
+input[type=text],input[type=email],input[type=tel],input[type=number],input[type=password],select,textarea{width:100%;padding:10px 14px;border:2px solid var(--border);border-radius:11px;font-family:'Nunito',sans-serif;font-size:14px;color:var(--ink);background:var(--white);outline:none;transition:border-color .2s;font-weight:600;}
+input:focus,select:focus,textarea:focus{border-color:var(--orange);}
+input::placeholder,textarea::placeholder{color:#C4A070;font-weight:600;}
+
+/* BUTTONS */
+.btn{border:none;border-radius:11px;font-family:'Bebas Neue',sans-serif;font-size:18px;cursor:pointer;padding:11px 24px;transition:transform .12s,box-shadow .12s;letter-spacing:.5px;}
+.btn:hover{transform:translateY(-1px);}
+.btn:active{transform:translateY(1px);}
+.btn-primary{background:var(--orange);color:#fff;width:100%;box-shadow:0 3px 0 #8B3000;}
+.btn-primary:hover{box-shadow:0 5px 0 #8B3000;}
+.btn-ghost{background:transparent;border:2px solid var(--border);color:var(--ink2);}
+.btn-sm{padding:6px 14px;font-size:14px;border-radius:8px;width:auto;}
+.btn-danger{background:#B52020;color:#fff;box-shadow:0 2px 0 #6B1010;}
+.btn-success{background:var(--green);color:#fff;}
+.mt-8{margin-top:8px;} .mt-16{margin-top:16px;} .mt-24{margin-top:24px;}
+.mb-8{margin-bottom:8px;} .mb-16{margin-bottom:16px;}
+.flex{display:flex;} .flex-between{display:flex;justify-content:space-between;align-items:center;}
+.gap-8{gap:8px;} .gap-12{gap:12px;}
+.text-xs{font-size:12px;color:var(--ink2);font-weight:600;}
+.text-sm{font-size:13px;color:var(--ink2);}
+.text-center{text-align:center;}
+
+/* STEPS */
+.steps-row{display:flex;align-items:center;margin-bottom:20px;padding:0 4px;}
+.step-it{display:flex;flex-direction:column;align-items:center;gap:3px;flex:1;}
+.step-dot{width:30px;height:30px;border-radius:50%;border:2px solid var(--border);background:var(--white);display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:14px;color:var(--ink2);}
+.step-dot.done{background:var(--green);border-color:var(--green);color:#fff;}
+.step-dot.cur{background:var(--orange);border-color:var(--orange);color:#fff;}
+.step-lbl{font-size:9px;font-weight:800;color:var(--ink2);text-transform:uppercase;letter-spacing:.4px;}
+.step-line{flex:1;height:2px;background:var(--border);margin:0 -2px;margin-bottom:16px;}
+.step-line.done{background:var(--green);}
+
+/* PROGRESS */
+.prog-bar{background:var(--beige2);border-radius:20px;height:9px;overflow:hidden;border:1.5px solid var(--border);}
+.prog-fill{background:var(--orange);height:100%;border-radius:20px;transition:width .4s;}
+.chip{display:inline-flex;align-items:center;background:var(--beige2);color:var(--ink2);padding:3px 10px;border-radius:20px;font-size:12px;font-weight:800;border:1.5px solid var(--border);}
+
+/* ═══════════════════════════
+   GRUPOS NAV
+═══════════════════════════ */
+.grupos-nav{display:grid;grid-template-columns:repeat(6,1fr);gap:6px;margin-bottom:16px;}
+@media(max-width:600px){.grupos-nav{grid-template-columns:repeat(4,1fr);}}
+@media(max-width:380px){.grupos-nav{grid-template-columns:repeat(3,1fr);}}
+
+.grupo-nav-btn{background:var(--white);border:2px solid var(--border);border-radius:12px;padding:8px 4px;cursor:pointer;text-align:center;transition:all .18s;font-family:'Bebas Neue',sans-serif;font-size:14px;color:var(--ink);display:flex;flex-direction:column;align-items:center;gap:3px;}
+.grupo-nav-btn:hover{border-color:var(--orange);transform:translateY(-1px);}
+.grupo-nav-btn.active{border-color:var(--orange);background:var(--orange);color:#fff;box-shadow:0 2px 0 #8B3000;}
+.grupo-nav-btn .g-flags{font-size:16px;line-height:1;}
+.grupo-nav-btn .g-name{font-size:11px;letter-spacing:.5px;}
+
+/* PÁGINA DE GRUPO */
+.grupo-page{display:none;}
+.grupo-page.active{display:block;}
+
+/* TABS DENTRO DEL GRUPO */
+.grupo-inner-tabs{display:flex;gap:4px;background:rgba(0,0,0,.12);padding:4px;border-radius:10px;margin-bottom:14px;}
+.git{flex:1;padding:7px 6px;border:none;background:transparent;border-radius:7px;font-family:'Nunito',sans-serif;font-size:12px;font-weight:800;cursor:pointer;color:rgba(255,255,255,.7);transition:all .15s;}
+.git.active{background:rgba(255,255,255,.95);color:var(--ink);}
+
+.grupo-header-card{border-radius:16px;padding:18px;margin-bottom:12px;position:relative;overflow:hidden;}
+.grupo-letter{font-family:'Bebas Neue',sans-serif;font-size:56px;line-height:1;opacity:.15;position:absolute;right:14px;top:8px;color:#fff;}
+.grupo-title-row{display:flex;align-items:center;gap:12px;margin-bottom:10px;}
+.grupo-letra-badge{font-family:'Bebas Neue',sans-serif;font-size:44px;line-height:1;color:#fff;text-shadow:0 2px 8px rgba(0,0,0,.3);}
+.grupo-title-info h2{font-family:'Bebas Neue',sans-serif;font-size:20px;color:#fff;letter-spacing:.5px;}
+.grupo-title-info p{font-size:11px;font-weight:700;color:rgba(255,255,255,.75);text-transform:uppercase;letter-spacing:.5px;}
+.equipos-flags{display:flex;flex-wrap:wrap;gap:6px;}
+.equipo-flag-badge{display:flex;align-items:center;gap:6px;background:rgba(255,255,255,.2);border:1.5px solid rgba(255,255,255,.25);border-radius:30px;padding:5px 12px;font-size:13px;font-weight:700;color:#fff;backdrop-filter:blur(4px);}
+.equipo-flag-badge .flag{font-size:18px;}
+
+/* PARTIDOS */
+.partidos-list{display:grid;gap:8px;}
+.partido-card{background:var(--white);border:2px solid var(--border);border-radius:13px;padding:10px 12px;transition:border-color .2s;}
+.partido-card:hover{border-color:var(--orange);}
+.partido-meta{font-size:10px;font-weight:800;color:var(--ink3);text-transform:uppercase;letter-spacing:.5px;margin-bottom:7px;display:flex;align-items:center;gap:6px;flex-wrap:wrap;}
+.partido-meta .meta-sep{color:var(--border);}
+.partido-meta .meta-estadio{display:flex;align-items:center;gap:3px;}
+.partido-face{display:flex;align-items:center;gap:8px;}
+.p-team{flex:1;display:flex;align-items:center;gap:6px;}
+.p-team.right{flex-direction:row-reverse;justify-content:flex-start;}
+.p-flag{font-size:22px;}
+.p-name{font-size:12px;font-weight:800;color:var(--ink);}
+.score-wrap{display:flex;align-items:center;gap:4px;flex-shrink:0;}
+.score-in{width:38px;padding:6px 0;text-align:center;font-family:'Bebas Neue',sans-serif;font-size:20px;border:2px solid var(--border);border-radius:8px;background:var(--cream);outline:none;color:var(--ink);}
+.score-in:focus{border-color:var(--orange);}
+.score-vs{font-family:'Bebas Neue',sans-serif;font-size:16px;color:var(--ink3);}
+
+/* ESTADÍSTICAS DE CLASIFICACIÓN */
+.clasif-section{padding:4px 0;}
+.clasif-conf-title{font-family:'Bebas Neue',sans-serif;font-size:18px;color:var(--ink);margin-bottom:10px;letter-spacing:.5px;display:flex;align-items:center;gap:6px;}
+.clasif-table{width:100%;border-collapse:collapse;font-size:13px;}
+.clasif-table th{font-size:10px;font-weight:800;color:var(--ink3);text-transform:uppercase;letter-spacing:.5px;padding:6px 8px;text-align:center;border-bottom:2px solid var(--border);}
+.clasif-table th:first-child{text-align:left;}
+.clasif-table td{padding:7px 8px;border-bottom:1px solid var(--beige2);text-align:center;font-weight:700;}
+.clasif-table td:first-child{text-align:left;}
+.clasif-table tr.highlight{background:rgba(255,107,0,.1);}
+.clasif-table tr.highlight td{color:var(--orange2);font-weight:800;}
+.clasif-table tr.highlight td:first-child{position:relative;padding-left:16px;}
+.clasif-table tr.highlight td:first-child::before{content:'▶';font-size:8px;color:var(--orange);position:absolute;left:4px;top:50%;transform:translateY(-50%);}
+.clasif-flag{font-size:16px;margin-right:4px;}
+.clasif-badge{display:inline-flex;align-items:center;gap:3px;padding:2px 7px;border-radius:20px;font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.3px;}
+.cb-clasificado{background:var(--green-l);color:var(--green);}
+.cb-repechaje{background:#FFF3CD;color:#8B6900;}
+
+/* RANKING */
+.ranking-table{width:100%;border-collapse:collapse;}
+.ranking-table th{font-size:10px;font-weight:800;color:var(--ink3);text-transform:uppercase;letter-spacing:.5px;padding:7px 10px;text-align:left;border-bottom:2px solid var(--border);}
+.ranking-table td{padding:10px 10px;font-size:14px;border-bottom:1.5px solid var(--beige2);}
+.rank-pos{font-family:'Bebas Neue',sans-serif;font-size:18px;color:var(--ink3);}
+.rank-pos.gold{color:#CC8800;} .rank-pos.silver{color:#888;} .rank-pos.bronze{color:#AA5500;}
+.rank-pts{font-family:'Bebas Neue',sans-serif;font-size:18px;color:var(--orange);}
+.rank-badge{display:inline-block;font-size:11px;font-weight:800;padding:3px 8px;border-radius:20px;}
+.rank-badge.pagado{background:var(--green-l);color:var(--green);}
+.rank-badge.pendiente{background:#FFF3CD;color:#856404;}
+
+/* ADMIN TABS */
+.admin-tabs{display:flex;gap:4px;background:var(--beige2);padding:4px;border-radius:12px;margin-bottom:16px;border:2px solid var(--border);}
+.admin-tab{flex:1;padding:7px;border:none;background:transparent;border-radius:9px;font-family:'Nunito',sans-serif;font-size:12px;font-weight:800;cursor:pointer;color:var(--ink2);transition:all .15s;}
+.admin-tab.active{background:var(--white);color:var(--orange);}
+
+/* TOAST */
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--dark);color:#fff;padding:11px 24px;border-radius:40px;font-size:13px;font-weight:800;z-index:999;transition:transform .3s cubic-bezier(.34,1.56,.64,1);pointer-events:none;border:2px solid var(--orange);}
+.toast.show{transform:translateX(-50%) translateY(0);}
+.toast.success{background:var(--green);border-color:#0F4020;}
+.toast.error{background:#B52020;border-color:#6B1010;}
+
+/* EMPTY */
+.empty-state{text-align:center;padding:36px 20px;color:var(--ink2);}
+.empty-icon{font-size:36px;margin-bottom:8px;opacity:.5;}
+
+/* QR */
+.qr-card{background:var(--white);border:2px solid var(--border);border-radius:18px;padding:22px;text-align:center;box-shadow:3px 3px 0 var(--beige2);}
+.qr-title{font-family:'Bebas Neue',sans-serif;font-size:26px;color:var(--orange);letter-spacing:1px;}
+#qr-container{display:flex;justify-content:center;margin:14px 0;}
+#qr-container canvas,#qr-container img{border-radius:12px;border:3px solid var(--border);}
+.conf-id-box{background:var(--beige2);border:2.5px dashed var(--orange);border-radius:12px;padding:14px;text-align:center;margin:14px 0;}
+.conf-id{font-family:'Bebas Neue',sans-serif;font-size:30px;color:var(--orange);letter-spacing:3px;}
+
+/* COLORES DE GRUPO */
+.gc-a{background:linear-gradient(135deg,#006847,#CE1126);}
+.gc-b{background:linear-gradient(135deg,#CC0000,#003580);}
+.gc-c{background:linear-gradient(135deg,#009C3B,#C1272D);}
+.gc-d{background:linear-gradient(135deg,#002868,#D52B1E);}
+.gc-e{background:linear-gradient(135deg,#222,#FFCE00);}
+.gc-f{background:linear-gradient(135deg,#003DA5,#EF3340);}
+.gc-g{background:linear-gradient(135deg,#000,#E30A17);}
+.gc-h{background:linear-gradient(135deg,#AA151B,#5EB6E4);}
+.gc-i{background:linear-gradient(135deg,#002395,#00853F);}
+.gc-j{background:linear-gradient(135deg,#74ACDF,#006233);}
+.gc-k{background:linear-gradient(135deg,#006600,#FCD116);}
+.gc-l{background:linear-gradient(135deg,#012169,#006B3F);}
+
+@media(max-width:600px){
+  .hero h1{font-size:44px;}
+  .main{padding:20px 12px 80px;}
+  .header{padding:0 14px;}
+  .logo{font-size:20px;}
+  .grupos-nav{grid-template-columns:repeat(4,1fr);}
+}
+@media print{
+  .header,.hero{display:none!important;}
+  .screen{display:none!important;}
+  #screen-qr{display:block!important;}
+  .btn{display:none;}
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="logo">
+    <svg width="26" height="26" viewBox="0 0 100 100" fill="none">
+      <ellipse cx="50" cy="36" rx="26" ry="28" fill="#F5DEB3" stroke="#2A0F04" stroke-width="4"/>
+      <ellipse cx="50" cy="22" rx="20" ry="14" fill="#E8C98A" stroke="#2A0F04" stroke-width="3"/>
+      <rect x="32" y="30" width="36" height="28" rx="4" fill="#F5DEB3" stroke="#2A0F04" stroke-width="3"/>
+      <circle cx="43" cy="41" r="3" fill="#2A0F04"/>
+      <circle cx="57" cy="41" r="3" fill="#2A0F04"/>
+      <path d="M43 49 Q50 55 57 49" stroke="#2A0F04" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+      <line x1="40" y1="58" x2="36" y2="74" stroke="#FF6B00" stroke-width="6" stroke-linecap="round"/>
+      <line x1="60" y1="58" x2="64" y2="74" stroke="#FF6B00" stroke-width="6" stroke-linecap="round"/>
+      <ellipse cx="33" cy="76" rx="7" ry="4" fill="#FF6B00" stroke="#2A0F04" stroke-width="2"/>
+      <ellipse cx="67" cy="76" rx="7" ry="4" fill="#FF6B00" stroke="#2A0F04" stroke-width="2"/>
+    </svg>
+    <span class="logo-w">Bloom</span> Quiniela
+  </div>
+  <div class="nav-group">
+    <button class="nav-pill active" onclick="showScreen('home')" id="nav-home">Inicio</button>
+    <button class="nav-pill" onclick="showScreen('ranking')" id="nav-ranking">Ranking</button>
+    <button class="nav-pill" onclick="showScreen('admin-gate')" id="nav-admin">Admin</button>
+  </div>
+</div>
+
+<div class="hero" id="hero-section">
+  <div class="hero-badge">⚽ Mundial de Fútbol 2026</div>
+  <h1>QUINIELA<br><span>MUNDIAL</span></h1>
+  <p class="hero-sub">Adivina · Compite · Gana el premio</p>
+  <div class="bloomie-hero">
+    <svg width="120" height="120" viewBox="0 0 200 200" fill="none">
+      <rect x="62" y="78" width="76" height="70" rx="8" fill="#F5DEB3" stroke="#2A0F04" stroke-width="4"/>
+      <ellipse cx="100" cy="78" rx="38" ry="10" fill="#E8C98A" stroke="#2A0F04" stroke-width="3.5"/>
+      <ellipse cx="100" cy="66" rx="32" ry="20" fill="#F0D090" stroke="#2A0F04" stroke-width="3.5"/>
+      <rect x="97" y="28" width="7" height="42" rx="3.5" fill="#2A0F04"/>
+      <circle cx="100.5" cy="26" r="4" fill="#2A0F04"/>
+      <circle cx="100.5" cy="21" r="3" fill="#2A0F04" opacity=".5"/>
+      <circle cx="100.5" cy="17" r="2" fill="#2A0F04" opacity=".25"/>
+      <circle cx="88" cy="103" r="5" fill="#2A0F04"/>
+      <circle cx="112" cy="103" r="5" fill="#2A0F04"/>
+      <path d="M88 116 Q100 126 112 116" stroke="#2A0F04" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+      <ellipse cx="76" cy="110" rx="7" ry="5" fill="#FFAA80" opacity=".5"/>
+      <ellipse cx="124" cy="110" rx="7" ry="5" fill="#FFAA80" opacity=".5"/>
+      <line x1="62" y1="98" x2="30" y2="113" stroke="#FF6B00" stroke-width="12" stroke-linecap="round"/>
+      <line x1="138" y1="98" x2="170" y2="106" stroke="#FF6B00" stroke-width="12" stroke-linecap="round"/>
+      <circle cx="25" cy="118" r="14" fill="#F5DEB3" stroke="#2A0F04" stroke-width="3"/>
+      <line x1="22" y1="110" x2="18" y2="103" stroke="#2A0F04" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="28" y1="108" x2="26" y2="101" stroke="#2A0F04" stroke-width="2.5" stroke-linecap="round"/>
+      <circle cx="177" cy="111" r="14" fill="#F5DEB3" stroke="#2A0F04" stroke-width="3"/>
+      <path d="M172 106 L177 111 L182 106 M177 111 L177 118" stroke="#2A0F04" stroke-width="2" stroke-linecap="round" fill="none"/>
+      <circle cx="177" cy="121" r="3" fill="#2A0F04"/>
+      <line x1="86" y1="148" x2="78" y2="175" stroke="#FF6B00" stroke-width="13" stroke-linecap="round"/>
+      <line x1="114" y1="148" x2="122" y2="175" stroke="#FF6B00" stroke-width="13" stroke-linecap="round"/>
+      <ellipse cx="74" cy="178" rx="13" ry="6" fill="#2A0F04"/>
+      <ellipse cx="126" cy="178" rx="13" ry="6" fill="#2A0F04"/>
+      <circle cx="152" cy="176" r="12" fill="white" stroke="#2A0F04" stroke-width="2.5"/>
+      <path d="M152 164 L152 176 M144 182 L152 176 L160 182" stroke="#2A0F04" stroke-width="2" stroke-linecap="round" fill="none"/>
+    </svg>
+  </div>
+  <div style="margin-top:12px;"><button class="hero-cta" onclick="showScreen('registro')">¡PARTICIPAR AHORA!</button></div>
+  <div class="hero-stats">
+    <div class="hero-stat"><span class="hero-stat-n" id="stat-part">0</span><span class="hero-stat-l">Participantes</span></div>
+    <div class="hero-stat"><span class="hero-stat-n">36</span><span class="hero-stat-l">Partidos</span></div>
+    <div class="hero-stat"><span class="hero-stat-n" id="stat-premio">$0</span><span class="hero-stat-l">Premio</span></div>
+  </div>
+</div>
+
+<div class="main">
+
+<!-- HOME -->
+<div class="screen active" id="screen-home">
+  <div class="card">
+    <div class="card-title">🏆 ¿Cómo funciona?</div>
+    <div style="display:grid;gap:11px;">
+      <div class="flex gap-12" style="align-items:flex-start;"><div style="background:var(--orange);color:#fff;width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue';font-size:15px;flex-shrink:0;box-shadow:0 2px 0 #8B3000;">1</div><div><p style="font-weight:800;font-size:14px;">Regístrate con tu nombre y correo</p><p class="text-xs mt-8">Solo tarda 1 minutito ☕</p></div></div>
+      <div class="flex gap-12" style="align-items:flex-start;"><div style="background:var(--orange);color:#fff;width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue';font-size:15px;flex-shrink:0;box-shadow:0 2px 0 #8B3000;">2</div><div><p style="font-weight:800;font-size:14px;">Llena tu quiniela — fase de grupos</p><p class="text-xs mt-8">12 grupos · 36 partidos · predice el marcador exacto</p></div></div>
+      <div class="flex gap-12" style="align-items:flex-start;"><div style="background:var(--orange);color:#fff;width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue';font-size:15px;flex-shrink:0;box-shadow:0 2px 0 #8B3000;">3</div><div><p style="font-weight:800;font-size:14px;">Paga tu cuota en caja</p><p class="text-xs mt-8">El equipo de Bloom confirma tu participación</p></div></div>
+      <div class="flex gap-12" style="align-items:flex-start;"><div style="background:var(--orange);color:#fff;width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue';font-size:15px;flex-shrink:0;box-shadow:0 2px 0 #8B3000;">4</div><div><p style="font-weight:800;font-size:14px;">Sigue el ranking y llévate el premio 🎉</p><p class="text-xs mt-8">Quien más puntos acumule en la fase de grupos gana</p></div></div>
+    </div>
+    <div class="mt-24"><button class="btn btn-primary" onclick="showScreen('registro')">¡QUIERO PARTICIPAR! ⚽</button></div>
+  </div>
+  <div class="card">
+    <div class="card-title">📋 Puntos</div>
+    <div style="display:grid;gap:5px;">
+      <div class="flex-between" style="padding:8px 10px;background:var(--beige2);border-radius:9px;border:1.5px solid var(--border);"><span style="font-size:13px;font-weight:800;">Resultado exacto (ej: 2–1)</span><span class="chip">3 pts</span></div>
+      <div class="flex-between" style="padding:8px 10px;background:var(--cream);border-radius:9px;border:1.5px solid var(--border);"><span style="font-size:13px;font-weight:700;">Ganador correcto</span><span class="chip">1 pt</span></div>
+      <div class="flex-between" style="padding:8px 10px;background:var(--cream);border-radius:9px;border:1.5px solid var(--border);"><span style="font-size:13px;font-weight:700;">Empate correcto</span><span class="chip">1 pt</span></div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-title">📅 Fechas clave</div>
+    <div style="display:grid;gap:5px;">
+      <div class="flex-between" style="padding:8px 10px;background:var(--cream);border-radius:9px;border:1.5px solid var(--border);"><span style="font-size:13px;font-weight:700;">Inicio del torneo</span><span style="font-family:'Bebas Neue';font-size:17px;color:var(--orange);">11 Jun 2026</span></div>
+      <div class="flex-between" style="padding:8px 10px;background:var(--cream);border-radius:9px;border:1.5px solid var(--border);"><span style="font-size:13px;font-weight:700;">Fin fase de grupos</span><span style="font-family:'Bebas Neue';font-size:17px;color:var(--orange);">27 Jun 2026</span></div>
+      <div class="flex-between" style="padding:8px 10px;background:var(--beige2);border-radius:9px;border:1.5px dashed var(--orange);"><span style="font-size:13px;font-weight:800;">⏰ Cierre de quinielas</span><span style="font-family:'Bebas Neue';font-size:17px;color:var(--orange2);">10 Jun 2026</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- REGISTRO -->
+<div class="screen" id="screen-registro">
+  <div class="card">
+    <div class="card-title">👤 Tus datos</div>
+    <div class="form-group"><label class="fl">Nombre completo</label><input type="text" id="reg-nombre" placeholder="Ej: María García"></div>
+    <div class="form-group"><label class="fl">Correo electrónico</label><input type="email" id="reg-email" placeholder="tu@correo.com"></div>
+    <div class="form-group"><label class="fl">Teléfono (opcional)</label><input type="tel" id="reg-telefono" placeholder="+58 414 123 4567"></div>
+    <div style="background:var(--beige2);border-radius:11px;padding:11px;margin-bottom:14px;border:1.5px solid var(--border);">
+      <p style="font-size:12px;color:var(--ink2);line-height:1.7;font-weight:700;">☕ Al participar aceptas pagar la cuota en caja de Bloom the Coffee. El premio se entrega al finalizar la fase de grupos.</p>
+    </div>
+    <button class="btn btn-primary" onclick="registrarYContinuar()">Continuar a la quiniela →</button>
+    <button class="btn btn-ghost mt-8" style="width:100%;" onclick="showScreen('home')">← Volver</button>
+  </div>
+</div>
+
+<!-- QUINIELA GRUPOS -->
+<div class="screen" id="screen-grupos">
+  <div class="flex-between mb-8">
+    <div>
+      <p style="font-family:'Bebas Neue';font-size:24px;letter-spacing:.5px;" id="grupos-saludo">¡Llena tu quiniela!</p>
+      <p class="text-xs">Predice el marcador exacto de cada partido</p>
+    </div>
+    <span class="chip" id="prog-chip">0/36</span>
+  </div>
+  <div class="prog-bar mb-16"><div class="prog-fill" id="prog-fill" style="width:0%"></div></div>
+  <div class="steps-row">
+    <div class="step-it"><div class="step-dot done">✓</div><span class="step-lbl">Datos</span></div>
+    <div class="step-line done"></div>
+    <div class="step-it"><div class="step-dot cur">2</div><span class="step-lbl">Grupos</span></div>
+  </div>
+  <div class="grupos-nav" id="grupos-nav"></div>
+  <div id="grupos-pages"></div>
+  <div class="flex mt-24" style="gap:10px;">
+    <button class="btn btn-ghost" style="flex:1;" onclick="showScreen('registro')">← Atrás</button>
+    <button class="btn btn-primary" style="flex:2;" onclick="guardarQuiniela()">GUARDAR QUINIELA ✓</button>
+  </div>
+</div>
+
+<!-- CONFIRMACIÓN -->
+<div class="screen" id="screen-confirmacion">
+  <div class="text-center" style="padding:28px 16px;">
+    <div style="font-size:60px;margin-bottom:10px;">🎉</div>
+    <p style="font-family:'Bebas Neue';font-size:30px;color:var(--dark);letter-spacing:1px;">¡LISTO, CAMPEÓN!</p>
+    <p style="color:var(--ink2);font-size:14px;font-weight:700;margin-bottom:18px;">Tu quiniela fue guardada. Pasa por caja para confirmar tu cuota y participar oficialmente.</p>
+    <div class="conf-id-box">
+      <p class="text-xs mb-8">Tu ID de participante</p>
+      <p class="conf-id" id="conf-id">---</p>
+      <p class="text-xs mt-8">Guárdalo para consultar tus puntos</p>
+    </div>
+    <div class="card" style="text-align:left;max-width:300px;margin:14px auto;">
+      <p class="text-xs mb-8">Participante</p>
+      <p style="font-weight:800;font-size:15px;" id="conf-nombre">---</p>
+    </div>
+    <button class="btn btn-primary" onclick="showScreen('ranking')" style="max-width:260px;">VER EL RANKING</button>
+    <button class="btn btn-ghost mt-8" onclick="showScreen('home')" style="max-width:260px;width:100%;">Volver al inicio</button>
+  </div>
+</div>
+
+<!-- RANKING -->
+<div class="screen" id="screen-ranking">
+  <div class="card">
+    <div class="flex-between mb-16"><div class="card-title" style="margin-bottom:0;">🏆 Ranking</div><span class="text-xs" id="ranking-fecha">—</span></div>
+    <div id="ranking-container"><div class="empty-state"><div class="empty-icon">📊</div><p>El ranking aparece cuando comiencen los partidos<br><strong>11 Jun 2026</strong></p></div></div>
+  </div>
+  <div class="card">
+    <div class="card-title">👥 Participantes</div>
+    <div id="participantes-list"><div class="empty-state"><div class="empty-icon">👤</div><p>Aún no hay participantes</p></div></div>
+  </div>
+</div>
+
+<!-- QR -->
+<div class="screen" id="screen-qr">
+  <div style="max-width:380px;margin:0 auto;">
+    <div class="qr-card">
+      <div class="qr-title">🌸 Bloom the Coffee</div>
+      <p style="font-size:13px;color:var(--ink2);font-weight:700;margin-bottom:4px;">Quiniela Mundial 2026</p>
+      <p style="font-size:12px;color:var(--ink3);margin-bottom:14px;">Escanea para participar ⚽</p>
+      <div id="qr-container"></div>
+      <div style="font-size:11px;color:var(--ink3);word-break:break-all;background:var(--cream);padding:8px 12px;border-radius:9px;border:1.5px solid var(--border);font-weight:700;" id="qr-url-text">Ingresa la URL abajo</div>
+    </div>
+    <div class="mt-16">
+      <label class="fl">URL de tu app</label>
+      <input type="text" id="qr-url-input" placeholder="https://quiniela-bloom-zmk3.vercel.app" oninput="generarQR(this.value)">
+    </div>
+    <div class="flex mt-16" style="gap:10px;">
+      <button class="btn btn-ghost" style="flex:1;" onclick="showScreen('admin')">← Volver</button>
+      <button class="btn btn-primary" style="flex:2;" onclick="window.print()">🖨️ IMPRIMIR QR</button>
+    </div>
+  </div>
+</div>
+
+<!-- ADMIN GATE -->
+<div class="screen" id="screen-admin-gate">
+  <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:50vh;text-align:center;gap:14px;">
+    <div style="font-size:44px;">🔐</div>
+    <p style="font-family:'Bebas Neue';font-size:24px;letter-spacing:1px;">ACCESO ADMIN</p>
+    <p class="text-sm mb-16">Solo para el equipo de Bloom ☕</p>
+    <div style="width:100%;max-width:260px;">
+      <input type="password" id="admin-pass" placeholder="Contraseña" style="margin-bottom:10px;text-align:center;" onkeydown="if(event.key==='Enter')adminLogin()">
+      <button class="btn btn-primary" onclick="adminLogin()">ENTRAR</button>
+      <p class="text-xs text-center mt-8" style="opacity:.6;">Default: <strong>bloom2026</strong></p>
+    </div>
+  </div>
+</div>
+
+<!-- ADMIN PANEL -->
+<div class="screen" id="screen-admin">
+  <div class="flex-between mb-16">
+    <p style="font-family:'Bebas Neue';font-size:24px;letter-spacing:.5px;">PANEL ADMIN</p>
+    <div class="flex gap-8">
+      <button class="btn btn-ghost btn-sm" onclick="showScreen('qr')">🔲 QR</button>
+      <button class="btn btn-ghost btn-sm" onclick="adminLogout()">Salir</button>
+    </div>
+  </div>
+  <div class="admin-tabs">
+    <button class="admin-tab active" onclick="adminTab('participantes',this)">👥 Participantes</button>
+    <button class="admin-tab" onclick="adminTab('resultados',this)">⚽ Resultados</button>
+    <button class="admin-tab" onclick="adminTab('config',this)">⚙️ Config</button>
+  </div>
+  <div id="admin-tab-participantes">
+    <div class="card">
+      <div class="flex-between mb-16"><div class="card-title" style="margin-bottom:0;">Inscritos</div><span class="chip" id="admin-count">0</span></div>
+      <div id="admin-part-table"><div class="empty-state"><div class="empty-icon">👤</div><p>Sin participantes</p></div></div>
+    </div>
+    <div class="card">
+      <div class="card-title">💰 Control de cuotas</div>
+      <p class="text-sm mb-16">Marca como pagado cuando pase por caja.</p>
+      <div id="admin-cuotas-table"><div class="empty-state"><div class="empty-icon">💳</div><p>Sin participantes</p></div></div>
+    </div>
+  </div>
+  <div id="admin-tab-resultados" style="display:none;">
+    <div class="card">
+      <div class="card-title">⚽ Resultados reales</div>
+      <p class="text-sm mb-16">Ingresa los marcadores reales para calcular puntos.</p>
+      <div class="grupos-nav" id="admin-grupos-nav"></div>
+      <div id="admin-grupos-pages"></div>
+      <button class="btn btn-primary mt-16" onclick="calcularPuntos()">CALCULAR PUNTOS Y ACTUALIZAR RANKING</button>
+    </div>
+  </div>
+  <div id="admin-tab-config" style="display:none;">
+    <div class="card">
+      <div class="card-title">⚙️ Configuración</div>
+      <div class="form-group"><label class="fl">Cuota ($)</label><input type="number" id="config-cuota" value="100"></div>
+      <div class="form-group"><label class="fl">Nueva contraseña admin</label><input type="password" id="config-pass" placeholder="Mín. 4 caracteres"></div>
+      <button class="btn btn-primary" onclick="guardarConfig()">GUARDAR</button>
+    </div>
+    <div class="card">
+      <div class="card-title" style="color:#B52020;">⚠️ Peligro</div>
+      <p class="text-sm mb-16">No se puede deshacer.</p>
+      <button class="btn btn-danger btn-sm" onclick="resetearDatos()">Borrar todos los datos</button>
+    </div>
+  </div>
+</div>
+
+</div><!-- /main -->
+<div class="toast" id="toast"></div>
+
+<script>
+// ══════════════════════════════════════════════════════
+// DATOS COMPLETOS FIFA 2026 — FASE DE GRUPOS
+// Horarios en hora Venezuela (VET = UTC-4)
+// ══════════════════════════════════════════════════════
+
+const GRUPOS = [
+  { id:'a', letra:'A', clase:'gc-a',
+    equipos:[{n:'México',f:'🇲🇽'},{n:'Sudáfrica',f:'🇿🇦'},{n:'Corea del Sur',f:'🇰🇷'},{n:'Chequia',f:'🇨🇿'}],
+    partidos:[
+      {l:'México',f:'🇲🇽',v:'Sudáfrica',fv:'🇿🇦',fecha:'Jue 11 Jun',hora:'15:00 VET',ciudad:'Ciudad de México',estadio:'Estadio Azteca'},
+      {l:'Corea del Sur',f:'🇰🇷',v:'Chequia',fv:'🇨🇿',fecha:'Jue 11 Jun',hora:'22:00 VET',ciudad:'Guadalajara',estadio:'Estadio Akron'},
+      {l:'Chequia',f:'🇨🇿',v:'Sudáfrica',fv:'🇿🇦',fecha:'Mié 18 Jun',hora:'13:00 VET',ciudad:'Atlanta',estadio:'Mercedes-Benz Stadium'},
+      {l:'México',f:'🇲🇽',v:'Corea del Sur',fv:'🇰🇷',fecha:'Jue 18 Jun',hora:'19:00 VET',ciudad:'Guadalajara',estadio:'Estadio Akron'},
+      {l:'Chequia',f:'🇨🇿',v:'México',fv:'🇲🇽',fecha:'Mié 24 Jun',hora:'22:00 VET',ciudad:'Ciudad de México',estadio:'Estadio Azteca'},
+      {l:'Sudáfrica',f:'🇿🇦',v:'Corea del Sur',fv:'🇰🇷',fecha:'Mié 24 Jun',hora:'22:00 VET',ciudad:'Monterrey',estadio:'Estadio BBVA'},
+    ],
+    clasificacion:{
+      nota:'México (anfitrión) · Corea del Sur: AFC Grupo B · Chequia: Repechaje UEFA · Sudáfrica: CAF Grupo C',
+      highlight:'',
+      tables:['afc_grupo2','caf_c','uefa_playoff_d']
+    }
+  },
+  { id:'b', letra:'B', clase:'gc-b',
+    equipos:[{n:'Canadá',f:'🇨🇦'},{n:'Bosnia',f:'🇧🇦'},{n:'Qatar',f:'🇶🇦'},{n:'Suiza',f:'🇨🇭'}],
+    partidos:[
+      {l:'Canadá',f:'🇨🇦',v:'Bosnia',fv:'🇧🇦',fecha:'Vie 12 Jun',hora:'14:00 VET',ciudad:'Toronto',estadio:'BMO Field'},
+      {l:'Qatar',f:'🇶🇦',v:'Suiza',fv:'🇨🇭',fecha:'Sáb 13 Jun',hora:'14:00 VET',ciudad:'San Francisco',estadio:'Levi\'s Stadium'},
+      {l:'Suiza',f:'🇨🇭',v:'Bosnia',fv:'🇧🇦',fecha:'Mié 18 Jun',hora:'14:00 VET',ciudad:'Los Ángeles',estadio:'SoFi Stadium'},
+      {l:'Canadá',f:'🇨🇦',v:'Qatar',fv:'🇶🇦',fecha:'Mié 18 Jun',hora:'17:00 VET',ciudad:'Vancouver',estadio:'BC Place'},
+      {l:'Suiza',f:'🇨🇭',v:'Canadá',fv:'🇨🇦',fecha:'Mar 24 Jun',hora:'14:00 VET',ciudad:'Vancouver',estadio:'BC Place'},
+      {l:'Bosnia',f:'🇧🇦',v:'Qatar',fv:'🇶🇦',fecha:'Mar 24 Jun',hora:'14:00 VET',ciudad:'Kansas City',estadio:'Arrowhead Stadium'},
+    ],
+    clasificacion:{
+      nota:'Canadá (anfitrión) · Suiza: UEFA Grupo B · Qatar: AFC 4ª Fase · Bosnia: Repechaje UEFA',
+      highlight:'',
+      tables:['uefa_b','afc_grupo4a','uefa_playoff_a']
+    }
+  },
+  { id:'c', letra:'C', clase:'gc-c',
+    equipos:[{n:'Brasil',f:'🇧🇷'},{n:'Marruecos',f:'🇲🇦'},{n:'Escocia',f:'🏴󠁧󠁢󠁳󠁣󠁴󠁿'},{n:'Haití',f:'🇭🇹'}],
+    partidos:[
+      {l:'Brasil',f:'🇧🇷',v:'Marruecos',fv:'🇲🇦',fecha:'Sáb 13 Jun',hora:'17:00 VET',ciudad:'Nueva Jersey',estadio:'MetLife Stadium'},
+      {l:'Haití',f:'🇭🇹',v:'Escocia',fv:'🏴󠁧󠁢󠁳󠁣󠁴󠁿',fecha:'Sáb 13 Jun',hora:'20:00 VET',ciudad:'Boston',estadio:'Gillette Stadium'},
+      {l:'Escocia',f:'🏴󠁧󠁢󠁳󠁣󠁴󠁿',v:'Marruecos',fv:'🇲🇦',fecha:'Jue 19 Jun',hora:'17:00 VET',ciudad:'Boston',estadio:'Gillette Stadium'},
+      {l:'Brasil',f:'🇧🇷',v:'Haití',fv:'🇭🇹',fecha:'Jue 19 Jun',hora:'19:30 VET',ciudad:'Philadelphia',estadio:'Lincoln Financial Field'},
+      {l:'Marruecos',f:'🇲🇦',v:'Haití',fv:'🇭🇹',fecha:'Mar 24 Jun',hora:'23:00 VET',ciudad:'Atlanta',estadio:'Mercedes-Benz Stadium'},
+      {l:'Escocia',f:'🏴󠁧󠁢󠁳󠁣󠁴󠁿',v:'Brasil',fv:'🇧🇷',fecha:'Mar 24 Jun',hora:'23:00 VET',ciudad:'Miami',estadio:'Hard Rock Stadium'},
+    ],
+    clasificacion:{
+      nota:'Brasil: CONMEBOL 5° · Marruecos: CAF Grupo E · Escocia: UEFA Grupo C · Haití: CONCACAF Grupo C',
+      highlight:'Brasil',
+      tables:['conmebol','caf_e','uefa_c','concacaf_c'],
+      tabla:{
+        titulo:'Eliminatorias CONMEBOL — Tabla final',
+        cols:['Pos','Selección','PJ','G','E','P','GF','GC','Pts'],
+        filas:[
+          ['1','🇦🇷 Argentina','18','12','2','4','35','15','38'],
+          ['2','🇪🇨 Ecuador','18','9','2','7','29','24','29'],
+          ['3','🇨🇴 Colombia','18','8','4','6','27','19','28'],
+          ['4','🇺🇾 Uruguay','18','8','4','6','28','23','28'],
+          ['5','🇧🇷 Brasil','18','8','4','6','28','24','28','highlight'],
+          ['6','🇵🇾 Paraguay','18','8','4','6','26','28','28'],
+          ['7','🇧🇴 Bolivia','18','6','2','10','20','32','20'],
+          ['8','🇻🇪 Venezuela','18','5','4','9','24','32','19'],
+          ['9','🇵🇪 Perú','18','4','3','11','18','33','15'],
+          ['10','🇨🇱 Chile','18','3','4','11','15','35','13'],
+        ]
+      }
+    }
+  },
+  { id:'d', letra:'D', clase:'gc-d',
+    equipos:[{n:'EE.UU.',f:'🇺🇸'},{n:'Paraguay',f:'🇵🇾'},{n:'Australia',f:'🇦🇺'},{n:'Turquía',f:'🇹🇷'}],
+    partidos:[
+      {l:'EE.UU.',f:'🇺🇸',v:'Paraguay',fv:'🇵🇾',fecha:'Vie 12 Jun',hora:'20:00 VET',ciudad:'Los Ángeles',estadio:'SoFi Stadium'},
+      {l:'Australia',f:'🇦🇺',v:'Turquía',fv:'🇹🇷',fecha:'Sáb 13 Jun',hora:'01:00 VET',ciudad:'Vancouver',estadio:'BC Place'},
+      {l:'EE.UU.',f:'🇺🇸',v:'Australia',fv:'🇦🇺',fecha:'Jue 19 Jun',hora:'14:00 VET',ciudad:'Seattle',estadio:'Lumen Field'},
+      {l:'Turquía',f:'🇹🇷',v:'Paraguay',fv:'🇵🇾',fecha:'Jue 19 Jun',hora:'23:00 VET',ciudad:'San Francisco',estadio:'Levi\'s Stadium'},
+      {l:'Turquía',f:'🇹🇷',v:'EE.UU.',fv:'🇺🇸',fecha:'Jue 25 Jun',hora:'22:00 VET',ciudad:'Los Ángeles',estadio:'SoFi Stadium'},
+      {l:'Paraguay',f:'🇵🇾',v:'Australia',fv:'🇦🇺',fecha:'Jue 25 Jun',hora:'22:00 VET',ciudad:'San Francisco',estadio:'Levi\'s Stadium'},
+    ],
+    clasificacion:{
+      nota:'EE.UU. (anfitrión) · Paraguay: CONMEBOL 6° · Australia: AFC Grupo C · Turquía: Repechaje UEFA',
+      highlight:'Paraguay',
+      tables:['conmebol','afc_grupo3','uefa_playoff_c','concacaf_a'],
+      tabla:{
+        titulo:'Eliminatorias CONMEBOL — Tabla final',
+        cols:['Pos','Selección','PJ','G','E','P','GF','GC','Pts'],
+        filas:[
+          ['1','🇦🇷 Argentina','18','12','2','4','35','15','38'],
+          ['2','🇪🇨 Ecuador','18','9','2','7','29','24','29'],
+          ['3','🇨🇴 Colombia','18','8','4','6','27','19','28'],
+          ['4','🇺🇾 Uruguay','18','8','4','6','28','23','28'],
+          ['5','🇧🇷 Brasil','18','8','4','6','28','24','28'],
+          ['6','🇵🇾 Paraguay','18','8','4','6','26','28','28','highlight'],
+          ['7','🇧🇴 Bolivia','18','6','2','10','20','32','20'],
+          ['8','🇻🇪 Venezuela','18','5','4','9','24','32','19'],
+          ['9','🇵🇪 Perú','18','4','3','11','18','33','15'],
+          ['10','🇨🇱 Chile','18','3','4','11','15','35','13'],
+        ]
+      }
+    }
+  },
+  { id:'e', letra:'E', clase:'gc-e',
+    equipos:[{n:'Alemania',f:'🇩🇪'},{n:'Curazao',f:'🇨🇼'},{n:'C. de Marfil',f:'🇨🇮'},{n:'Ecuador',f:'🇪🇨'}],
+    partidos:[
+      {l:'Alemania',f:'🇩🇪',v:'Curazao',fv:'🇨🇼',fecha:'Dom 14 Jun',hora:'12:00 VET',ciudad:'Houston',estadio:'NRG Stadium'},
+      {l:'C. de Marfil',f:'🇨🇮',v:'Ecuador',fv:'🇪🇨',fecha:'Dom 14 Jun',hora:'18:00 VET',ciudad:'Philadelphia',estadio:'Lincoln Financial Field'},
+      {l:'Alemania',f:'🇩🇪',v:'C. de Marfil',fv:'🇨🇮',fecha:'Vie 20 Jun',hora:'15:00 VET',ciudad:'Toronto',estadio:'BMO Field'},
+      {l:'Ecuador',f:'🇪🇨',v:'Curazao',fv:'🇨🇼',fecha:'Vie 20 Jun',hora:'21:00 VET',ciudad:'Kansas City',estadio:'Arrowhead Stadium'},
+      {l:'Ecuador',f:'🇪🇨',v:'Alemania',fv:'🇩🇪',fecha:'Jue 25 Jun',hora:'15:00 VET',ciudad:'Kansas City',estadio:'Arrowhead Stadium'},
+      {l:'Curazao',f:'🇨🇼',v:'C. de Marfil',fv:'🇨🇮',fecha:'Jue 25 Jun',hora:'15:00 VET',ciudad:'Dallas',estadio:'AT&T Stadium'},
+    ],
+    clasificacion:{
+      nota:'Alemania: UEFA Grupo A · Ecuador: CONMEBOL 2° · Costa de Marfil: CAF Grupo G · Curazao: CONCACAF Grupo B',
+      highlight:'Ecuador',
+      tables:['conmebol','uefa_a','caf_g','concacaf_b'],
+      tabla:{
+        titulo:'Eliminatorias CONMEBOL — Tabla final',
+        cols:['Pos','Selección','PJ','G','E','P','GF','GC','Pts'],
+        filas:[
+          ['1','🇦🇷 Argentina','18','12','2','4','35','15','38'],
+          ['2','🇪🇨 Ecuador','18','9','2','7','29','24','29','highlight'],
+          ['3','🇨🇴 Colombia','18','8','4','6','27','19','28'],
+          ['4','🇺🇾 Uruguay','18','8','4','6','28','23','28'],
+          ['5','🇧🇷 Brasil','18','8','4','6','28','24','28'],
+          ['6','🇵🇾 Paraguay','18','8','4','6','26','28','28'],
+          ['7','🇧🇴 Bolivia','18','6','2','10','20','32','20'],
+          ['8','🇻🇪 Venezuela','18','5','4','9','24','32','19'],
+          ['9','🇵🇪 Perú','18','4','3','11','18','33','15'],
+          ['10','🇨🇱 Chile','18','3','4','11','15','35','13'],
+        ]
+      }
+    }
+  },
+  { id:'f', letra:'F', clase:'gc-f',
+    equipos:[{n:'P. Bajos',f:'🇳🇱'},{n:'Japón',f:'🇯🇵'},{n:'Túnez',f:'🇹🇳'},{n:'Suecia',f:'🇸🇪'}],
+    partidos:[
+      {l:'P. Bajos',f:'🇳🇱',v:'Japón',fv:'🇯🇵',fecha:'Dom 14 Jun',hora:'15:00 VET',ciudad:'Dallas',estadio:'AT&T Stadium'},
+      {l:'Suecia',f:'🇸🇪',v:'Túnez',fv:'🇹🇳',fecha:'Dom 14 Jun',hora:'21:00 VET',ciudad:'Monterrey',estadio:'Estadio BBVA'},
+      {l:'P. Bajos',f:'🇳🇱',v:'Suecia',fv:'🇸🇪',fecha:'Sáb 20 Jun',hora:'12:00 VET',ciudad:'Houston',estadio:'NRG Stadium'},
+      {l:'Túnez',f:'🇹🇳',v:'Japón',fv:'🇯🇵',fecha:'Sáb 20 Jun',hora:'22:00 VET',ciudad:'Monterrey',estadio:'Estadio BBVA'},
+      {l:'Túnez',f:'🇹🇳',v:'P. Bajos',fv:'🇳🇱',fecha:'Mié 25 Jun',hora:'18:00 VET',ciudad:'Kansas City',estadio:'Arrowhead Stadium'},
+      {l:'Japón',f:'🇯🇵',v:'Suecia',fv:'🇸🇪',fecha:'Mié 25 Jun',hora:'18:00 VET',ciudad:'Dallas',estadio:'AT&T Stadium'},
+    ],
+    clasificacion:{nota:'Países Bajos: UEFA Grupo G · Japón: AFC Grupo C · Túnez: CAF Grupo H · Suecia: Repechaje UEFA',highlight:'',tables:['uefa_g','afc_grupo3','caf_h','uefa_playoff_b']}
+  },
+  { id:'g', letra:'G', clase:'gc-g',
+    equipos:[{n:'Bélgica',f:'🇧🇪'},{n:'Egipto',f:'🇪🇬'},{n:'Irán',f:'🇮🇷'},{n:'Nueva Zelanda',f:'🇳🇿'}],
+    partidos:[
+      {l:'Bélgica',f:'🇧🇪',v:'Egipto',fv:'🇪🇬',fecha:'Lun 15 Jun',hora:'14:00 VET',ciudad:'Seattle',estadio:'Lumen Field'},
+      {l:'Irán',f:'🇮🇷',v:'Nueva Zelanda',fv:'🇳🇿',fecha:'Lun 15 Jun',hora:'19:00 VET',ciudad:'Los Ángeles',estadio:'SoFi Stadium'},
+      {l:'Bélgica',f:'🇧🇪',v:'Irán',fv:'🇮🇷',fecha:'Sáb 21 Jun',hora:'14:00 VET',ciudad:'Los Ángeles',estadio:'SoFi Stadium'},
+      {l:'Nueva Zelanda',f:'🇳🇿',v:'Egipto',fv:'🇪🇬',fecha:'Sáb 21 Jun',hora:'21:00 VET',ciudad:'Vancouver',estadio:'BC Place'},
+      {l:'Nueva Zelanda',f:'🇳🇿',v:'Bélgica',fv:'🇧🇪',fecha:'Jue 26 Jun',hora:'15:00 VET',ciudad:'Boston',estadio:'Gillette Stadium'},
+      {l:'Egipto',f:'🇪🇬',v:'Irán',fv:'🇮🇷',fecha:'Jue 26 Jun',hora:'15:00 VET',ciudad:'Houston',estadio:'NRG Stadium'},
+    ],
+    clasificacion:{nota:'Bélgica: UEFA Grupo J · Egipto: CAF Grupo A · Irán: AFC Grupo A · Nueva Zelanda: OFC + Repechaje',highlight:'',tables:['uefa_j','caf_a','afc_grupo1','ofc']}
+  },
+  { id:'h', letra:'H', clase:'gc-h',
+    equipos:[{n:'España',f:'🇪🇸'},{n:'Cabo Verde',f:'🇨🇻'},{n:'Arabia S.',f:'🇸🇦'},{n:'Uruguay',f:'🇺🇾'}],
+    partidos:[
+      {l:'España',f:'🇪🇸',v:'Cabo Verde',fv:'🇨🇻',fecha:'Lun 15 Jun',hora:'11:00 VET',ciudad:'Atlanta',estadio:'Mercedes-Benz Stadium'},
+      {l:'Arabia S.',f:'🇸🇦',v:'Uruguay',fv:'🇺🇾',fecha:'Lun 15 Jun',hora:'16:00 VET',ciudad:'Miami',estadio:'Hard Rock Stadium'},
+      {l:'España',f:'🇪🇸',v:'Arabia S.',fv:'🇸🇦',fecha:'Sáb 21 Jun',hora:'10:00 VET',ciudad:'Atlanta',estadio:'Mercedes-Benz Stadium'},
+      {l:'Uruguay',f:'🇺🇾',v:'Cabo Verde',fv:'🇨🇻',fecha:'Sáb 21 Jun',hora:'16:00 VET',ciudad:'Miami',estadio:'Hard Rock Stadium'},
+      {l:'Uruguay',f:'🇺🇾',v:'España',fv:'🇪🇸',fecha:'Jue 26 Jun',hora:'03:00 VET',ciudad:'Guadalajara',estadio:'Estadio Akron'},
+      {l:'Cabo Verde',f:'🇨🇻',v:'Arabia S.',fv:'🇸🇦',fecha:'Jue 26 Jun',hora:'03:00 VET',ciudad:'Atlanta',estadio:'Mercedes-Benz Stadium'},
+    ],
+    clasificacion:{
+      nota:'España: UEFA Grupo E · Uruguay: CONMEBOL 4° · Arabia Saudita: AFC 4ª Fase · Cabo Verde: CAF Grupo D',
+      highlight:'Uruguay',
+      tables:['conmebol','uefa_e','afc_grupo4b','caf_d'],
+      tabla:{
+        titulo:'Eliminatorias CONMEBOL — Tabla final',
+        cols:['Pos','Selección','PJ','G','E','P','GF','GC','Pts'],
+        filas:[
+          ['1','🇦🇷 Argentina','18','12','2','4','35','15','38'],
+          ['2','🇪🇨 Ecuador','18','9','2','7','29','24','29'],
+          ['3','🇨🇴 Colombia','18','8','4','6','27','19','28'],
+          ['4','🇺🇾 Uruguay','18','8','4','6','28','23','28','highlight'],
+          ['5','🇧🇷 Brasil','18','8','4','6','28','24','28'],
+          ['6','🇵🇾 Paraguay','18','8','4','6','26','28','28'],
+          ['7','🇧🇴 Bolivia','18','6','2','10','20','32','20'],
+          ['8','🇻🇪 Venezuela','18','5','4','9','24','32','19'],
+          ['9','🇵🇪 Perú','18','4','3','11','18','33','15'],
+          ['10','🇨🇱 Chile','18','3','4','11','15','35','13'],
+        ]
+      }
+    }
+  },
+  { id:'i', letra:'I', clase:'gc-i',
+    equipos:[{n:'Francia',f:'🇫🇷'},{n:'Senegal',f:'🇸🇳'},{n:'Noruega',f:'🇳🇴'},{n:'Irak',f:'🇮🇶'}],
+    partidos:[
+      {l:'Francia',f:'🇫🇷',v:'Senegal',fv:'🇸🇳',fecha:'Mar 16 Jun',hora:'14:00 VET',ciudad:'Nueva Jersey',estadio:'MetLife Stadium'},
+      {l:'Irak',f:'🇮🇶',v:'Noruega',fv:'🇳🇴',fecha:'Mar 16 Jun',hora:'17:00 VET',ciudad:'Boston',estadio:'Gillette Stadium'},
+      {l:'Francia',f:'🇫🇷',v:'Irak',fv:'🇮🇶',fecha:'Dom 22 Jun',hora:'15:00 VET',ciudad:'Philadelphia',estadio:'Lincoln Financial Field'},
+      {l:'Noruega',f:'🇳🇴',v:'Senegal',fv:'🇸🇳',fecha:'Dom 22 Jun',hora:'18:00 VET',ciudad:'Nueva Jersey',estadio:'MetLife Stadium'},
+      {l:'Noruega',f:'🇳🇴',v:'Francia',fv:'🇫🇷',fecha:'Vie 26 Jun',hora:'22:00 VET',ciudad:'Nueva Jersey',estadio:'MetLife Stadium'},
+      {l:'Senegal',f:'🇸🇳',v:'Irak',fv:'🇮🇶',fecha:'Vie 26 Jun',hora:'22:00 VET',ciudad:'Boston',estadio:'Gillette Stadium'},
+    ],
+    clasificacion:{nota:'Francia: UEFA Grupo D · Senegal: CAF Grupo B · Noruega: UEFA Grupo I · Irak: Repechaje Intercontinental',highlight:'',tables:['uefa_d','caf_b','uefa_i','repechaje_irak']}
+  },
+  { id:'j', letra:'J', clase:'gc-j',
+    equipos:[{n:'Argentina',f:'🇦🇷'},{n:'Argelia',f:'🇩🇿'},{n:'Austria',f:'🇦🇹'},{n:'Jordania',f:'🇯🇴'}],
+    partidos:[
+      {l:'Argentina',f:'🇦🇷',v:'Argelia',fv:'🇩🇿',fecha:'Mar 16 Jun',hora:'20:00 VET',ciudad:'Kansas City',estadio:'Arrowhead Stadium'},
+      {l:'Austria',f:'🇦🇹',v:'Jordania',fv:'🇯🇴',fecha:'Mié 17 Jun',hora:'00:00 VET',ciudad:'San Francisco',estadio:'Levi\'s Stadium'},
+      {l:'Argentina',f:'🇦🇷',v:'Austria',fv:'🇦🇹',fecha:'Lun 22 Jun',hora:'11:00 VET',ciudad:'Dallas',estadio:'AT&T Stadium'},
+      {l:'Jordania',f:'🇯🇴',v:'Argelia',fv:'🇩🇿',fecha:'Lun 22 Jun',hora:'00:00 VET',ciudad:'San Francisco',estadio:'Levi\'s Stadium'},
+      {l:'Jordania',f:'🇯🇴',v:'Argentina',fv:'🇦🇷',fecha:'Sáb 27 Jun',hora:'22:00 VET',ciudad:'Dallas',estadio:'AT&T Stadium'},
+      {l:'Argelia',f:'🇩🇿',v:'Austria',fv:'🇦🇹',fecha:'Sáb 27 Jun',hora:'22:00 VET',ciudad:'Kansas City',estadio:'Arrowhead Stadium'},
+    ],
+    clasificacion:{
+      nota:'Argentina: CONMEBOL 1° · Argelia: CAF Grupo F · Austria: UEFA Grupo H · Jordania: AFC Grupo B',
+      highlight:'Argentina',
+      tables:['conmebol','caf_f','uefa_h','afc_grupo2'],
+      tabla:{
+        titulo:'Eliminatorias CONMEBOL — Tabla final',
+        cols:['Pos','Selección','PJ','G','E','P','GF','GC','Pts'],
+        filas:[
+          ['1','🇦🇷 Argentina','18','12','2','4','35','15','38','highlight'],
+          ['2','🇪🇨 Ecuador','18','9','2','7','29','24','29'],
+          ['3','🇨🇴 Colombia','18','8','4','6','27','19','28'],
+          ['4','🇺🇾 Uruguay','18','8','4','6','28','23','28'],
+          ['5','🇧🇷 Brasil','18','8','4','6','28','24','28'],
+          ['6','🇵🇾 Paraguay','18','8','4','6','26','28','28'],
+          ['7','🇧🇴 Bolivia','18','6','2','10','20','32','20'],
+          ['8','🇻🇪 Venezuela','18','5','4','9','24','32','19'],
+          ['9','🇵🇪 Perú','18','4','3','11','18','33','15'],
+          ['10','🇨🇱 Chile','18','3','4','11','15','35','13'],
+        ]
+      }
+    }
+  },
+  { id:'k', letra:'K', clase:'gc-k',
+    equipos:[{n:'Portugal',f:'🇵🇹'},{n:'Colombia',f:'🇨🇴'},{n:'Uzbekistán',f:'🇺🇿'},{n:'Congo',f:'🇨🇩'}],
+    partidos:[
+      {l:'Portugal',f:'🇵🇹',v:'Congo',fv:'🇨🇩',fecha:'Mié 17 Jun',hora:'11:00 VET',ciudad:'Houston',estadio:'NRG Stadium'},
+      {l:'Inglaterra',f:'🏴󠁧󠁢󠁥󠁮󠁧󠁿',v:'Croacia',fv:'🇭🇷',fecha:'Mié 17 Jun',hora:'14:00 VET',ciudad:'Dallas',estadio:'AT&T Stadium'},
+      {l:'Portugal',f:'🇵🇹',v:'Uzbekistán',fv:'🇺🇿',fecha:'Lun 23 Jun',hora:'11:00 VET',ciudad:'Houston',estadio:'NRG Stadium'},
+      {l:'Colombia',f:'🇨🇴',v:'Congo',fv:'🇨🇩',fecha:'Lun 23 Jun',hora:'21:00 VET',ciudad:'Guadalajara',estadio:'Estadio Akron'},
+      {l:'Congo',f:'🇨🇩',v:'Portugal',fv:'🇵🇹',fecha:'Sáb 27 Jun',hora:'15:00 VET',ciudad:'Miami',estadio:'Hard Rock Stadium'},
+      {l:'Colombia',f:'🇨🇴',v:'Uzbekistán',fv:'🇺🇿',fecha:'Sáb 27 Jun',hora:'15:00 VET',ciudad:'Guadalajara',estadio:'Estadio Akron'},
+    ],
+    clasificacion:{
+      nota:'Portugal: UEFA Grupo F · Colombia: CONMEBOL 3° · Uzbekistán: AFC Grupo A · Congo DR: CAF repechaje',
+      highlight:'Colombia',
+      tables:['conmebol','uefa_f','afc_grupo1','caf_i'],
+      tabla:{
+        titulo:'Eliminatorias CONMEBOL — Tabla final',
+        cols:['Pos','Selección','PJ','G','E','P','GF','GC','Pts'],
+        filas:[
+          ['1','🇦🇷 Argentina','18','12','2','4','35','15','38'],
+          ['2','🇪🇨 Ecuador','18','9','2','7','29','24','29'],
+          ['3','🇨🇴 Colombia','18','8','4','6','27','19','28','highlight'],
+          ['4','🇺🇾 Uruguay','18','8','4','6','28','23','28'],
+          ['5','🇧🇷 Brasil','18','8','4','6','28','24','28'],
+          ['6','🇵🇾 Paraguay','18','8','4','6','26','28','28'],
+          ['7','🇧🇴 Bolivia','18','6','2','10','20','32','20'],
+          ['8','🇻🇪 Venezuela','18','5','4','9','24','32','19'],
+          ['9','🇵🇪 Perú','18','4','3','11','18','33','15'],
+          ['10','🇨🇱 Chile','18','3','4','11','15','35','13'],
+        ]
+      }
+    }
+  },
+  { id:'l', letra:'L', clase:'gc-l',
+    equipos:[{n:'Inglaterra',f:'🏴󠁧󠁢󠁥󠁮󠁧󠁿'},{n:'Croacia',f:'🇭🇷'},{n:'Ghana',f:'🇬🇭'},{n:'Panamá',f:'🇵🇦'}],
+    partidos:[
+      {l:'Ghana',f:'🇬🇭',v:'Panamá',fv:'🇵🇦',fecha:'Mié 17 Jun',hora:'17:00 VET',ciudad:'Toronto',estadio:'BMO Field'},
+      {l:'Uzbekistán',f:'🇺🇿',v:'Colombia',fv:'🇨🇴',fecha:'Mié 17 Jun',hora:'21:00 VET',ciudad:'Ciudad de México',estadio:'Estadio Azteca'},
+      {l:'Inglaterra',f:'🏴󠁧󠁢󠁥󠁮󠁧󠁿',v:'Ghana',fv:'🇬🇭',fecha:'Mar 23 Jun',hora:'14:00 VET',ciudad:'Boston',estadio:'Gillette Stadium'},
+      {l:'Panamá',f:'🇵🇦',v:'Croacia',fv:'🇭🇷',fecha:'Mar 23 Jun',hora:'17:00 VET',ciudad:'Toronto',estadio:'BMO Field'},
+      {l:'Panamá',f:'🇵🇦',v:'Inglaterra',fv:'🏴󠁧󠁢󠁥󠁮󠁧󠁿',fecha:'Vie 27 Jun',hora:'17:00 VET',ciudad:'Nueva Jersey',estadio:'MetLife Stadium'},
+      {l:'Croacia',f:'🇭🇷',v:'Ghana',fv:'🇬🇭',fecha:'Vie 27 Jun',hora:'17:00 VET',ciudad:'Philadelphia',estadio:'Lincoln Financial Field'},
+    ],
+    clasificacion:{nota:'Inglaterra: UEFA Grupo K · Croacia: UEFA Grupo L · Ghana: CAF Grupo I · Panamá: CONCACAF Grupo A',highlight:'',tables:['uefa_k','uefa_l','caf_i','concacaf_a']}
+  },
+];
+
+
+// ══════════════════════════════════════════════════════
+// TABLAS DE CLASIFICACIÓN POR CONFEDERACIÓN
+// ══════════════════════════════════════════════════════
+const CLASIF_TABLES = {
+
+// ── CONMEBOL ──────────────────────────────────────────
+  conmebol: {
+    titulo:'Eliminatorias CONMEBOL — Tabla final',
+    nota:'6 cupos directos · 1 repechaje (Bolivia)',
+    cols:['Pos','Selección','PJ','G','E','P','GF','GC','Pts'],
+    filas:[
+      ['1','🇦🇷 Argentina','18','12','2','4','35','15','38'],
+      ['2','🇪🇨 Ecuador','18','9','2','7','29','24','29'],
+      ['3','🇨🇴 Colombia','18','8','4','6','27','19','28'],
+      ['4','🇺🇾 Uruguay','18','8','4','6','28','23','28'],
+      ['5','🇧🇷 Brasil','18','8','4','6','28','24','28'],
+      ['6','🇵🇾 Paraguay','18','8','4','6','26','28','28'],
+      ['7','🇧🇴 Bolivia (rep.)','18','6','2','10','20','32','20'],
+      ['8','🇻🇪 Venezuela','18','5','4','9','24','32','19'],
+      ['9','🇵🇪 Perú','18','4','3','11','18','33','15'],
+      ['10','🇨🇱 Chile','18','3','4','11','15','35','13'],
+    ]
+  },
+
+// ── UEFA ──────────────────────────────────────────────
+  uefa_a: {
+    titulo:'Eliminatorias UEFA — Grupo A',
+    nota:'Clasificado directo: Alemania · Repechaje: Eslovaquia',
+    cols:['Pos','Selección','PJ','G','E','P','GF','GC','Pts'],
+    filas:[
+      ['1','🇩🇪 Alemania','6','5','0','1','22','5','15'],
+      ['2','🇸🇰 Eslovaquia','6','4','0','2','10','9','12'],
+      ['3','🏴󠁧󠁢󠁮󠁩󠁲󠁿 Irlanda del Norte','6','3','0','3','10','10','9'],
+      ['4','🇱🇺 Luxemburgo','6','0','0','6','2','20','0'],
+    ]
+  },
+  uefa_b: {
+    titulo:'Eliminatorias UEFA — Grupo B',
+    nota:'Clasificado directo: Suiza · Repechaje: Kosovo',
+    cols:['Pos','Selección','PJ','G','E','P','GF','GC','Pts'],
+    filas:[
+      ['1','🇨🇭 Suiza','6','5','1','0','18','4','16'],
+      ['2','🇽🇰 Kosovo','6','3','0','3','8','10','9'],
+      ['3','🇸🇪 Suecia (NL)','6','4','0','2','15','8','12'],
+      ['4','🇸🇮 Eslovenia','6','0','1','5','5','24','1'],
+    ]
+  },
+  uefa_c: {
+    titulo:'Eliminatorias UEFA — Grupo C',
+    nota:'Clasificado directo: Escocia · Repechaje: Dinamarca',
+    cols:['Pos','Selección','PJ','G','E','P','GF','GC','Pts'],
+    filas:[
+      ['1','🏴󠁧󠁢󠁳󠁣󠁴󠁿 Escocia','6','4','0','2','14','8','12'],
+      ['2','🇩🇰 Dinamarca','6','3','1','2','12','8','10'],
+      ['3','🇬🇷 Grecia','6','2','1','3','9','11','7'],
+      ['4','🇧🇾 Bielorrusia','6','1','0','5','4','12','3'],
+    ]
+  },
+  uefa_d: {
+    titulo:'Eliminatorias UEFA — Grupo D',
+    nota:'Clasificado directo: Francia · Repechaje: Ucrania',
+    cols:['Pos','Selección','PJ','G','E','P','GF','GC','Pts'],
+    filas:[
+      ['1','🇫🇷 Francia','6','5','0','1','20','5','15'],
+      ['2','🇺🇦 Ucrania','6','4','1','1','15','8','13'],
+      ['3','🇮🇸 Islandia','6','2','0','4','8','12','6'],
+      ['4','🇦🇿 Azerbaiyán','6','0','1','5','3','21','1'],
+    ]
+  },
+  uefa_e: {
+    titulo:'Eliminatorias UEFA — Grupo E',
+    nota:'Clasificado directo: España · Repechaje: Turquía',
+    cols:['Pos','Selección','PJ','G','E','P','GF','GC','Pts'],
+    filas:[
+      ['1','🇪🇸 España','6','5','1','0','22','3','16'],
+      ['2','🇹🇷 Turquía','6','4','1','1','14','7','13'],
+      ['3','🇬🇪 Georgia','6','2','0','4','9','13','6'],
+      ['4','🇧🇬 Bulgaria','6','0','0','6','3','25','0'],
+    ]
+  },
+  uefa_f: {
+    titulo:'Eliminatorias UEFA — Grupo F',
+    nota:'Clasificado directo: Portugal · Repechaje: Rep. Irlanda',
+    cols:['Pos','Selección','PJ','G','E','P','GF','GC','Pts'],
+    filas:[
+      ['1','🇵🇹 Portugal','6','5','0','1','28','8','15'],
+      ['2','🇮🇪 Rep. Irlanda','6','3','0','3','11','12','9'],
+      ['3','🇭🇺 Hungría','6','2','1','3','12','13','7'],
+      ['4','🇦🇲 Armenia','6','1','1','4','9','27','4'],
+    ]
+  },
+  uefa_g: {
+    titulo:'Eliminatorias UEFA — Grupo G',
+    nota:'Clasificado directo: Países Bajos · Repechaje: Polonia',
+    cols:['Pos','Selección','PJ','G','E','P','GF','GC','Pts'],
+    filas:[
+      ['1','🇳🇱 Países Bajos','10','7','1','2','34','8','22'],
+      ['2','🇵🇱 Polonia','10','7','0','3','26','11','21'],
+      ['3','🇫🇮 Finlandia','10','5','1','4','19','12','16'],
+      ['4','🇱🇹 Lituania','10','3','1','6','12','23','10'],
+      ['5','🇲🇹 Malta','10','0','1','9','5','42','1'],
+    ]
+  },
+  uefa_h: {
+    titulo:'Eliminatorias UEFA — Grupo H',
+    nota:'Clasificado directo: Austria · Bosnia clasificó por repechaje',
+    cols:['Pos','Selección','PJ','G','E','P','GF','GC','Pts'],
+    filas:[
+      ['1','🇦🇹 Austria','10','8','1','1','42','7','25'],
+      ['2','🇧🇦 Bosnia','10','4','4','2','15','13','16'],
+      ['3','🇷🇴 Rumanía','10','5','3','2','20','12','18'],
+      ['4','🇨🇾 Chipre','10','2','3','5','12','22','9'],
+      ['5','🇸🇲 San Marino','10','0','0','10','2','37','0'],
+    ]
+  },
+  uefa_i: {
+    titulo:'Eliminatorias UEFA — Grupo I',
+    nota:'Clasificado directo: Noruega · Repechaje: Italia',
+    cols:['Pos','Selección','PJ','G','E','P','GF','GC','Pts'],
+    filas:[
+      ['1','🇳🇴 Noruega','10','8','0','2','47','12','24'],
+      ['2','🇮🇹 Italia','10','6','1','3','28','16','19'],
+      ['3','🇮🇱 Israel','10','5','0','5','21','25','15'],
+      ['4','🇪🇪 Estonia','10','3','0','7','11','26','9'],
+      ['5','🇲🇩 Moldavia','10','1','1','8','10','38','4'],
+    ]
+  },
+  uefa_j: {
+    titulo:'Eliminatorias UEFA — Grupo J',
+    nota:'Clasificado directo: Bélgica · Repechaje: Gales',
+    cols:['Pos','Selección','PJ','G','E','P','GF','GC','Pts'],
+    filas:[
+      ['1','🇧🇪 Bélgica','10','7','2','1','30','7','23'],
+      ['2','🏴󠁧󠁢󠁷󠁬󠁳󠁿 Gales','10','5','2','3','22','15','17'],
+      ['3','🇲🇰 Macedonia del N.','10','4','1','5','14','15','13'],
+      ['4','🇰🇿 Kazajistán','10','3','3','4','13','19','12'],
+      ['5','🇱🇮 Liechtenstein','10','0','0','10','1','24','0'],
+    ]
+  },
+  uefa_k: {
+    titulo:'Eliminatorias UEFA — Grupo K',
+    nota:'Clasificado directo: Inglaterra · Repechaje: Albania',
+    cols:['Pos','Selección','PJ','G','E','P','GF','GC','Pts'],
+    filas:[
+      ['1','🏴󠁧󠁢󠁥󠁮󠁧󠁿 Inglaterra','10','9','0','1','38','5','27'],
+      ['2','🇦🇱 Albania','10','6','1','3','21','14','19'],
+      ['3','🇷🇸 Serbia','10','5','1','4','18','17','16'],
+      ['4','🇱🇻 Letonia','10','2','2','6','12','24','8'],
+      ['5','🇦🇩 Andorra','10','0','0','10','2','31','0'],
+    ]
+  },
+  uefa_l: {
+    titulo:'Eliminatorias UEFA — Grupo L',
+    nota:'Clasificado directo: Croacia · Chequia clasificó por repechaje',
+    cols:['Pos','Selección','PJ','G','E','P','GF','GC','Pts'],
+    filas:[
+      ['1','🇭🇷 Croacia','10','7','2','1','26','8','23'],
+      ['2','🇨🇿 Chequia','10','6','2','2','21','10','20'],
+      ['3','🇲🇪 Montenegro','10','4','1','5','17','18','13'],
+      ['4','🇫🇴 Islas Feroe','10','3','1','6','14','20','10'],
+      ['5','🇬🇮 Gibraltar','10','0','0','10','3','25','0'],
+    ]
+  },
+
+// ── UEFA REPECHAJE ────────────────────────────────────
+  uefa_playoff_a: {
+    titulo:'Repechaje UEFA — Llave A',
+    nota:'Bosnia y Herzegovina clasificó al vencer a Italia en penaltis',
+    cols:['Equipo','Resultado'],
+    filas:[
+      ['🇧🇦 Bosnia y Herz.','1–1 · 4–1 pen. ✓'],
+      ['🇮🇹 Italia','1–1 · 1–4 pen.'],
+    ]
+  },
+  uefa_playoff_b: {
+    titulo:'Repechaje UEFA — Llave B',
+    nota:'Suecia clasificó al vencer a Polonia 3-2',
+    cols:['Equipo','Resultado'],
+    filas:[
+      ['🇸🇪 Suecia','3–2 ✓'],
+      ['🇵🇱 Polonia','2–3'],
+    ]
+  },
+  uefa_playoff_c: {
+    titulo:'Repechaje UEFA — Llave C',
+    nota:'Turquía clasificó al vencer a Kosovo 1-0',
+    cols:['Equipo','Resultado'],
+    filas:[
+      ['🇹🇷 Turquía','1–0 ✓'],
+      ['🇽🇰 Kosovo','0–1'],
+    ]
+  },
+  uefa_playoff_d: {
+    titulo:'Repechaje UEFA — Llave D',
+    nota:'Chequia clasificó ante Dinamarca en penaltis',
+    cols:['Equipo','Resultado'],
+    filas:[
+      ['🇨🇿 Chequia','2–2 · 4–3 pen. ✓'],
+      ['🇩🇰 Dinamarca','2–2 · 3–4 pen.'],
+    ]
+  },
+
+// ── AFC (ASIA) ────────────────────────────────────────
+  afc_grupo1: {
+    titulo:'Eliminatorias AFC — 3ª Fase Grupo A',
+    nota:'Clasificados directos: Irán y Uzbekistán',
+    cols:['Pos','Selección','PJ','G','E','P','GF','GC','Pts'],
+    filas:[
+      ['1','🇮🇷 Irán','10','7','2','1','23','7','23'],
+      ['2','🇺🇿 Uzbekistán','10','6','3','1','18','7','21'],
+      ['3','🇦🇪 Emiratos Á.','10','4','2','4','13','12','14'],
+      ['4','🇰🇬 Kirguistán','10','3','1','6','10','18','10'],
+      ['5','🇰🇵 Corea del Norte','10','1','2','7','6','21','5'],
+    ]
+  },
+  afc_grupo2: {
+    titulo:'Eliminatorias AFC — 3ª Fase Grupo B',
+    nota:'Clasificados directos: Corea del Sur y Jordania',
+    cols:['Pos','Selección','PJ','G','E','P','GF','GC','Pts'],
+    filas:[
+      ['1','🇰🇷 Corea del Sur','10','7','1','2','23','8','22'],
+      ['2','🇯🇴 Jordania','10','4','2','4','12','13','14'],
+      ['3','🇮🇶 Irak','10','4','1','5','11','13','13'],
+      ['4','🇴🇲 Omán','10','3','3','4','9','12','12'],
+      ['5','🇵🇸 Palestina','10','2','1','7','9','18','7'],
+    ]
+  },
+  afc_grupo3: {
+    titulo:'Eliminatorias AFC — 3ª Fase Grupo C',
+    nota:'Clasificados directos: Japón y Australia',
+    cols:['Pos','Selección','PJ','G','E','P','GF','GC','Pts'],
+    filas:[
+      ['1','🇯🇵 Japón','10','8','2','0','28','5','26'],
+      ['2','🇦🇺 Australia','10','5','4','1','16','8','19'],
+      ['3','🇸🇦 Arabia S.','10','4','2','4','16','14','14'],
+      ['4','🇮🇩 Indonesia','10','2','2','6','11','19','8'],
+      ['5','🇧🇭 Baréin','10','0','2','8','5','30','2'],
+    ]
+  },
+  afc_grupo4a: {
+    titulo:'Eliminatorias AFC — 4ª Fase Grupo A',
+    nota:'Clasificado directo: Qatar',
+    cols:['Pos','Selección','PJ','G','E','P','GF','GC','Pts'],
+    filas:[
+      ['1','🇶🇦 Qatar','4','3','0','1','7','4','9'],
+      ['2','🇦🇪 Emiratos Á.','4','1','1','2','4','6','4'],
+      ['3','🇰🇼 Kuwait','4','1','1','2','4','5','4'],
+    ]
+  },
+  afc_grupo4b: {
+    titulo:'Eliminatorias AFC — 4ª Fase Grupo B',
+    nota:'Clasificado directo: Arabia Saudita',
+    cols:['Pos','Selección','PJ','G','E','P','GF','GC','Pts'],
+    filas:[
+      ['1','🇸🇦 Arabia S.','4','3','1','0','10','3','10'],
+      ['2','🇮🇶 Irak','4','1','1','2','3','7','4'],
+      ['3','🇮🇩 Indonesia','4','0','0','4','1','4','0'],
+    ]
+  },
+
+// ── CAF (AFRICA) ──────────────────────────────────────
+  caf_a: {
+    titulo:'Eliminatorias CAF — Grupo A',
+    nota:'Clasificado: Egipto (1°, invicto, 26 pts)',
+    cols:['Pos','Selección','PJ','G','E','P','GF','GC','Pts'],
+    filas:[
+      ['1','🇪🇬 Egipto','10','8','2','0','24','4','26'],
+      ['2','🇧🇫 Burkina Faso','10','5','2','3','15','12','17'],
+      ['3','🇬🇼 Guinea-Bisáu','10','4','2','4','14','17','14'],
+      ['4','🇸🇳 Sierra Leona','10','3','2','5','9','13','11'],
+      ['5','🇩🇯 Yibuti','10','2','1','7','8','19','7'],
+      ['6','🇪🇹 Etiopía','10','1','1','8','6','11','4'],
+    ]
+  },
+  caf_b: {
+    titulo:'Eliminatorias CAF — Grupo B',
+    nota:'Clasificado: Senegal (1°, 24 pts)',
+    cols:['Pos','Selección','PJ','G','E','P','GF','GC','Pts'],
+    filas:[
+      ['1','🇸🇳 Senegal','10','7','3','0','22','7','24'],
+      ['2','🇨🇩 Congo DR','10','5','3','2','18','9','18'],
+      ['3','🇸🇸 Sudán del Sur','10','3','2','5','11','16','11'],
+      ['4','🇸🇩 Sudán','10','2','3','5','8','14','9'],
+      ['5','🇲🇷 Mauritania','10','2','2','6','9','18','8'],
+      ['6','🇲🇼 Malaui','10','1','1','8','6','10','4'],
+    ]
+  },
+  caf_c: {
+    titulo:'Eliminatorias CAF — Grupo C',
+    nota:'Clasificado: Sudáfrica (1°, descontado 3 pts por alineación indebida)',
+    cols:['Pos','Selección','PJ','G','E','P','GF','GC','Pts'],
+    filas:[
+      ['1','🇿🇦 Sudáfrica','10','6','3','1','18','7','18'],
+      ['2','🇳🇬 Nigeria','10','5','3','2','17','9','18'],
+      ['3','🇿🇼 Zimbabue','10','4','2','4','13','14','14'],
+      ['4','🇧🇮 Burundi','10','3','2','5','10','14','11'],
+      ['5','🇷🇼 Ruanda','10','2','2','6','8','16','8'],
+      ['6','🇸🇱 Sierra Leona','10','1','2','7','5','11','5'],
+    ]
+  },
+  caf_d: {
+    titulo:'Eliminatorias CAF — Grupo D',
+    nota:'Clasificado: Cabo Verde (1°, 23 pts) — ¡primer Mundial!',
+    cols:['Pos','Selección','PJ','G','E','P','GF','GC','Pts'],
+    filas:[
+      ['1','🇨🇻 Cabo Verde','10','7','2','1','20','8','23'],
+      ['2','🇨🇲 Camerún','10','6','2','2','20','9','20'],
+      ['3','🇬🇶 Guinea Ecuatorial','10','4','2','4','13','12','14'],
+      ['4','🇿🇲 Zambia','10','3','2','5','11','14','11'],
+      ['5','🇨🇮 Costa de Marfil (*)','10','4','2','4','14','11','14'],
+      ['6','🇪🇸 Esuatini','10','0','0','10','1','25','0'],
+    ]
+  },
+  caf_e: {
+    titulo:'Eliminatorias CAF — Grupo E',
+    nota:'Clasificado: Marruecos (1°, 24 pts, 8 victorias)',
+    cols:['Pos','Selección','PJ','G','E','P','GF','GC','Pts'],
+    filas:[
+      ['1','🇲🇦 Marruecos','10','8','0','2','29','6','24'],
+      ['2','🇹🇿 Tanzania','10','5','2','3','14','11','17'],
+      ['3','🇿🇦 Zambia','10','4','2','4','14','14','14'],
+      ['4','🇨🇬 Congo','10','3','2','5','10','15','11'],
+      ['5','🇳🇪 Níger','10','2','2','6','8','20','8'],
+      ['6','🇹🇩 Chad','10','0','2','8','4','13','2'],
+    ]
+  },
+  caf_f: {
+    titulo:'Eliminatorias CAF — Grupo F',
+    nota:'Clasificado: Argelia (1°, clasificó una fecha antes)',
+    cols:['Pos','Selección','PJ','G','E','P','GF','GC','Pts'],
+    filas:[
+      ['1','🇩🇿 Argelia','10','7','2','1','22','7','23'],
+      ['2','🇺🇬 Uganda','10','5','2','3','14','11','17'],
+      ['3','🇲🇿 Mozambique','10','4','2','4','12','13','14'],
+      ['4','🇬🇳 Guinea','10','3','2','5','10','13','11'],
+      ['5','🇸🇴 Somalia','10','2','0','8','6','18','6'],
+      ['6','🇧🇯 Benín','10','1','2','7','5','7','5'],
+    ]
+  },
+  caf_g: {
+    titulo:'Eliminatorias CAF — Grupo G',
+    nota:'Clasificado: Costa de Marfil (1°)',
+    cols:['Pos','Selección','PJ','G','E','P','GF','GC','Pts'],
+    filas:[
+      ['1','🇨🇮 Costa de Marfil','10','7','1','2','21','8','22'],
+      ['2','🇲🇱 Mali','10','5','3','2','16','9','18'],
+      ['3','🇰🇪 Kenia','10','4','2','4','12','13','14'],
+      ['4','🇬🇦 Gabón','10','3','2','5','10','14','11'],
+      ['5','🇸🇨 Seychelles','10','1','0','9','5','19','3'],
+      ['6','🇬🇲 Gambia','10','1','2','7','6','7','5'],
+    ]
+  },
+  caf_i: {
+    titulo:'Eliminatorias CAF — Grupo I',
+    nota:'Clasificado: Ghana (1°, 5ª Copa del Mundo)',
+    cols:['Pos','Selección','PJ','G','E','P','GF','GC','Pts'],
+    filas:[
+      ['1','🇬🇭 Ghana','10','6','3','1','18','7','21'],
+      ['2','🇨🇲 Comoras','10','4','3','3','12','10','15'],
+      ['3','🇲🇦 Madagascar','10','3','3','4','11','13','12'],
+      ['4','🇨🇫 R. Centroafricana','10','2','3','5','8','14','9'],
+      ['5','🇦🇴 Angola','10','2','2','6','7','12','8'],
+      ['6','🇧🇫 Burkina Faso','10','2','2','6','8','8','8'],
+    ]
+  },
+  caf_h: {
+    titulo:'Eliminatorias CAF — Grupo H',
+    nota:'Clasificado: Túnez (1°)',
+    cols:['Pos','Selección','PJ','G','E','P','GF','GC','Pts'],
+    filas:[
+      ['1','🇹🇳 Túnez','10','7','1','2','20','8','22'],
+      ['2','🇱🇾 Libia','10','5','2','3','15','11','17'],
+      ['3','🇬🇶 Guinea Ecuat.','10','4','2','4','13','14','14'],
+      ['4','🇳🇦 Namibia','10','3','2','5','10','13','11'],
+      ['5','🇸🇹 Santo Tomé','10','2','1','7','8','17','7'],
+      ['6','🇪🇷 Eritrea','10','0','0','10','2','5','0'],
+    ]
+  },
+
+// ── CONCACAF ──────────────────────────────────────────
+  concacaf_a: {
+    titulo:'Eliminatorias CONCACAF — Grupo A (3ª Fase)',
+    nota:'Clasificado directo: Panamá (12 pts, 4 victorias)',
+    cols:['Pos','Selección','PJ','G','E','P','GF','GC','Pts'],
+    filas:[
+      ['1','🇵🇦 Panamá','6','4','0','2','12','6','12'],
+      ['2','🇯🇲 Jamaica (rep.)','6','2','1','3','7','9','7'],
+      ['3','🇸🇻 El Salvador','6','2','1','3','6','8','7'],
+      ['4','🇳🇮 Nicaragua','6','1','2','3','5','7','5'],
+    ]
+  },
+  concacaf_b: {
+    titulo:'Eliminatorias CONCACAF — Grupo B (3ª Fase)',
+    nota:'Clasificado directo: Curazao — ¡primer Mundial!',
+    cols:['Pos','Selección','PJ','G','E','P','GF','GC','Pts'],
+    filas:[
+      ['1','🇨🇼 Curazao','6','3','2','1','8','5','11'],
+      ['2','🇸🇷 Surinam (rep.)','6','3','1','2','10','8','10'],
+      ['3','🇬🇹 Guatemala','6','2','2','2','7','7','8'],
+      ['4','🇧🇲 Bermuda','6','0','1','5','3','8','1'],
+    ]
+  },
+  concacaf_c: {
+    titulo:'Eliminatorias CONCACAF — Grupo C (3ª Fase)',
+    nota:'Clasificado directo: Haití',
+    cols:['Pos','Selección','PJ','G','E','P','GF','GC','Pts'],
+    filas:[
+      ['1','🇭🇹 Haití','6','4','0','2','11','6','12'],
+      ['2','🇭🇳 Honduras','6','3','1','2','9','8','10'],
+      ['3','🇨🇷 Costa Rica','6','2','1','3','7','9','7'],
+      ['4','🇹🇹 Trinidad y Tob.','6','0','2','4','4','8','2'],
+    ]
+  },
+
+// ── OFC (OCEANÍA) ─────────────────────────────────────
+  ofc: {
+    titulo:'Eliminatorias OFC — Final',
+    nota:'Nueva Zelanda clasificó por ser 1ª en la OFC y ganó el repechaje intercontinental',
+    cols:['Pos','Selección','PJ','G','E','P','GF','GC','Pts'],
+    filas:[
+      ['1','🇳🇿 Nueva Zelanda','6','5','1','0','22','4','16'],
+      ['2','🇵🇬 Papúa Nueva Guinea','6','3','1','2','12','10','10'],
+      ['3','🇫🇯 Fiyi','6','2','1','3','9','11','7'],
+      ['4','🇻🇺 Vanuatu','6','0','1','5','3','21','1'],
+    ]
+  },
+
+// ── REPECHAJE INTERCONTINENTAL ────────────────────────
+  repechaje_irak: {
+    titulo:'Repechaje Intercontinental — Irak',
+    nota:'Irak venció a Bolivia y clasificó al Mundial como representante AFC/CONMEBOL',
+    cols:['Partido','Resultado'],
+    filas:[
+      ['🇮🇶 Irak vs 🇧🇴 Bolivia (ida)','2–0'],
+      ['🇧🇴 Bolivia vs 🇮🇶 Irak (vuelta)','1–0'],
+      ['Global','🇮🇶 Irak 2–1 Bolivia ✓'],
+    ]
+  },
+  repechaje_nz: {
+    titulo:'Repechaje Intercontinental — Nueva Zelanda',
+    nota:'Nueva Zelanda clasificó como representante de OFC',
+    cols:['Partido','Resultado'],
+    filas:[
+      ['🇳🇿 Nueva Zelanda vs rival','Clasificó directamente'],
+    ]
+  },
+};
+
+// ════════════════════════════════
+// ESTADO
+// ════════════════════════════════
+let state={participantes:[],resultados_reales:{},config:{cuota:100,password:'bloom2026'}};
+let qActual={nombre:'',email:'',telefono:'',grupos:{}};
+
+function loadState(){try{const s=localStorage.getItem('bloom_q26v3');if(s)state={...state,...JSON.parse(s)};}catch(e){}}
+function saveState(){localStorage.setItem('bloom_q26v3',JSON.stringify(state));updateStats();}
+function updateStats(){
+  document.getElementById('stat-part').textContent=state.participantes.length;
+  const p=state.participantes.filter(x=>x.pagado).length;
+  document.getElementById('stat-premio').textContent='$'+(p*(state.config.cuota||100));
+}
+
+// ════════════════════════════════
+// NAVEGACIÓN
+// ════════════════════════════════
+function showScreen(id){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.nav-pill').forEach(p=>p.classList.remove('active'));
+  document.getElementById('screen-'+id).classList.add('active');
+  document.getElementById('hero-section').style.display=(id==='home')?'':'none';
+  const nm={home:'nav-home',ranking:'nav-ranking','admin-gate':'nav-admin',admin:'nav-admin'};
+  if(nm[id])document.getElementById(nm[id]).classList.add('active');
+  window.scrollTo(0,0);
+  if(id==='ranking')renderRanking();
+  if(id==='admin')renderAdmin();
+  if(id==='grupos')renderGruposNav(false);
+  if(id==='qr')initQR();
+}
+
+// ════════════════════════════════
+// REGISTRO
+// ════════════════════════════════
+function registrarYContinuar(){
+  const nombre=document.getElementById('reg-nombre').value.trim();
+  const email=document.getElementById('reg-email').value.trim();
+  const tel=document.getElementById('reg-telefono').value.trim();
+  if(!nombre){toast('Ingresa tu nombre','error');return;}
+  if(!email||!email.includes('@')){toast('Correo inválido','error');return;}
+  if(state.participantes.find(p=>p.email===email)){toast('Este correo ya está registrado','error');return;}
+  qActual={nombre,email,telefono:tel,grupos:{}};
+  document.getElementById('grupos-saludo').textContent='¡Hola, '+nombre.split(' ')[0]+'!';
+  showScreen('grupos');
+}
+
+// ════════════════════════════════
+// RENDER GRUPOS
+// ════════════════════════════════
+function renderGruposNav(adminMode){
+  const navId=adminMode?'admin-grupos-nav':'grupos-nav';
+  const pagesId=adminMode?'admin-grupos-pages':'grupos-pages';
+  const nav=document.getElementById(navId);
+  const pages=document.getElementById(pagesId);
+  if(!nav||!pages)return;
+  nav.innerHTML=GRUPOS.map((g,i)=>`
+    <button class="grupo-nav-btn${i===0?' active':''}" onclick="switchGrupo('${g.id}','${navId}','${pagesId}',${adminMode})" id="gnav-${adminMode?'a':'u'}-${g.id}">
+      <span class="g-flags">${g.equipos[0].f}${g.equipos[1].f}</span>
+      <span class="g-name">Grupo ${g.letra}</span>
+    </button>`).join('');
+  pages.innerHTML=GRUPOS.map((g,i)=>buildGrupoPagina(g,i===0,adminMode)).join('');
+  updateGruposProgress();
+}
+
+function switchGrupo(id,navId,pagesId,adminMode){
+  document.querySelectorAll(`#${navId} .grupo-nav-btn`).forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll(`#${pagesId} .grupo-page`).forEach(p=>p.classList.remove('active'));
+  document.getElementById(`gnav-${adminMode?'a':'u'}-${id}`).classList.add('active');
+  document.getElementById(`gpage-${adminMode?'a':'u'}-${id}`).classList.add('active');
+}
+
+function switchGrupoTab(grupoId,tab,btn,prefix){
+  const tabs=['partidos','clasif'];
+  tabs.forEach(t=>{
+    const el=document.getElementById(`gtab-${prefix}-${grupoId}-${t}`);
+    if(el)el.style.display='none';
+  });
+  document.querySelectorAll(`#gpage-${prefix}-${grupoId} .git`).forEach(b=>b.classList.remove('active'));
+  const el=document.getElementById(`gtab-${prefix}-${grupoId}-${tab}`);
+  if(el)el.style.display='block';
+  btn.classList.add('active');
+}
+
+function buildGrupoPagina(g,isFirst,adminMode){
+  const px=adminMode?'a':'u';
+  const flags=g.equipos.map(e=>`<div class="equipo-flag-badge"><span class="flag">${e.f}</span><span>${e.n}</span></div>`).join('');
+
+  // Partidos
+  const partidos=g.partidos.map((p,pi)=>{
+    const key=`g${g.id}_p${pi}`;
+    const e1flag=p.f||'⚽';
+    const e2flag=p.fv||'⚽';
+    let scoreHtml='';
+    if(adminMode){
+      const res=state.resultados_reales[key]||{local:'',visitante:''};
+      scoreHtml=`<input type="number" class="score-in" min="0" max="20" value="${res.local}" oninput="guardarResReal('${g.id}',${pi},'local',this.value)" placeholder="-">
+        <span class="score-vs">:</span>
+        <input type="number" class="score-in" min="0" max="20" value="${res.visitante}" oninput="guardarResReal('${g.id}',${pi},'visitante',this.value)" placeholder="-">`;
+    } else {
+      const pred=qActual.grupos[key]||{local:'',visitante:''};
+      scoreHtml=`<input type="number" class="score-in" min="0" max="20" value="${pred.local}" oninput="guardarPred('${g.id}',${pi},'local',this.value)" placeholder="-">
+        <span class="score-vs">:</span>
+        <input type="number" class="score-in" min="0" max="20" value="${pred.visitante}" oninput="guardarPred('${g.id}',${pi},'visitante',this.value)" placeholder="-">`;
+    }
+    return `<div class="partido-card">
+      <div class="partido-meta">
+        <span>📅 ${p.fecha}</span><span class="meta-sep">·</span>
+        <span>⏰ ${p.hora}</span><span class="meta-sep">·</span>
+        <span class="meta-estadio">📍 ${p.estadio}, ${p.ciudad}</span>
+      </div>
+      <div class="partido-face">
+        <div class="p-team"><span class="p-flag">${e1flag}</span><span class="p-name">${p.l}</span></div>
+        <div class="score-wrap">${scoreHtml}</div>
+        <div class="p-team right"><span class="p-flag">${e2flag}</span><span class="p-name">${p.v}</span></div>
+      </div>
+    </div>`;
+  }).join('');
+
+  // Clasificación
+  let clasifHtml='';
+  const cl=g.clasificacion;
+  clasifHtml=`<div class="clasif-section">`;
+  
+  // Render multiple tables
+  if(cl.tables && cl.tables.length>0){
+    cl.tables.forEach(tKey=>{
+      const t=CLASIF_TABLES[tKey];
+      if(!t)return;
+      const highlightTeam=cl.highlight||'';
+      clasifHtml+=`<div class="clasif-conf-title">📊 ${t.titulo}</div>`;
+      if(t.nota) clasifHtml+=`<p style="font-size:11px;color:var(--ink3);font-weight:700;margin-bottom:10px;line-height:1.5;">${t.nota}</p>`;
+      clasifHtml+=`<div style="overflow-x:auto;margin-bottom:16px;">
+      <table class="clasif-table">
+        <thead><tr>${t.cols.map(c=>`<th>${c}</th>`).join('')}</tr></thead>
+        <tbody>${t.filas.map((f,fi)=>{
+          const isH = f[f.length-1]==='highlight' || (highlightTeam && f[1] && f[1].includes(highlightTeam));
+          const data = f[f.length-1]==='highlight' ? f.slice(0,-1) : f;
+          const pos = parseInt(data[0]);
+          const isClasif = !isNaN(pos) && pos<=2;
+          const isRep = !isNaN(pos) && pos===3 && t.cols.length>5;
+          return \`<tr\${isH?' class="highlight"':''}>\${data.map((c,ci)=>{
+            if(ci===0&&!isNaN(pos)) return \`<td>\${isClasif?'<span class="clasif-badge cb-clasificado">✓</span> ':''}\${isRep?'<span class="clasif-badge cb-repechaje">R</span> ':''}\${c}</td>\`;
+            return \`<td>\${c}</td>\`;
+          }).join('')}</tr>\`;
+        }).join('')}</tbody>
+      </table></div>`;
+    });
+  } else if(cl.tabla){
+    const t=cl.tabla;
+    clasifHtml+=`<div class="clasif-conf-title">📊 ${t.titulo}</div>`;
+    if(t.nota) clasifHtml+=`<p style="font-size:11px;color:var(--ink3);font-weight:700;margin-bottom:10px;">${t.nota}</p>`;
+    clasifHtml+=`<div style="overflow-x:auto;">
+    <table class="clasif-table">
+      <thead><tr>${t.cols.map(c=>`<th>${c}</th>`).join('')}</tr></thead>
+      <tbody>${t.filas.map(f=>{
+        const isH=f[f.length-1]==='highlight';
+        const data=isH?f.slice(0,-1):f;
+        const pos=parseInt(data[0]);
+        const isClasif=pos<=6;
+        const isRepechaje=pos===7;
+        return `<tr${isH?' class="highlight"':''}>
+          ${data.map((c,ci)=>{
+            if(ci===0)return `<td>${isClasif?'<span class="clasif-badge cb-clasificado">✓</span> ':''}${isRepechaje?'<span class="clasif-badge cb-repechaje">R</span> ':''}${c}</td>`;
+            return `<td>${c}</td>`;
+          }).join('')}
+        </tr>`;
+      }).join('')}</tbody>
+    </table></div>`;
+  } else {
+    clasifHtml+=`<p style="font-size:13px;color:var(--ink2);font-weight:600;line-height:1.6;">${cl.nota||''}</p>`;
+  }
+  clasifHtml+='</div>';
+
+  return `<div class="grupo-page${isFirst?' active':''}" id="gpage-${px}-${g.id}">
+    <div class="grupo-header-card ${g.clase}">
+      <div class="grupo-letter">${g.letra}</div>
+      <div class="grupo-title-row">
+        <div class="grupo-letra-badge">${g.letra}</div>
+        <div class="grupo-title-info"><h2>${g.nombre}</h2><p>3 jornadas · 6 partidos</p></div>
+      </div>
+      <div class="equipos-flags">${flags}</div>
+      ${!adminMode?`<div class="grupo-inner-tabs">
+        <button class="git active" onclick="switchGrupoTab('${g.id}','partidos',this,'${px}')">⚽ Partidos</button>
+        <button class="git" onclick="switchGrupoTab('${g.id}','clasif',this,'${px}')">📊 Clasificación</button>
+      </div>`:''}
+    </div>
+    ${!adminMode?`
+    <div id="gtab-${px}-${g.id}-partidos">
+      <div class="partidos-list">${partidos}</div>
+    </div>
+    <div id="gtab-${px}-${g.id}-clasif" style="display:none;">
+      <div class="card">${clasifHtml}</div>
+    </div>
+    `:`<div class="partidos-list">${partidos}</div>`}
+  </div>`;
+}
+
+function guardarPred(gId,pi,campo,valor){
+  const key=`g${gId}_p${pi}`;
+  if(!qActual.grupos[key])qActual.grupos[key]={local:'',visitante:''};
+  qActual.grupos[key][campo]=valor;
+  updateGruposProgress();
+}
+
+function updateGruposProgress(){
+  const total=GRUPOS.reduce((a,g)=>a+g.partidos.length,0);
+  const llenos=Object.values(qActual.grupos).filter(p=>p.local!==''&&p.visitante!=='').length;
+  const pct=Math.round((llenos/total)*100);
+  const pf=document.getElementById('prog-fill');
+  const pc=document.getElementById('prog-chip');
+  if(pf)pf.style.width=pct+'%';
+  if(pc)pc.textContent=llenos+'/'+total;
+}
+
+// ════════════════════════════════
+// GUARDAR QUINIELA
+// ════════════════════════════════
+function guardarQuiniela(){
+  const llenos=Object.values(qActual.grupos).filter(p=>p.local!==''&&p.visitante!=='').length;
+  if(llenos<36){if(!confirm(`Tienes ${llenos}/36 partidos. ¿Guardar de todas formas?`))return;}
+  const id='BLM'+Date.now().toString(36).toUpperCase().slice(-6);
+  state.participantes.push({id,nombre:qActual.nombre,email:qActual.email,telefono:qActual.telefono,quiniela:JSON.parse(JSON.stringify(qActual)),puntos:0,pagado:false,fecha:new Date().toISOString()});
+  saveState();
+  document.getElementById('conf-id').textContent=id;
+  document.getElementById('conf-nombre').textContent=qActual.nombre;
+  showScreen('confirmacion');
+  toast('¡Quiniela guardada! ☕','success');
+}
+
+// ════════════════════════════════
+// RANKING
+// ════════════════════════════════
+function renderRanking(){
+  const sorted=[...state.participantes].sort((a,b)=>b.puntos-a.puntos);
+  document.getElementById('ranking-fecha').textContent='Actualizado: '+new Date().toLocaleDateString('es-VE');
+  const c=document.getElementById('ranking-container');
+  const l=document.getElementById('participantes-list');
+  if(sorted.length===0){
+    c.innerHTML='<div class="empty-state"><div class="empty-icon">📊</div><p>El ranking aparece al iniciar los partidos (11 Jun 2026)</p></div>';
+    l.innerHTML='<div class="empty-state"><div class="empty-icon">👤</div><p>Aún no hay participantes</p></div>';
+    return;
+  }
+  const medals=['gold','silver','bronze'];
+  c.innerHTML=`<table class="ranking-table"><thead><tr><th>#</th><th>Participante</th><th>Pts</th><th>Cuota</th></tr></thead><tbody>
+    ${sorted.map((p,i)=>`<tr>
+      <td><span class="rank-pos ${medals[i]||''}">${i+1}</span></td>
+      <td><span style="font-weight:800;">${p.nombre}</span></td>
+      <td><span class="rank-pts">${p.puntos}</span></td>
+      <td><span class="rank-badge ${p.pagado?'pagado':'pendiente'}">${p.pagado?'✓ Pagado':'Pendiente'}</span></td>
+    </tr>`).join('')}</tbody></table>`;
+  l.innerHTML=sorted.map(p=>`
+    <div class="flex-between" style="padding:10px 0;border-bottom:1.5px solid var(--beige2);">
+      <div><p style="font-size:14px;font-weight:800;">${p.nombre}</p><p class="text-xs">${p.email} · ID: ${p.id}</p></div>
+      <span class="rank-badge ${p.pagado?'pagado':'pendiente'}">${p.pagado?'Pagado':'Pendiente'}</span>
+    </div>`).join('');
+}
+
+// ════════════════════════════════
+// ADMIN
+// ════════════════════════════════
+function adminLogin(){
+  const pass=document.getElementById('admin-pass').value;
+  if(pass===state.config.password||pass==='bloom2026'){showScreen('admin');}
+  else{toast('Contraseña incorrecta','error');}
+}
+function adminLogout(){document.getElementById('admin-pass').value='';showScreen('home');}
+function adminTab(tab,btn){
+  document.querySelectorAll('.admin-tab').forEach(t=>t.classList.remove('active'));
+  ['participantes','resultados','config'].forEach(t=>{const el=document.getElementById('admin-tab-'+t);if(el)el.style.display='none';});
+  document.getElementById('admin-tab-'+tab).style.display='block';
+  if(btn)btn.classList.add('active');
+  if(tab==='resultados')renderGruposNav(true);
+}
+function renderAdmin(){
+  document.getElementById('admin-count').textContent=state.participantes.length;
+  document.getElementById('config-cuota').value=state.config.cuota||100;
+  if(state.participantes.length===0){
+    document.getElementById('admin-part-table').innerHTML='<div class="empty-state"><div class="empty-icon">👤</div><p>Sin participantes</p></div>';
+    document.getElementById('admin-cuotas-table').innerHTML='<div class="empty-state"><div class="empty-icon">💳</div><p>Sin participantes</p></div>';
+    return;
+  }
+  document.getElementById('admin-part-table').innerHTML=state.participantes.map(p=>`
+    <div style="padding:12px 0;border-bottom:1.5px solid var(--beige2);">
+      <div class="flex-between">
+        <div><p style="font-weight:800;font-size:14px;">${p.nombre}</p><p class="text-xs">${p.email}${p.telefono?' · '+p.telefono:''}</p><p class="text-xs">ID: ${p.id} · ${new Date(p.fecha).toLocaleDateString('es-VE')}</p></div>
+        <button class="btn btn-danger btn-sm" onclick="eliminarPart('${p.id}')">Eliminar</button>
+      </div>
+    </div>`).join('');
+  document.getElementById('admin-cuotas-table').innerHTML=state.participantes.map(p=>`
+    <div class="flex-between" style="padding:10px 0;border-bottom:1.5px solid var(--beige2);">
+      <div><p style="font-size:14px;font-weight:800;">${p.nombre}</p><p class="text-xs">ID: ${p.id}</p></div>
+      <button class="btn btn-sm ${p.pagado?'btn-ghost':'btn-primary'}" onclick="togglePago('${p.id}')">${p.pagado?'✓ Pagado':'Marcar pagado'}</button>
+    </div>`).join('');
+}
+function togglePago(id){const p=state.participantes.find(x=>x.id===id);if(p){p.pagado=!p.pagado;saveState();renderAdmin();toast(p.pagado?'Pago confirmado ✓':'Desmarcado','success');}}
+function eliminarPart(id){if(!confirm('¿Eliminar?'))return;state.participantes=state.participantes.filter(p=>p.id!==id);saveState();renderAdmin();toast('Eliminado');}
+function guardarResReal(gId,pi,campo,valor){
+  const key=`g${gId}_p${pi}`;
+  if(!state.resultados_reales[key])state.resultados_reales[key]={local:'',visitante:''};
+  state.resultados_reales[key][campo]=valor;
+  saveState();
+}
+function calcularPuntos(){
+  state.participantes.forEach(p=>{
+    let pts=0;
+    Object.entries(state.resultados_reales).forEach(([key,real])=>{
+      if(real.local===''||real.visitante==='')return;
+      const pred=p.quiniela.grupos[key];
+      if(!pred||pred.local===''||pred.visitante==='')return;
+      const rl=parseInt(real.local),rv=parseInt(real.visitante);
+      const pl=parseInt(pred.local),pv=parseInt(pred.visitante);
+      if(pl===rl&&pv===rv)pts+=3;
+      else if((pl>pv&&rl>rv)||(pl<pv&&rl<rv)||(pl===pv&&rl===rv))pts+=1;
+    });
+    p.puntos=pts;
+  });
+  saveState();
+  toast('¡Puntos actualizados! ✓','success');
+}
+function guardarConfig(){
+  state.config.cuota=parseInt(document.getElementById('config-cuota').value)||100;
+  const np=document.getElementById('config-pass').value;
+  if(np.length>=4)state.config.password=np;
+  saveState();toast('Configuración guardada ✓','success');
+}
+function resetearDatos(){
+  if(!confirm('¿Borrar TODO? No se puede deshacer.'))return;
+  state.participantes=[];state.resultados_reales={};
+  saveState();renderAdmin();toast('Datos borrados');
+}
+
+// ════════════════════════════════
+// QR
+// ════════════════════════════════
+function initQR(){
+  const saved=localStorage.getItem('bloom_qr_url')||'';
+  if(saved){document.getElementById('qr-url-input').value=saved;generarQR(saved);}
+}
+function generarQR(url){
+  if(!url)return;
+  localStorage.setItem('bloom_qr_url',url);
+  document.getElementById('qr-url-text').textContent=url;
+  const c=document.getElementById('qr-container');
+  c.innerHTML='';
+  try{new QRCode(c,{text:url,width:200,height:200,colorDark:'#2A0F04',colorLight:'#FFF8EE',correctLevel:QRCode.CorrectLevel.H});}
+  catch(e){}
+}
+
+// ════════════════════════════════
+// TOAST
+// ════════════════════════════════
+function toast(msg,type=''){
+  const t=document.getElementById('toast');
+  t.textContent=msg;t.className='toast'+(type?' '+type:'');
+  t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),3000);
+}
+
+loadState();
+updateStats();
+</script>
+</body>
+</html>
