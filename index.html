@@ -1293,6 +1293,38 @@ function switchGrupoTab(grupoId,tab,btn,prefix){
   btn.classList.add('active');
 }
 
+function renderCTables(tableKeys, highlight) {
+  let html = '';
+  tableKeys.forEach(function(tKey) {
+    const t = CLASIF_TABLES[tKey];
+    if (!t) return;
+    html += '<div class="clasif-conf-title">📊 ' + t.titulo + '</div>';
+    if (t.nota) html += '<p style="font-size:11px;color:var(--ink3);font-weight:700;margin-bottom:10px;line-height:1.5;">' + t.nota + '</p>';
+    html += '<div style="overflow-x:auto;margin-bottom:16px;"><table class="clasif-table"><thead><tr>';
+    t.cols.forEach(function(c){ html += '<th>' + c + '</th>'; });
+    html += '</tr></thead><tbody>';
+    t.filas.forEach(function(f) {
+      const isMarker = f[f.length-1] === 'highlight';
+      const data = isMarker ? f.slice(0,-1) : f;
+      const isH = isMarker || (highlight && data[1] && data[1].includes(highlight));
+      const pos = parseInt(data[0]);
+      const isClasif = !isNaN(pos) && pos <= 2;
+      const isRep = !isNaN(pos) && pos === 3 && t.cols.length > 5;
+      html += '<tr' + (isH ? ' class="highlight"' : '') + '>';
+      data.forEach(function(c, ci) {
+        if (ci === 0 && !isNaN(pos)) {
+          html += '<td>' + (isClasif ? '<span class="clasif-badge cb-clasificado">✓</span> ' : '') + (isRep ? '<span class="clasif-badge cb-repechaje">R</span> ' : '') + c + '</td>';
+        } else {
+          html += '<td>' + c + '</td>';
+        }
+      });
+      html += '</tr>';
+    });
+    html += '</tbody></table></div>';
+  });
+  return html;
+}
+
 function buildGrupoPagina(g,isFirst,adminMode){
   const px=adminMode?'a':'u';
   const flags=g.equipos.map(e=>`<div class="equipo-flag-badge"><span class="flag">${e.f}</span><span>${e.n}</span></div>`).join('');
@@ -1329,58 +1361,41 @@ function buildGrupoPagina(g,isFirst,adminMode){
   }).join('');
 
   // Clasificación
-  let clasifHtml='';
-  const cl=g.clasificacion;
-  clasifHtml=`<div class="clasif-section">`;
-  
-  // Render multiple tables
-  if(cl.tables && cl.tables.length>0){
-    cl.tables.forEach(tKey=>{
-      const t=CLASIF_TABLES[tKey];
-      if(!t)return;
-      const highlightTeam=cl.highlight||'';
-      clasifHtml+=`<div class="clasif-conf-title">📊 ${t.titulo}</div>`;
-      if(t.nota) clasifHtml+=`<p style="font-size:11px;color:var(--ink3);font-weight:700;margin-bottom:10px;line-height:1.5;">${t.nota}</p>`;
-      clasifHtml+=`<div style="overflow-x:auto;margin-bottom:16px;">
-      <table class="clasif-table">
-        <thead><tr>${t.cols.map(c=>`<th>${c}</th>`).join('')}</tr></thead>
-        <tbody>${t.filas.map((f,fi)=>{
-          const isH = f[f.length-1]==='highlight' || (highlightTeam && f[1] && f[1].includes(highlightTeam));
-          const data = f[f.length-1]==='highlight' ? f.slice(0,-1) : f;
-          const pos = parseInt(data[0]);
-          const isClasif = !isNaN(pos) && pos<=2;
-          const isRep = !isNaN(pos) && pos===3 && t.cols.length>5;
-          return \`<tr\${isH?' class="highlight"':''}>\${data.map((c,ci)=>{
-            if(ci===0&&!isNaN(pos)) return \`<td>\${isClasif?'<span class="clasif-badge cb-clasificado">✓</span> ':''}\${isRep?'<span class="clasif-badge cb-repechaje">R</span> ':''}\${c}</td>\`;
-            return \`<td>\${c}</td>\`;
-          }).join('')}</tr>\`;
-        }).join('')}</tbody>
-      </table></div>`;
+  let clasifHtml = '<div class="clasif-section">';
+  const cl = g.clasificacion;
+
+  if (cl.tables && cl.tables.length > 0) {
+    clasifHtml += renderCTables(cl.tables, cl.highlight || '');
+  } else if (cl.tabla) {
+    const t = cl.tabla;
+    clasifHtml += '<div class="clasif-conf-title">📊 ' + t.titulo + '</div>';
+    if (t.nota) clasifHtml += '<p style="font-size:11px;color:var(--ink3);font-weight:700;margin-bottom:10px;">' + t.nota + '</p>';
+    clasifHtml += '<div style="overflow-x:auto;"><table class="clasif-table"><thead><tr>';
+    t.cols.forEach(function(c){ clasifHtml += '<th>' + c + '</th>'; });
+    clasifHtml += '</tr></thead><tbody>';
+    t.filas.forEach(function(f) {
+      const isH = f[f.length-1] === 'highlight';
+      const data = isH ? f.slice(0,-1) : f;
+      const pos = parseInt(data[0]);
+      const isClasif = !isNaN(pos) && pos <= 6;
+      const isRep = !isNaN(pos) && pos === 7;
+      clasifHtml += '<tr' + (isH ? ' class="highlight"' : '') + '>';
+      data.forEach(function(c, ci) {
+        if (ci === 0) {
+          clasifHtml += '<td>' + (isClasif ? '<span class="clasif-badge cb-clasificado">✓</span> ' : '') + (isRep ? '<span class="clasif-badge cb-repechaje">R</span> ' : '') + c + '</td>';
+        } else {
+          clasifHtml += '<td>' + c + '</td>';
+        }
+      });
+      clasifHtml += '</tr>';
     });
-  } else if(cl.tabla){
-    const t=cl.tabla;
-    clasifHtml+=`<div class="clasif-conf-title">📊 ${t.titulo}</div>`;
-    if(t.nota) clasifHtml+=`<p style="font-size:11px;color:var(--ink3);font-weight:700;margin-bottom:10px;">${t.nota}</p>`;
-    clasifHtml+=`<div style="overflow-x:auto;">
-    <table class="clasif-table">
-      <thead><tr>${t.cols.map(c=>`<th>${c}</th>`).join('')}</tr></thead>
-      <tbody>${t.filas.map(f=>{
-        const isH=f[f.length-1]==='highlight';
-        const data=isH?f.slice(0,-1):f;
-        const pos=parseInt(data[0]);
-        const isClasif=pos<=6;
-        const isRepechaje=pos===7;
-        return `<tr${isH?' class="highlight"':''}>
-          ${data.map((c,ci)=>{
-            if(ci===0)return `<td>${isClasif?'<span class="clasif-badge cb-clasificado">✓</span> ':''}${isRepechaje?'<span class="clasif-badge cb-repechaje">R</span> ':''}${c}</td>`;
-            return `<td>${c}</td>`;
-          }).join('')}
-        </tr>`;
-      }).join('')}</tbody>
-    </table></div>`;
+    clasifHtml += '</tbody></table></div>';
   } else {
-    clasifHtml+=`<p style="font-size:13px;color:var(--ink2);font-weight:600;line-height:1.6;">${cl.nota||''}</p>`;
+    clasifHtml += '<p style="font-size:13px;color:var(--ink2);font-weight:600;line-height:1.6;">' + (cl.nota || '') + '</p>';
   }
+
+  clasifHtml += '</div>';
+
   clasifHtml+='</div>';
 
   return `<div class="grupo-page${isFirst?' active':''}" id="gpage-${px}-${g.id}">
